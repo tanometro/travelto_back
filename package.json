@@ -1,0 +1,19 @@
+{
+  "name": "travelto_back",
+  "version": "1.0.0",
+  "description": "Travelto_back",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanometro/travelto_back.git"
+  },
+  "author": "Group 3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tanometro/travelto_back/issues"
+  },
+  "homepage": "https://github.com/tanometro/travelto_back#readme"
+}
