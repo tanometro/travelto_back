@@ -4,7 +4,8 @@
   "description": "Travelto_back",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/tanometro/travelto_back/issues"
   },
-  "homepage": "https://github.com/tanometro/travelto_back#readme"
+  "homepage": "https://github.com/tanometro/travelto_back#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "pg": "^8.11.3",
+    "sequelize": "^6.33.0",
+    "sequelize-cli": "^6.6.1"
+  }
 }
