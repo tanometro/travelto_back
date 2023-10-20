@@ -3,8 +3,8 @@ const express = require('express')
 const server = express()
 const cors = require ('cors')
 const morgan = require('morgan')
-const { conn } = require('./db.js')
-require('./db.js')
+const { conn } = require('../Api/db.js')
+require('../Api/db.js')
 
 conn.sync({force: true})
   .then(() => {
