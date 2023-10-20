@@ -1,4 +1,3 @@
-const {Op, literal} = require('sequelize');
 const {LocationsModel} = require('../../Api/db');
 import { CreateLocationData } from "../../interfaces";
 
@@ -33,6 +32,22 @@ const findOneLocationService = async (id: Number) => {
     }
 }
 
+const updateLocationService = async (id, updatedData) => {
+    try {
+        const result = await LocationsModel.update(updatedData, {
+            where: { id: id },
+        });
+
+        if (result[0] === 0) {
+            throw new Error(`No se encontró ninguna locación con ID ${id} para actualizar.`);
+        }
+
+        return `Pa, la ubicación con ID ${id} fue actualizada exitosamente.`;
+    } catch (error) {
+        throw new Error(`No se pudo actualizar la ubicación con ID ${id}. Detalles: ${error.message}`);
+    }
+};
+
 const destroyOneLocation = async (id: Number) => {
     try {
         const deleteCount = await LocationsModel.destroy({
@@ -55,4 +70,5 @@ module.exports = {
     getAllLocations,
     findOneLocationService,
     destroyOneLocation,
+    updateLocationService
 }
