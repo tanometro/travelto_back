@@ -1,10 +1,9 @@
-
 const express = require('express')
 const server = express()
 const cors = require ('cors')
 const morgan = require('morgan')
-const { conn } = require('../Api/db.js')
-require('../Api/db.js')
+const { conn } = require('./Api/db.js')
+require('./Api/db.js')
 
 conn.sync({force: true})
   .then(() => {
@@ -13,9 +12,3 @@ conn.sync({force: true})
     })
   })
   .catch((error) => console.log(error))
-
-server.use(morgan('dev'))
-server.use(cors())
-server.use(express.json())
-
-module.exports = server
