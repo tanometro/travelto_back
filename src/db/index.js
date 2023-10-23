@@ -1,8 +1,8 @@
 require('dotenv').config()
 const { Sequelize } = require('sequelize')
 
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
-const url = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env
+// const url = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`
 
 const LocationModel = require('../models/Locations');
 const AttractionModel = require('../models/Attractions')
@@ -10,8 +10,16 @@ const UserModel = require('../models/Users')
 const CommentModel = require('../models/Comments')
 const CompraModel = require ('../models/Compras')
 
+// const dataBase = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`,
+//    {
+//     logging: false,
+//     native: false,
+//   }) 
+
 const dataBase = new Sequelize(
-  url, {
+  DB_DEPLOY,
+   {
     logging: false,
     native: false,
   }) 
