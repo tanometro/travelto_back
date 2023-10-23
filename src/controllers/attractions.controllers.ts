@@ -1,28 +1,11 @@
 import { Request, Response } from 'express'
 const { Attractions } = require('../models/Attractions')
-import { Attraction } from '../../interfaces';
+import { Attraction, CreateAttractionInterface } from '../../interfaces';
+const {createOneAttraction} = require('../services/atractions.services');
 
-const createAttraction = async (
-    name: string,
-    hours: string,
-    location: string,
-    coordinates: string,
-    price: number,
-    duration: number,
-    description: string,
-    isActive: boolean
-) => {
+const createAttraction = async (body: CreateAttractionInterface) => {
     try {
-        const newAttraction = await Attractions.create({
-            name,
-            hours,
-            location,
-            coordinates,
-            price,
-            duration,
-            description,
-            isActive
-        })
+        const newAttraction = await createOneAttraction(body);
         return newAttraction
     } catch (error) {
         if (error instanceof Error) {

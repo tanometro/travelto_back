@@ -29,16 +29,13 @@ export interface Attraction {
 
 }
 
-export interface Attraction {
-    id: number;
-    name: string;
-    location: string;
-    price: number;
-    rating: number;
-    hours: string;
+export interface CreateAttractionInterface {
+    name: string,
+    hours: string,
+    location: string,
+    coordinates: string,
+    price: number,
+    duration: number,
+    description: string,
     isActive: boolean
-    coordinates: string;
-    duration: number;
-    description: string;
-
 }
