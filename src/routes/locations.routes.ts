@@ -1,10 +1,9 @@
-const express = require('express');
-const router = express.Router()
+const {createLocation, readAllLocations, updateLocation, deleteLocation, readOneLocation} = require('../controllers/locations.controlers');
 
-router.post('/', createLocation);
-router.get('/search/:id', readAllLocations);
-router.patch('/', updateLocation)
-router.patch('/', deleteLocation);
-router.get('/', readOneLocation)
+router.post('/create', createLocation);
+router.get('/', readAllLocations);
+router.patch('/update/:id', updateLocation)
+router.patch('/delete/:id', deleteLocation);
+router.get('/:id', readOneLocation)
 
 module.exports = router;

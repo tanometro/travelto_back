@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 
-module.exports = (dataBase) => {
-  dataBase.define('Location', {
+module.exports = (sequelize) => {
+  sequelize.define('Location', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
