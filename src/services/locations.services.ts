@@ -4,6 +4,7 @@ import { CreateLocationData } from "../../interfaces";
 const createOneLocation = async (data: CreateLocationData) => {
     try {
         const newLocation = await LocationsModel.create(data);
+        return newLocation;
     } catch (error: any) {
         throw new Error ("Mostro, no pude crear la location, y es que " + error.message)
     }
@@ -26,7 +27,6 @@ const findOneLocationService = async (id: Number) => {
         const oneLocation = await LocationsModel.findByPk(id);
         if (oneLocation === null) return ("No existe esa locación")
         return oneLocation;
-
     } catch (error: any) {
         throw new Error ("Idolo, yo no seré el mejor backend, pero vos tampoco. Intenta de nuevo. " + error.message)
     }
