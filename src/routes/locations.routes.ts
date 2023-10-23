@@ -3,7 +3,7 @@ const {createLocation, readAllLocations, updateLocation, deleteLocation, readOne
 router.post('/create', createLocation);
 router.get('/', readAllLocations);
 router.patch('/update/:id', updateLocation)
-router.patch('/delete/:id', deleteLocation);
+router.delete('/delete/:id', deleteLocation);
 router.get('/:id', readOneLocation)
 
 module.exports = router;

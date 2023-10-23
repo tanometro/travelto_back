@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 const {getAllLocations, destroyOneLocation, createOneLocation, findOneLocationService, updateLocationService} = require('../services/locations.services');
-// Para todas las locations
+
 
 const createLocation = async (req: Request, res: Response) => {
     try {

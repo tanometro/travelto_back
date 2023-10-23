@@ -1,4 +1,4 @@
-const {LocationsModel} = require('../../Api/db');
+const {LocationsModel} = require('../db');
 import { CreateLocationData } from "../../interfaces";
 
 const createOneLocation = async (data: CreateLocationData) => {
