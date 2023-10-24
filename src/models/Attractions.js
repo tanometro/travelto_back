@@ -30,7 +30,7 @@ module.exports = (dataBase) => {
     },
     hours: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     duration: {
       type: DataTypes.STRING,
