@@ -1,7 +1,7 @@
-const createUsers = require('../controllers/createUsers');
+// const createUsers = require('../controllers/createUsers');
 
-const handlerCreateUser = ()=>{
+// const handlerCreateUser = ()=>{
 
-};
+// };
 
-module.exports = handlerCreateUser
+// module.exports = handlerCreateUser
