@@ -21,6 +21,9 @@ const dataAttraction = async (req, res) => {
                 duration: attractionData.duration,
                 isActive: attractionData.isActive,
             };
+                if (mappedAttraction.hours === null) {
+                    mappedAttraction.hours = "0";
+                }
         // console.log(mappedAttraction)
             const [attraction, created] = await Attraction.findOrCreate({
                 where: { name: mappedAttraction.name },
