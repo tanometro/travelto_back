@@ -5,7 +5,7 @@ module.exports = (dataBase) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncremental: true,
+      autoIncrement: true,
       allowNull: false,
     },
     name: {
