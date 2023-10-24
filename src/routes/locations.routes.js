@@ -1,3 +1,5 @@
+const { Router } = require('express')
+const router = Router()
 const {createLocation, readAllLocations, updateLocation, deleteLocation, readOneLocation} = require('../controllers/locations.controlers');
 
 router.post('/create', createLocation);
