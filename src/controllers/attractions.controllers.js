@@ -4,7 +4,7 @@ const data = require("../../Api/attractions.json");
 const dataAttraction = async () => {
   console.log("entrando a la funcion");
   try {
-    const createdAttractions = await Promise.all(
+    await Promise.all(
       data.attractions.map(async (attractionData) => {
         if (attractionData.hours === null || attractionData.hours == "") {
           attractionData.hours = "0";
