@@ -1,39 +1,10 @@
 const { Attraction } = require('../db')
 const data = require('../../Api/attractions.json')
+const {findOrCreate, getAllAttraction, createOneAttraction, destroyAttraction} = require('../services/atractions.services')
 
 const dataAttraction = async (req, res) => {
     try {
-        const createdAttractions = await Promise.all(data.attractions.map(async (attractionData) => {
-            if (attractionData.hours === null || attractionData.hours == "" ) { attractionData.hours = "0"}
-            if (!attractionData.latitude) {attractionData.latitude = "0"}
-            if (!attractionData.longitude) {attractionData.longitude = "0"}
-
-        // console.log("attractionData.latitude:", attractionData.latitude);
-        // console.log("attractionData.longitude:", attractionData.longitude);
-        // Mapea los datos del archivo JSON al modelo de la base de datos
-            const mappedAttraction = {
-                name: attractionData.name,
-                description: attractionData.description,
-                latitude: attractionData.latitude,
-                longitude: attractionData.longitude,
-                price: attractionData.price,
-                hours: attractionData.hours,
-                duration: attractionData.duration,
-                isActive: attractionData.isActive,
-            };
-                if (mappedAttraction.hours === null) {
-                    mappedAttraction.hours = "0";
-                }
-        // console.log(mappedAttraction)
-            const [attraction, created] = await Attraction.findOrCreate({
-                where: { name: mappedAttraction.name },
-                defaults: mappedAttraction,
-            });
-            if (!created) {
-                await attraction.update(mappedAttraction);
-            }
-            return attraction;
-        }));
+       const createdAttractions = await findOrCreate(data);
 
         res.status(201).json(createdAttractions);
     } catch (error) {
@@ -70,13 +41,11 @@ const getAttractionById = async (req, res) => {
 
 const getAttractionByQuery = (req, res) => {
     try {
-        const { name } = req.query; // Obtén el parámetro 'name' de la consulta
+        const { name } = req.query; 
 
         if (!name) {
             return res.status(400).json({ error: 'Falta el parámetro de consulta "name"' });
         }
-
-        // Realiza la búsqueda en tu fuente de datos (el archivo JSON)
         const attractions = data.attractions.filter((a) => a.name === name);
 
         if (attractions.length > 0) {
@@ -91,14 +60,12 @@ const getAttractionByQuery = (req, res) => {
 };
 const getAllAttraction = async (req, res) => {
     try {
-        const dbAttractions = await Attraction.findAll(); // Obtén todas las atracciones de la base de datos
-        const attractionsData = data.attractions; // Obtén todas las atracciones del archivo JSON
+        const dbAttractions = await getAllAttraction(); 
+        const attractionsData = data.attractions; 
 
-        // Combinar las atracciones de la base de datos y del archivo JSON
         const allAttraction = [...dbAttractions, ...attractionsData];
         const nombreBuscado = (req.query.name || '').toString().toLocaleLowerCase();
 
-        // Filtrar las atracciones según el nombre proporcionado
         const filteredAttractions = allAttraction.filter((attraction) => {
             const nameAttraction = attraction.name.toLocaleLowerCase();
             return nameAttraction.includes(nombreBuscado);
@@ -126,7 +93,7 @@ const createNewAttraction = async (req, res) => {
             isActive,
             location } = req.body
 
-        const newAttraction = await Attraction.create({
+        const newAttraction = await createOneAttraction({
             name,
             hours,
             latitude,
@@ -145,10 +112,22 @@ const createNewAttraction = async (req, res) => {
         res.status(400).json({ error: 'Error en la creacion de una Attraccion' })
     }
 }
+
+const deleteOneAttraction = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const response = await destroyAttraction(id);
+        res.status(201).json(response)
+    } catch (error) {
+        res.status(400).json({ error: 'Error en la eliminación de la Attraccion' })
+    }
+}
+
 module.exports = {
     getAttractionById,
     dataAttraction,
     createNewAttraction,
     getAllAttraction,
     getAttractionByQuery,
+    deleteOneAttraction
 }

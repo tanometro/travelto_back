@@ -1,20 +1,34 @@
 const {Users} = require('../models/Users')
+const {createUsersLocal, destroyUser, getOneUser} = require('../services/users.services');
 
-const createUsers = ()=>{
+const createUsers = async (req, res)=>{
+    const {name, dni, roleId} = req.body;
+    try {
+        if (!name || !dni || !roleId) 'Faltan datos, revisa tu form';
 
+        const response = await createUsersLocal(name, dni, roleId);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).send({message: error.message});
+    }
 };
 
-const {Users} = require('../models/Users')
-const data = require('../Falsa API/dataUsers')
 
 const getUsersById = async (id, source)=>{
-    if(source ==='API'){
-        let users = data.filter(a => a.id === id)
-        return users
-    }else{
-        let usersDB = await Users.findPK(id)
-        return usersDB
+    const {id} = req.params;
+    try {
+        if(source ==='API'){
+            let users = data.filter(a => a.id === id)
+            res.status(200).json(users);
+        }else{
+            let usersDB = await getOneUser(id)
+            res.status(200).json(usersDB);
+        }
+        
+    } catch (error) {
+        res.status(500).send({message: error.message});
     }
+    
 };
 
 const getUsersByQuery = async (name)=>{
@@ -50,3 +64,22 @@ const getAllUsers = async ()=>{
         res.status(400).json({error: error.message})
     }
 };
+
+const deleteUser = async (req, res) => {
+    const {id} = req.params;
+    try{
+        const response = await destroyUser(id);
+        res.status(200).json(response);
+    }
+    catch(error) {
+        res.status(500).send({message: error.message});
+    }
+}
+
+module.exports = {
+    createUsers,
+    getUsersById,
+    getUsersByQuery,
+    getAllUsers,
+    deleteUser
+}
