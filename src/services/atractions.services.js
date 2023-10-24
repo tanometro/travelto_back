@@ -47,7 +47,7 @@ const findOrCreate = async (data) => {
     
 }
 
-const getAllAttraction = () => {
+const readAllAttraction = () => {
     try {
         const attractions = Attraction.findAll({
             attributes: ['id', 'name', 'website']
@@ -74,6 +74,6 @@ const destroyAttraction = (id) => {
 module.exports = {
     createOneAttraction,
     findOrCreate,
-    getAllAttraction,
+    readAllAttraction,
     destroyAttraction
 }
