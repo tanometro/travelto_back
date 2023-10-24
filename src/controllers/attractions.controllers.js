@@ -1,31 +1,73 @@
-import { Request, Response } from 'express'
-const { Attractions } = require('../models/Attractions')
-const {createOneAttraction} = require('../services/atractions.services');
+const { Attraction } = require('../db')
+const data = require('../../Api/attractions.json')
 
-const createAttraction = async (body) => {
+const dataAttraction = async (req, res) => {
     try {
-        const newAttraction = await createOneAttraction(body);
-        return newAttraction
+        const createdAttractions = await Promise.all(data.attractions.map(async (attractionData) => {
+            if (attractionData.hours === null) { attractionData.hours = ""}
+            if (!attractionData.latitude) {attractionData.latitude = "0"}
+            if (!attractionData.longitude) {attractionData.longitude = "0"}
+
+            // console.log("attractionData.latitude:", attractionData.latitude);
+            // console.log("attractionData.longitude:", attractionData.longitude);
+            // Mapea los datos del archivo JSON al modelo de la base de datos
+            const mappedAttraction = {
+                name: attractionData.name,
+                description: attractionData.description,
+                latitude: attractionData.latitude,
+                longitude: attractionData.longitude,
+                price: attractionData.price || null,
+                hours: attractionData.hours || null,
+                duration: attractionData.duration || null,
+                isActive: attractionData.isActive,
+                // Otros campos mapeados aquí
+            };
+        // console.log(mappedAttraction)
+            // Utiliza bulkCreate para insertar en la base de datos
+            const [attraction, created] = await Attraction.findOrCreate({
+                where: { name: mappedAttraction.name },
+                defaults: mappedAttraction,
+            });
+
+            if (!created) {
+                // Si la atracción ya existe, actualiza los datos en lugar de crear una nueva
+                await attraction.update(mappedAttraction);
+            }
+
+            return attraction;
+        }));
+
+        res.status(201).json(createdAttractions);
     } catch (error) {
-        if (error instanceof Error) {
-            throw new Error('Error en la creacion de la nueva attraction' + error.message)
-        } else {
-            throw new Error('Error desconocido en la creación de la nueva atracción.')
-        }
+        console.error('Error en la creación o actualización de atracciones:', error);
+        res.status(500).json({ error: 'Error en la creación o actualización de atracciones' });
     }
 };
-
-// const { Attractions } = require('../models')
 const data = require('../../Api/data')
 
-const getAttractionById = async (id, source) => {
+const getAttractionById = async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const source = 'API'; 
 
-    if (source === 'API') {
-        let attraction = data.filter((a) => a.id === id)
-        return attraction
-    } else {
-        let attractionDB = await Attractions.findPK(id)
-        return attractionDB
+        if (source === 'API') {
+            const attraction = data.attractions.find((a) => a.id === Number(id));
+            if (attraction) {
+                return res.status(200).json(attraction);
+            } else {
+                return res.status(404).json({ error: 'Atracción no encontrada' });
+            }
+        } else {
+            const attractionDB = await Attraction.findByPk(id);
+            if (attractionDB) {
+                return res.status(200).json(attractionDB);
+            } else {
+                return res.status(404).json({ error: 'Atracción no encontrada en la base de datos' });
+            }
+        }
+    } catch (error) {
+        console.error('Error al buscar atracción por ID:', error);
+        return res.status(500).json({ error: 'Error en el servidor' });
     }
 };
 
@@ -69,9 +111,42 @@ const getAllAttraction = async (req, res) => {
     }
 }
 
+const createNewAttraction = async (req, res) => {
+    try {
+        const { 
+            name,
+            hours,
+            latitude,
+            longitude,
+            price,
+            duration,
+            description,
+            isActive,
+            location } = req.body
+
+        const newAttraction = await Attraction.create({
+            name,
+            hours,
+            latitude,
+            longitude,
+            price,
+            duration,
+            description,
+            isActive,
+        })
+
+        newAttraction.addLocation(location)
+        res.status(201).json(newAttraction)
+        
+    }
+    catch (error) {
+        res.status(400).json({ error: 'Error en la creacion de una Attraccion' })
+    }
+}
 module.exports = {
     getAttractionById,
-    createAttraction,
+    dataAttraction,
+    createNewAttraction,
     getAllAttraction,
     getAttractionByQuery,
 }
