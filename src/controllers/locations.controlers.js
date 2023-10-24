@@ -1,6 +1,5 @@
 const {getAllLocations, destroyOneLocation, createOneLocation, findOneLocationService, updateLocationService} = require('../services/locations.services');
 
-
 const createLocation = async (req, res) => {
     try {
         const created = await createOneLocation();
