@@ -8,7 +8,7 @@ const commentsRoutes = require('./comments.routes');
 
 router.use('/attractions', attractionsRoutes);
 router.use('/locations', locationsRoutes);
-router.use('/users', usersRoutes);
+// router.use('/users', usersRoutes);
 router.use('/comments', commentsRoutes);
 
 module.exports = router;

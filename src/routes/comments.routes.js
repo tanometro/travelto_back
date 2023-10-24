@@ -1,3 +1,5 @@
+const { Router } = require('express')
+const router = Router()
 const {createOneComment,readAllComment, readOneComment, updateOneComment, deleteOneComment} = require('../controllers/comments.controllers')
 
 router.post('/create', createOneComment);

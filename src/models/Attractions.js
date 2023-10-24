@@ -5,7 +5,7 @@ module.exports = (dataBase) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncremental: true,
+      autoIncrement: true,
       allowNull: false,
     },
     name: {
@@ -16,11 +16,11 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    latitud: {
+    latitude: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    longitud: {
+    longitude: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -30,7 +30,7 @@ module.exports = (dataBase) => {
     },
     hours: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     duration: {
       type: DataTypes.STRING,
