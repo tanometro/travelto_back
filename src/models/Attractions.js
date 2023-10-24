@@ -16,11 +16,11 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    latitud: {
+    latitude: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    longitud: {
+    longitude: {
       type: DataTypes.STRING,
       allowNull: false
     },

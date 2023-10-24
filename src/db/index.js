@@ -19,7 +19,7 @@ const dataBase = new Sequelize(
 
 // const dataBase = new Sequelize(
 //   DB_DEPLOY,
-//    {
+//   {
 //     logging: false,
 //     native: false,
 //   }) 
