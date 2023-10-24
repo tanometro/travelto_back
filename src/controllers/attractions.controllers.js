@@ -1,9 +1,8 @@
 import { Request, Response } from 'express'
 const { Attractions } = require('../models/Attractions')
-import { Attraction, CreateAttractionInterface } from '../../interfaces';
 const {createOneAttraction} = require('../services/atractions.services');
 
-const createAttraction = async (body: CreateAttractionInterface) => {
+const createAttraction = async (body) => {
     try {
         const newAttraction = await createOneAttraction(body);
         return newAttraction
@@ -19,10 +18,10 @@ const createAttraction = async (body: CreateAttractionInterface) => {
 // const { Attractions } = require('../models')
 const data = require('../../Api/data')
 
-const getAttractionById = async (id: number, source: string) => {
+const getAttractionById = async (id, source) => {
 
     if (source === 'API') {
-        let attraction = data.filter((a: Attraction) => a.id === id)
+        let attraction = data.filter((a) => a.id === id)
         return attraction
     } else {
         let attractionDB = await Attractions.findPK(id)
@@ -30,10 +29,10 @@ const getAttractionById = async (id: number, source: string) => {
     }
 };
 
-const getAttractionByQuery = async (name: string) => {
+const getAttractionByQuery = async (name) => {
     //DATA BASE
     const dbAttraction = await Attractions.findAll({ where: { name: name } })
-    const attraction = dbAttraction.map((a: Attraction) => {
+    const attraction = dbAttraction.map((a) => {
         return {
             id: a.id,
             name: a.name,
@@ -47,12 +46,12 @@ const getAttractionByQuery = async (name: string) => {
         }
     })
 };
-const getAllAttraction = async (req: Request, res: Response) => {
+const getAllAttraction = async (req, res) => {
     try {
         const dbAttractions = await Attractions.findAll();
         const attractionsData = data;
 
-        const allAttraction: Attraction[] = [...dbAttractions, ...attractionsData]
+        const allAttraction = [...dbAttractions, ...attractionsData]
         const nombreBuscado = (req.query.name || '').toString().toLocaleLowerCase()
 
         const filteredAttractions = allAttraction.filter((attraction) => {

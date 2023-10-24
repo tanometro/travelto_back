@@ -1,7 +1,7 @@
 const express = require('express')
 const port = process.env.PORT || 3001;
 
-const server = express();
+const {server} = require('./src/server');
 const { conn } = require('./src/db')
 require('./src/db');
 
