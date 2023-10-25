@@ -7,6 +7,6 @@ router.get('/', getAllAttraction)
 router.get('/name', getAttractionByQuery)
 router.get('/:id', getAttractionById)
 router.post('/create', createNewAttraction)
-router.delete('/create', createNewAttraction)
+//router.delete('/create', createNewAttraction)
 
 module.exports = router

@@ -10,6 +10,6 @@ conn.sync({force: true})
       console.log(`Server raised in port: ` + port);
     });
   })
-  .catch((error) => console.log(error));
-
-
+  .catch((error) => {
+    console.error("Error al sincronizar la base de datos:", error);
+  });
