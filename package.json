@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Travelto_back",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js"
   },
@@ -20,6 +21,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.18.2",
+    "mercadopago": "^2.0.3",
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
     "sequelize": "^6.33.0",
