@@ -1,49 +1,11 @@
 const { Attraction } = require("../db");
 const data = require("../../Api/attractions.json");
+const {findOrCreate, getAllAttraction} = require('../services/atractions.services')
 
 const dataAttraction = async () => {
-  console.log("entrando a la funcion");
   try {
-    await Promise.all(
-      data.attractions.map(async (attractionData) => {
-        if (attractionData.hours === null || attractionData.hours == "") {
-          attractionData.hours = "0";
-        }
-        if (!attractionData.latitude) {
-          attractionData.latitude = "0";
-        }
-        if (!attractionData.longitude) {
-          attractionData.longitude = "0";
-        }
-
-        // console.log("attractionData.latitude:", attractionData.latitude);
-        // console.log("attractionData.longitude:", attractionData.longitude);
-        // Mapea los datos del archivo JSON al modelo de la base de datos
-        const mappedAttraction = {
-          name: attractionData.name,
-          description: attractionData.description,
-          latitude: attractionData.latitude,
-          longitude: attractionData.longitude,
-          price: attractionData.price,
-          hours: attractionData.hours,
-          duration: attractionData.duration,
-          isActive: attractionData.isActive,
-        };
-        if (mappedAttraction.hours === null) {
-          mappedAttraction.hours = "0";
-        }
-        // console.log(mappedAttraction)
-        const [attraction, created] = await Attraction.findOrCreate({
-          where: { name: mappedAttraction.name },
-          defaults: mappedAttraction,
-        });
-        if (!created) {
-          await attraction.update(mappedAttraction);
-        }
-        
-        return attraction
-    })
-    );
+    const response = await findOrCreate(data);
+    res.status(200).send(response);
   } catch (error) {
     console.error(
       "Error en la creación o actualización de atracciones:",
@@ -107,16 +69,14 @@ const getAttractionByQuery = (req, res) => {
     return res.status(500).json({ error: "Error en el servidor" });
   }
 };
-const getAllAttraction = async (req, res) => {
+const readAttractions = async (req, res) => {
   try {
-    const dbAttractions = await Attraction.findAll(); // Obtén todas las atracciones de la base de datos
-    const attractionsData = data.attractions; // Obtén todas las atracciones del archivo JSON
-
-    // Combinar las atracciones de la base de datos y del archivo JSON
+    const dbAttractions = await getAllAttraction(); 
+    const attractionsData = data.attractions; 
+   
     const allAttraction = [...dbAttractions, ...attractionsData];
     const nombreBuscado = (req.query.name || "").toString().toLocaleLowerCase();
 
-    // Filtrar las atracciones según el nombre proporcionado
     const filteredAttractions = allAttraction.filter((attraction) => {
       const nameAttraction = attraction.name.toLocaleLowerCase();
       return nameAttraction.includes(nombreBuscado);
@@ -167,5 +127,5 @@ module.exports = {
   dataAttraction,
   createNewAttraction,
   getAllAttraction,
-  getAttractionByQuery,
+  readAttractions,
 };
