@@ -13,6 +13,7 @@ const createUsers = async (req, res)=>{
     }
 };
 
+
 const getUsersById = async (id, source)=>{
     const {id} = req.params;
     try {
@@ -22,10 +23,12 @@ const getUsersById = async (id, source)=>{
         }else{
             let usersDB = await getOneUser(id)
             res.status(200).json(usersDB);
-        }        
+        }
+        
     } catch (error) {
         res.status(500).send({message: error.message});
-    }  
+    }
+    
 };
 
 const getUsersByQuery = async (name)=>{
