@@ -1,8 +1,8 @@
-const {LocationsModel} = require('../db');
+const {Location} = require('../db');
 
 const createOneLocation = async (data) => {
     try {
-        const newLocation = await LocationsModel.create(data);
+        const newLocation = await Location.create(data);
         return newLocation;
     } catch (error) {
         throw new Error ("Mostro, no pude crear la location, y es que " + error.message)
@@ -11,7 +11,7 @@ const createOneLocation = async (data) => {
 
 const getAllLocations = async () => {
     try{
-        const locations = await LocationsModel.findAll({
+        const locations = await Location.findAll({
                 attributes: ['id', 'name', 'website']
         });
         return locations
@@ -23,7 +23,7 @@ const getAllLocations = async () => {
 
 const findOneLocationService = async (id) => {
     try {
-        const oneLocation = await LocationsModel.findByPk(id);
+        const oneLocation = await Location.findByPk(id);
         if (oneLocation === null) return ("No existe esa locación")
         return oneLocation;
     } catch (error) {
@@ -33,7 +33,7 @@ const findOneLocationService = async (id) => {
 
 const updateLocationService = async (id, updatedData) => {
     try {
-        const result = await LocationsModel.update(updatedData, {
+        const result = await Location.update(updatedData, {
             where: { id: id },
         });
 
@@ -49,7 +49,7 @@ const updateLocationService = async (id, updatedData) => {
 
 const destroyOneLocation = async (id) => {
     try {
-        const deleteCount = await LocationsModel.destroy({
+        const deleteCount = await Location.destroy({
             where: {
                 id: id
             }
@@ -63,11 +63,21 @@ const destroyOneLocation = async (id) => {
         throw new Error (`Bro, no se borró la location con ${id}, lo que pasó es que ` + error.message)
     }
 }
-
+const findByName = async (name) => {
+    try {
+        const response = await Location.findAll({
+            where: {
+                name: name
+            }})
+    } catch (error) {
+        throw new Error (error.message)
+    }
+}
 module.exports = {
     createOneLocation,
     getAllLocations,
     findOneLocationService,
     destroyOneLocation,
-    updateLocationService
+    updateLocationService,
+    findByName
 }
