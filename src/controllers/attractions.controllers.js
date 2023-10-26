@@ -1,16 +1,5 @@
-const { Attraction } = require("../db");
 const data = require("../../Api/attractions.json");
 const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel} = require('../services/atractions.services')
-
-const createNewAttraction = async (req, res) => {
-  try {
-    const newAttraction = await createOneAttraction(req.body);
-    res.status(201).json(newAttraction);
-  } catch (error) {
-    console.error("Error en la creación de una atracción:", error);
-    res.status(500).json({ error: "Error en el servidor" });
-  }
-};
 
 const dataAttraction = async (req, res) => {
   try {
@@ -56,7 +45,7 @@ const readAttractionById = async (req, res) => {
 
 const readAttractionByQuery = async(req, res) => {
   try {
-    const { name } = req.query; // Obtén el parámetro 'name' de la consulta
+    const { name } = req.query;
     const attractions = await attractionByQuery(name);
 
     if (attractions.length > 0) {
@@ -68,6 +57,16 @@ const readAttractionByQuery = async(req, res) => {
     }
   } catch (error) {
     console.error("Error al buscar atracciones por nombre en la base de datos:", error);
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+};
+
+const createNewAttraction = async (req, res) => {
+  try {
+    const newAttraction = await createOneAttraction(req.body);
+    res.status(201).json(newAttraction);
+  } catch (error) {
+    console.error("Error en la creación de una atracción:", error);
     res.status(500).json({ error: "Error en el servidor" });
   }
 };
