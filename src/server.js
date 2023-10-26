@@ -3,11 +3,27 @@ const server = express();
 const routes = require('./routes/index.js');
 const morgan = require("morgan");
 const cors = require("cors");
+const {BASE_URL}= process.env;
+const path = require('path');
 
 // Swagger mi rey
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerSpec()
+const swaggerSpec = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Node Sequelize API',
+            version: '1.0.0',  
+        },
+        servers: [
+            {
+                url: `${BASE_URL}`
+            }
+        ]
+    },
+    apis: [`${path.join(__dirname, './routes/index.js')}`]
+};
 
 server.use(express.json());
 server.use(morgan('dev'));
