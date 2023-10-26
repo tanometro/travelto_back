@@ -54,7 +54,7 @@ const destroyOneComment = async (id) => {
     })
 }
 
-modules.export = {
+module.exports = {
     createComment,
     getOneComment,
     getComments,
