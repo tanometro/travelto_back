@@ -1,16 +1,6 @@
 const data = require("../../Api/attractions.json");
 const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel} = require('../services/atractions.services')
 
-const createNewAttraction = async (req, res) => {
-  try {
-    const newAttraction = await createOneAttraction(req.body);
-    res.status(201).json(newAttraction);
-  } catch (error) {
-    console.error("Error en la creación de una atracción:", error);
-    res.status(500).json({ error: "Error en el servidor" });
-  }
-};
-
 const dataAttraction = async (req, res) => {
   try {
     const response = await bulkAttraction(data.attractions);
@@ -67,6 +57,16 @@ const readAttractionByQuery = async(req, res) => {
     }
   } catch (error) {
     console.error("Error al buscar atracciones por nombre en la base de datos:", error);
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+};
+
+const createNewAttraction = async (req, res) => {
+  try {
+    const newAttraction = await createOneAttraction(req.body);
+    res.status(201).json(newAttraction);
+  } catch (error) {
+    console.error("Error en la creación de una atracción:", error);
     res.status(500).json({ error: "Error en el servidor" });
   }
 };

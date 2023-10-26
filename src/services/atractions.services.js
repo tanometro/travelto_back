@@ -1,5 +1,5 @@
 const { Attraction } = require('../db');
-const { Op } = require('sequelize');
+const { Op, fn, col } = require('sequelize');
 
 const bulkAttraction = async (attractions) => {
     try {
@@ -53,8 +53,8 @@ const bulkAttraction = async (attractions) => {
           }
           const attractions = await Attraction.findAll({
             where: {
-                name: {[Op.like]: `%${name}%`},
-            },
+              name: { [Op.iLike]: `%${name.toLowerCase()}%` }
+            }
           });
           return attractions;
         } catch (error) {
@@ -97,40 +97,38 @@ const createOneAttraction = async (data) => {
         throw new Error("Error en la creación de una atracción: " + error.message);
       }
     };
-
-const destroyAttraction = (id) => {
-    try {
-        const destroy = Attraction.destroy({
+    const updateAttractionModel = (id, updateData) => {
+      try {
+        const response = Attraction.update(updateData, {
             where: {
-            id: id
+                id: id
             }
         })
-        return destroy
+        id(!id) ('No existe ese id')
+        return response;
     } catch (error) {
-        `Bro, no se borró la atracción con ${id}, lo que pasó es que ` + error.message
+        (`No se pudo editar la attraction con id ${id}` + error.message)
     }
-}
-
-const updateAttractionModel = (id, updateData) => {
-  try {
-    const response = Attraction.update(updateData, {
-        where: {
-            id: id
+    }
+    const destroyAttraction = (id) => {
+        try {
+            const destroy = Attraction.destroy({
+                where: {
+                id: id
+                }
+            })
+            return destroy
+        } catch (error) {
+            `Bro, no se borró la atracción con ${id}, lo que pasó es que ` + error.message
         }
-    })
-    id(!id) ('No existe ese id')
-    return response;
-} catch (error) {
-    (`No se pudo editar la attraction con id ${id}` + error.message)
-}
-}
+    }
 
 module.exports = {
-    createOneAttraction,
-    readAttractions,
-    updateAttractionModel,
-    destroyAttraction,
     bulkAttraction,
+    readAttractions,
     attractionById,
     attractionByQuery,
+    createOneAttraction,
+    updateAttractionModel,
+    destroyAttraction,
 }
