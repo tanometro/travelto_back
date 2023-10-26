@@ -1,6 +1,16 @@
 const { Attraction } = require("../db");
 const data = require("../../Api/attractions.json");
-const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction} = require('../services/atractions.services')
+const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel} = require('../services/atractions.services')
+
+const createNewAttraction = async (req, res) => {
+  try {
+    const newAttraction = await createOneAttraction(req.body);
+    res.status(201).json(newAttraction);
+  } catch (error) {
+    console.error("Error en la creación de una atracción:", error);
+    res.status(500).json({ error: "Error en el servidor" });
+  }
+};
 
 const dataAttraction = async (req, res) => {
   try {
@@ -15,7 +25,7 @@ const dataAttraction = async (req, res) => {
   }
 };
 
-const getAllAttraction = async (req, res) => {
+const readAllAttraction = async (req, res) => {
   try {
     const dbAttractions = await readAttractions();
     res.status(200).json(dbAttractions);
@@ -28,7 +38,7 @@ const getAllAttraction = async (req, res) => {
   }
 };
 
-const getAttractionById = async (req, res) => {
+const readAttractionById = async (req, res) => {
   try {
     const { id } = req.params;
     const attraction = await attractionById(id);
@@ -44,7 +54,7 @@ const getAttractionById = async (req, res) => {
   }
 };
 
-const getAttractionByQuery = async(req, res) => {
+const readAttractionByQuery = async(req, res) => {
   try {
     const { name } = req.query; // Obtén el parámetro 'name' de la consulta
     const attractions = await attractionByQuery(name);
@@ -62,21 +72,21 @@ const getAttractionByQuery = async(req, res) => {
   }
 };
 
-const createNewAttraction = async (req, res) => {
+const updateAttraction = async (req, res) => {
+  const {id} = req.params;
   try {
-    const newAttraction = await createOneAttraction(req.body);
-    res.status(201).json(newAttraction);
+      const response = await updateAttractionModel(id);
+      res.status(200).send(response);
   } catch (error) {
-    console.error("Error en la creación de una atracción:", error);
-    res.status(500).json({ error: "Error en el servidor" });
+      res.status(500).send({message: error.message});
   }
-};
-
+}
 
 module.exports = {
-  dataAttraction,
-  getAllAttraction,
-  getAttractionById,
-  getAttractionByQuery,
   createNewAttraction,
+  readAllAttraction,
+  readAttractionById,
+  readAttractionByQuery,
+  updateAttraction,
+  dataAttraction,
 };

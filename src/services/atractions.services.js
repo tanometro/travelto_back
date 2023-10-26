@@ -46,7 +46,7 @@ const bulkAttraction = async (attractions) => {
         }
       };
 
-      const attractionByQuery = async (name) => {
+  const attractionByQuery = async (name) => {
         try {
           if (!name) {
             throw new Error('Falta el parámetro de consulta "name"');
@@ -111,11 +111,26 @@ const destroyAttraction = (id) => {
     }
 }
 
+const updateAttractionModel = (id, updateData) => {
+  try {
+    const response = Attraction.update(updateData, {
+        where: {
+            id: id
+        }
+    })
+    id(!id) ('No existe ese id')
+    return response;
+} catch (error) {
+    (`No se pudo editar la attraction con id ${id}` + error.message)
+}
+}
+
 module.exports = {
-    bulkAttraction,
+    createOneAttraction,
     readAttractions,
+    updateAttractionModel,
+    destroyAttraction,
+    bulkAttraction,
     attractionById,
     attractionByQuery,
-    createOneAttraction,
-    destroyAttraction
 }
