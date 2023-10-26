@@ -12,15 +12,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    name: {
+    city: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    latitud: {
+    latitude: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    longitud: {
+    longitude: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -29,12 +29,16 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     cp: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     website: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
 }, {timestamp: false})
 }
