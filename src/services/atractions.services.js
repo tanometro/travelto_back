@@ -1,5 +1,5 @@
 const { Attraction } = require('../db');
-const { Op, fn, col } = require('sequelize');
+const { Op } = require('sequelize');
 
 const bulkAttraction = async (attractions) => {
     try {
@@ -97,31 +97,43 @@ const createOneAttraction = async (data) => {
         throw new Error("Error en la creación de una atracción: " + error.message);
       }
     };
-    const updateAttractionModel = (id, updateData) => {
+    const updateAttractionModel = async (id, updateData) => {
       try {
-        const response = Attraction.update(updateData, {
-            where: {
-                id: id
-            }
-        })
-        id(!id) ('No existe ese id')
-        return response;
-    } catch (error) {
-        (`No se pudo editar la attraction con id ${id}` + error.message)
-    }
-    }
-    const destroyAttraction = (id) => {
-        try {
-            const destroy = Attraction.destroy({
-                where: {
-                id: id
-                }
-            })
-            return destroy
-        } catch (error) {
-            `Bro, no se borró la atracción con ${id}, lo que pasó es que ` + error.message
+        if (!id) {
+          throw new Error('Se requiere un ID válido');
         }
-    }
+    
+        const [updatedCount] = await Attraction.update(updateData, {
+          where: {
+            id: id,
+          },
+        });
+    
+        if (updatedCount === 0) {
+          throw new Error(`No se encontró una atracción con ID ${id}`);
+        }
+    
+        return { message: 'Atracción actualizada exitosamente' };
+      } catch (error) {
+        throw new Error(`Error al actualizar la atracción con ID ${id}: ${error.message}`);
+      }
+    };
+    
+    const destroyAttraction = async (id) => {
+      try {
+        const attraction = await Attraction.findByPk(id);
+    
+        if (!attraction) {
+          throw new Error(`No existe la atracción con ID ${id}`);
+        }
+    
+        const result = await attraction.destroy();
+        return result;
+      } catch (error) {
+        throw new Error(`No se pudo eliminar la atracción con ID ${id}: ${error.message}`);
+      }
+    };
+    
 
 module.exports = {
     bulkAttraction,
