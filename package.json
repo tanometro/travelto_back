@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Travelto_back",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "nodemon index.js"
   },
@@ -25,7 +25,9 @@
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
     "sequelize": "^6.33.0",
-    "sequelize-cli": "^6.6.1"
+    "sequelize-cli": "^6.6.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.20",
@@ -34,6 +36,5 @@
   },
   "engines": {
     "node": ">=14"
-  },
-  "type": "commonjs"
+  }
 }
