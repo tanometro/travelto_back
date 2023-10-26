@@ -33,7 +33,7 @@ CompraModel (dataBase)
 const { Location, Attraction, User, Comment, Compra } = dataBase.models
 
 //! Relaciones faltantes de 1 a 1. Revisar.
-Attraction.belongsTo(Location, {through: 'AttractionLocation'})
+Attraction.belongsTo(Location)
 Location.belongsToMany(Attraction, {through: 'LocalAttractions'})
 Attraction.belongsToMany(Comment, {through: 'CommentAttraction'})
 User.belongsToMany(Location, { through: 'Destination'})
