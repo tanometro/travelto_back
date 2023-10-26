@@ -1,4 +1,3 @@
-const { Attraction } = require("../db");
 const data = require("../../Api/attractions.json");
 const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction} = require('../services/atractions.services')
 
@@ -46,7 +45,7 @@ const getAttractionById = async (req, res) => {
 
 const getAttractionByQuery = async(req, res) => {
   try {
-    const { name } = req.query; // Obtén el parámetro 'name' de la consulta
+    const { name } = req.query;
     const attractions = await attractionByQuery(name);
 
     if (attractions.length > 0) {
