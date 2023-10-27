@@ -1,71 +1,109 @@
-
-  {
-    "locations": [
-      {
-        "id": 1,
-        "city": "London",
-        "country": " United Kingdom",
-        "latitude": "51.507222",
-        "longitude": "0.1275",
-        "prefijo": "",
-        "cp": "",
-        "image": "https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        "attractions": [17, 18, 19, 20, 21]
-      },
-      {
-        "id": 2,
-        "city": "Berlin",
-        "country": " Germany",
-        "latitude": "52.516667",
-        "longitude": "13.383333",
-        "prefijo": "",
-        "cp": "",
-        "image": "https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        "attractions": [22, 23, 24, 25, 26]
-      },
-      {
-        "id": 3,
-        "city": "Rome",
-        "country": " Italy",
-        "latitude": "41.9",
-        "longitude": "12.5",
-        "prefijo": "",
-        "cp": "",
-        "image": "https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        "attractions": [6, 7, 8, 9, 10]
-      },
-      {
-        "id": 4,
-        "city": "Paris",
-        "country": " France",
-        "latitude": "48.8567",
-        "longitude": "2.3508",
-        "prefijo": "",
-        "cp": "",
-        "image": "https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        "attractions": [27, 28, 29, 30, 31, 32]
-      },
-      {
-        "id": 5,
-        "city": "Barcelona",
-        "country": " Spain",
-        "latitude": "41.383333",
-        "longitude": "2.183333",
-        "prefijo": "",
-        "cp": "",
-        "image": "https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg",
-        "attractions": [11, 12, 13, 14, 15, 16]
-      },
-      {
-        "id": 6,
-        "city": "Amsterdam",
-        "country": "Netherlands",
-        "latitude": "52.3676",
-        "longitude": "4.9041",
-        "prefijo": "",
-        "cp": "",
-        "image": "https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg",
-        "attractions": [1, 2, 3, 4, 5]
-      }
-    ]
-  }
+{
+  "Locations": [
+    {
+      "id": 1,
+      "city": "Paris",
+      "country": "Francia"
+    },
+    {
+      "id": 2,
+      "city": "Roma",
+      "country": "Italia"
+    },
+    {
+      "id": 3,
+      "city": "Atenas",
+      "country": "Grecia"
+    },
+    {
+      "id": 4,
+      "city": "Praga",
+      "country": "Republica Checa"
+    },
+    {
+      "id": 5,
+      "city": "Barcelona",
+      "country": "España"
+    },
+    {
+      "id": 6,
+      "city": "Madrid",
+      "country": "España"
+    },
+    {
+      "id": 7,
+      "city": "Rhodes",
+      "country": "Grecia"
+    },
+    {
+      "id": 8,
+      "city": "Londres",
+      "country": "Reino Unido"
+    },
+    {
+      "id": 9,
+      "city": "Amsterdam",
+      "country": "Holanda"
+    },
+    {
+      "id": 10,
+      "city": "Edinburgh",
+      "country": "Reino Unido"
+    },
+    {
+      "id": 11,
+      "city": "Provence",
+      "country": "Francia"
+    },
+    {
+      "id": 12,
+      "city": "Venice",
+      "country": "Italia"
+    },
+    {
+      "id": 13,
+      "city": "Bavaria",
+      "country": "Alemania"
+    },
+    {
+      "id": 14,
+      "city": "Normandy",
+      "country": "Francia"
+    },
+    {
+      "id": 15,
+      "city": "Loir-et-Cher",
+      "country": "Francia"
+    },
+    {
+      "id": 16,
+      "city": "Sevilla",
+      "country": "España"
+    },
+    {
+      "id": 17,
+      "city": "Budapest",
+      "country": "Hungria"
+    },
+    {
+      "id": 18,
+      "city": "St. Petersburg",
+      "country": "Rusia"
+    },
+    {
+      "id": 19,
+      "city": "Florence",
+      "country": "Italia"
+    },
+    {
+      "id": 20,
+      "city": "Vienna",
+      "country": "Austria"
+    },
+    {
+      "id": 21,
+      "city": "Moscow",
+      "country": "Rusia"
+    }
+  ]
+}

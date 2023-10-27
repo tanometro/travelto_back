@@ -5,10 +5,13 @@ const bulkAttraction = async (attractions) => {
     try {
       const mappedAttractions = attractions.map(attractionData => ({
         name: attractionData.name,
-        description: attractionData.description,
+        city: attractionData.city,
+        country: attractionData.country,
+        image: attractionData.image,
         latitude: attractionData.latitude,
         longitude: attractionData.longitude,
         price: attractionData.price,
+        ranking: attractionData.ranking,
         hours: attractionData.hours || "0",
         duration: attractionData.duration,
         isActive: attractionData.isActive,
@@ -24,7 +27,7 @@ const bulkAttraction = async (attractions) => {
   const readAttractions = async () => {
     try {
         const dbAttractions = await Attraction.findAll({
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'city', 'country', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
         });
         return dbAttractions;
       } catch (error) {
@@ -66,27 +69,32 @@ const createOneAttraction = async (data) => {
     try {
         const {
           name,
-          hours,
+          city,
+          country,
           latitude,
           longitude,
           price,
+          hours,
           duration,
-          description,
+          image,
           isActive,
           location,
         } = data;
-        if (!name || !latitude || !longitude || !price || !duration) {
+        if (!name || !latitude || !longitude || !price || !duration || !city || !country
+          ||!image || !hours) {
           throw new Error("Faltan campos obligatorios");
         }
         const newAttraction = await Attraction.create({
-            name,
-            hours,
-            latitude,
-            longitude,
-            price,
-            duration,
-            description,
-            isActive,
+          name,
+          city,
+          country,
+          latitude,
+          longitude,
+          price,
+          hours,
+          duration,
+          image,
+          isActive,
           });
           if (location) {
             await newAttraction.setLocation(location);

@@ -16,29 +16,5 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    latitude: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    longitude: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    prefijo: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    cp: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    website: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
 }, {timestamp: false})
 }
