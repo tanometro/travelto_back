@@ -13,7 +13,7 @@ const swaggerSpec = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'Node Sequelize API',
+            title: 'TravelTo docs API',
             version: '1.0.0',  
         },
         servers: [
