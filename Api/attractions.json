@@ -3,6 +3,7 @@
       {
         "id": 1,
         "name": "Torre Eiffel",
+        "name": "Torre Eiffel",
         "isActive": true,
         "hours": "9:30 AM - 11:00 PM",
         "city": "Paris",
@@ -16,6 +17,7 @@
       },
       {
         "id": 2,
+        "name": "Coliseo Romano",
         "name": "Coliseo Romano",
         "isActive": true,
         "hours": "8:30 AM - 7:15 PM",
@@ -45,6 +47,7 @@
       {
         "id": 4,
         "name": "Museo del Louvre",
+        "name": "Museo del Louvre",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Paris",
@@ -58,6 +61,7 @@
       },
       {
         "id": 5,
+        "name": "Gran Cañón del Verdon",
         "name": "Gran Cañón del Verdon",
         "isActive": true,
         "hours": "Open all day",
@@ -101,6 +105,7 @@
       {
         "id": 8,
         "name": "Museo del Prado",
+        "name": "Museo del Prado",
         "isActive": true,
         "hours": "10:00 AM - 8:00 PM",
         "city": "Madrid",
@@ -114,6 +119,7 @@
       },
       {
         "id": 9,
+        "name": "Puerta de Alcalá",
         "name": "Puerta de Alcalá",
         "isActive": true,
         "hours": "Open all day",
@@ -143,6 +149,7 @@
       {
         "id": 11,
         "name": "Museo Británico",
+        "name": "Museo Británico",
         "isActive": true,
         "hours": "10:00 AM - 5:30 PM",
         "city": "London",
@@ -156,6 +163,7 @@
       },
       {
         "id": 12,
+        "name": "Abadía de Westminster",
         "name": "Abadía de Westminster",
         "isActive": true,
         "hours": "9:30 AM - 3:30 PM",
@@ -171,6 +179,7 @@
       {
         "id": 13,
         "name": "Museo Van Gogh",
+        "name": "Museo Van Gogh",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Amsterdam",
@@ -184,6 +193,7 @@
       },
       {
         "id": 14,
+        "name": "Plaza Dam",
         "name": "Plaza Dam",
         "isActive": true,
         "hours": "Open all day",
@@ -199,6 +209,7 @@
       {
         "id": 15,
         "name": "Castillo de Edimburgo",
+        "name": "Castillo de Edimburgo",
         "isActive": true,
         "hours": "9:30 AM - 6:00 PM",
         "city": "Edinburgh",
@@ -212,6 +223,7 @@
       },
       {
         "id": 16,
+        "name": "Puente de Londres",
         "name": "Puente de Londres",
         "isActive": true,
         "hours": "Open all day",
@@ -227,6 +239,7 @@
       {
         "id": 17,
         "name": "Catedral de Notre-Dame",
+        "name": "Catedral de Notre-Dame",
         "isActive": true,
         "hours": "8:00 AM - 6:45 PM",
         "city": "Paris",
@@ -240,6 +253,7 @@
       },
       {
         "id": 18,
+        "name": "Monte Saint-Michel",
         "name": "Monte Saint-Michel",
         "isActive": true,
         "hours": "9:00 AM - 7:00 PM",
@@ -255,6 +269,7 @@
       {
         "id": 19,
         "name": "Basílica de San Pedro",
+        "name": "Basílica de San Pedro",
         "isActive": true,
         "hours": "7:00 AM - 7:00 PM",
         "city": "Rome",
@@ -269,6 +284,7 @@
       {
         "id": 20,
         "name": "Puente de Rialto",
+        "name": "Puente de Rialto",
         "isActive": true,
         "hours": "Open all day",
         "city": "Venice",
@@ -282,6 +298,7 @@
       },
       {
         "id": 21,
+        "name": "Castillo de Neuschwanstein",
         "name": "Castillo de Neuschwanstein",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
@@ -325,6 +342,7 @@
       {
         "id": 24,
         "name": "Castillo de Chambord",
+        "name": "Castillo de Chambord",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Loir-et-Cher",
@@ -353,6 +371,7 @@
       {
         "id": 26,
         "name": "Puerta del Sol",
+        "name": "Puerta del Sol",
         "isActive": true,
         "hours": "Open all day",
         "city": "Madrid",
@@ -366,6 +385,7 @@
       },
       {
         "id": 27,
+        "name": "Puente de Carlos",
         "name": "Puente de Carlos",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
@@ -381,6 +401,7 @@
       {
         "id": 28,
         "name": "Puente de las Cadenas",
+        "name": "Puente de las Cadenas",
         "isActive": true,
         "hours": "Open all day",
         "city": "Budapest",
@@ -394,6 +415,7 @@
       },
       {
         "id": 29,
+        "name": "Castillo de Buda",
         "name": "Castillo de Buda",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
@@ -409,6 +431,7 @@
       {
         "id": 30,
         "name": "Puente de Rialto",
+        "name": "Puente de Rialto",
         "isActive": true,
         "hours": "Open all day",
         "city": "Venice",
@@ -422,6 +445,7 @@
       },
       {
         "id": 31,
+        "name": "Museo de Orsay",
         "name": "Museo de Orsay",
         "isActive": true,
         "hours": "9:30 AM - 6:00 PM",

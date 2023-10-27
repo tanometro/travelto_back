@@ -8,7 +8,8 @@
       "email": "admin@gmai.com",
       "password": "Admin1234",
       "isActive": true,
-      "roleId": 1
+      "roleId": 1,
+      "email": "superadmin@gmail.com"
     }
   ]
 }
