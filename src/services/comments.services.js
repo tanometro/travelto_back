@@ -1,10 +1,10 @@
 
-const {CommentsModel} = require('../db');
+const {Comment} = require('../db');
 
 
 const createComment = (data) => {
     try {
-        const response = CommentsModel.create(data)
+        const response = Comment.create(data)
         return response;
     } catch (error) {
         throw new Error ("Mostro, no pude crear el comentario, y es que " + error.message)
@@ -13,7 +13,7 @@ const createComment = (data) => {
 
 const getOneComment = (id) => {
     try {
-        const response = CommentsModel.findByPk(id);
+        const response = Comment.findByPk(id);
         if (response === null) return ("No existe esa locación")
         return response;
     } catch (error) {
@@ -23,7 +23,7 @@ const getOneComment = (id) => {
 
 const getComments = () => {
     try {
-        const response = CommentsModel.findAll();
+        const response = Comment.findAll();
         return response;
     } catch (error) {
         throw new Error ("Error en buscar todos los comentarios: " + error.message)   
@@ -32,7 +32,7 @@ const getComments = () => {
 
 const updateCommentService = async (id, body) => {
     try {
-        const response = await CommentsModel.update(body, {
+        const response = await Comment.update(body, {
             where: {
                 id: id
             }
@@ -48,8 +48,16 @@ const updateCommentService = async (id, body) => {
 }
 
 const destroyOneComment = async (id) => {
-    const response = await CommentsModel.destoy({
+    const response = await Comment.destoy({
         where: {
         id: id }
     })
+}
+
+module.exports = {
+    createComment,
+    getOneComment,
+    getComments,
+    updateCommentService,
+    destroyOneComment
 }

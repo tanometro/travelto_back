@@ -1,12 +1,12 @@
 const { Router } = require('express')
 const router = Router()
-const { getAllAttraction, getAttractionById, getAttractionByQuery, createNewAttraction, dataAttraction, deleteOneAttraction } = require('../controllers/attractions.controllers')
+const { readAllAttraction, readAttractionById,readAttractionByQuery, createNewAttraction, dataAttraction } = require('../controllers/attractions.controllers')
 
-router.get('/data', dataAttraction)
-router.get('/', getAllAttraction)
-router.get('/name', getAttractionByQuery)
-router.get('/:id', getAttractionById)
-router.post('/create', createNewAttraction)
-//router.delete('/create', createNewAttraction)
+router.get('/data', dataAttraction);
+router.get('/name', readAttractionByQuery);
+router.get('/:id', readAttractionById);
+router.get('/', readAllAttraction);
+router.post('/create', createNewAttraction);
+//router.delete('/delete', createNewAttraction)
 
 module.exports = router
