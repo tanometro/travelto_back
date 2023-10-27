@@ -12,7 +12,21 @@ const { readAllAttraction, readAttractionById,readAttractionByQuery, createNewAt
  *              name: 
  *                  type: string
  *                  description: username
- *  
+ *              age: 
+ *                  type: integer
+ *                  descripcion: user age
+ *              email:
+ *                  type: string
+ *                  description: user mail
+ *          required:
+ *              - name
+ *              - email
+ *              - password
+ *          example:
+ *              name: Cosme
+ *              email: fulanito@pf.com
+ *              password: 123ABC
+ * 
  */
 router.get('/data', dataAttraction);
 router.get('/name', readAttractionByQuery);
