@@ -1,0 +1,109 @@
+{
+  "Locations": [
+    {
+      "id": 1,
+      "city": "Paris",
+      "country": "Francia"
+    },
+    {
+      "id": 2,
+      "city": "Roma",
+      "country": "Italia"
+    },
+    {
+      "id": 3,
+      "city": "Atenas",
+      "country": "Grecia"
+    },
+    {
+      "id": 4,
+      "city": "Praga",
+      "country": "Republica Checa"
+    },
+    {
+      "id": 5,
+      "city": "Barcelona",
+      "country": "España"
+    },
+    {
+      "id": 6,
+      "city": "Madrid",
+      "country": "España"
+    },
+    {
+      "id": 7,
+      "city": "Rhodes",
+      "country": "Grecia"
+    },
+    {
+      "id": 8,
+      "city": "Londres",
+      "country": "Reino Unido"
+    },
+    {
+      "id": 9,
+      "city": "Amsterdam",
+      "country": "Holanda"
+    },
+    {
+      "id": 10,
+      "city": "Edinburgh",
+      "country": "Reino Unido"
+    },
+    {
+      "id": 11,
+      "city": "Provence",
+      "country": "Francia"
+    },
+    {
+      "id": 12,
+      "city": "Venice",
+      "country": "Italia"
+    },
+    {
+      "id": 13,
+      "city": "Bavaria",
+      "country": "Alemania"
+    },
+    {
+      "id": 14,
+      "city": "Normandy",
+      "country": "Francia"
+    },
+    {
+      "id": 15,
+      "city": "Loir-et-Cher",
+      "country": "Francia"
+    },
+    {
+      "id": 16,
+      "city": "Sevilla",
+      "country": "España"
+    },
+    {
+      "id": 17,
+      "city": "Budapest",
+      "country": "Hungria"
+    },
+    {
+      "id": 18,
+      "city": "St. Petersburg",
+      "country": "Rusia"
+    },
+    {
+      "id": 19,
+      "city": "Florence",
+      "country": "Italia"
+    },
+    {
+      "id": 20,
+      "city": "Vienna",
+      "country": "Austria"
+    },
+    {
+      "id": 21,
+      "city": "Moscow",
+      "country": "Rusia"
+    }
+  ]
+}
