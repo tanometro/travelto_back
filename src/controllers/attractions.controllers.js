@@ -1,5 +1,5 @@
 const data = require("../../Api/attractions.json");
-const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel} = require('../services/atractions.services')
+const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
 
 const dataAttraction = async (req, res) => {
   try {
@@ -72,14 +72,33 @@ const createNewAttraction = async (req, res) => {
 };
 
 const updateAttraction = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
+  const updateData = req.body;
+
   try {
-      const response = await updateAttractionModel(id);
-      res.status(200).send(response);
+    const response = await updateAttractionModel(id, updateData);
+    res.status(200).json(response);
   } catch (error) {
-      res.status(500).send({message: error.message});
+    res.status(500).json({ message: error.message });
   }
-}
+};
+
+const deleteAttraction = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const result = await destroyAttraction(id);
+    if (result) {
+      res.status(204).send('Attracction deleted');
+    } else {
+      res.status(404).json({ error: `No se encontró la atracción con ID ${id}` });
+    }
+  } catch (error) {
+    res.status(500).json({ error: `Error al eliminar la atracción: ${error.message}` });
+  }
+};
+
+
 
 module.exports = {
   createNewAttraction,
@@ -88,4 +107,5 @@ module.exports = {
   readAttractionByQuery,
   updateAttraction,
   dataAttraction,
+  deleteAttraction,
 };
