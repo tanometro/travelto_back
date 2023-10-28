@@ -5,11 +5,11 @@
       "id": 1,
       "name": ["Admin", "SuperAdmin"],
       "DNI": 29554404,
-      "email": "admin@gmai.com",
+      "image": "htt",
+      "email": "superadmin@gmail.com",
       "password": "Admin1234",
       "isActive": true,
-      "roleId": 1,
-      "email": "superadmin@gmail.com"
+      "roleId": 1
     }
   ]
 }
