@@ -1,11 +1,11 @@
-const {createUsersLocal, destroyUser, getOneUser, updateUserModel, findAll} = require('../services/users.services');
+const {createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, findByName} = require('../services/users.services');
 
 const createUsers = async (req, res)=>{
-    const {name, dni, roleId} = req.body;
+    const {name, dni, roleId, email,password, isActive } = req.body;
     try {
-        if (!name || !dni || !roleId) 'Faltan datos, revisa tu form';
+        if (!name || !dni || !roleId || !email || !password) 'Faltan datos, revisa tu form';
 
-        const response = await createUsersLocal(name, dni, roleId);
+        const response = await createUsersLocal(name, dni, roleId, email,password, isActive);
         res.status(200).json(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -14,19 +14,19 @@ const createUsers = async (req, res)=>{
 
 const updateUser = async (req, res) => {
     const {id} = req.params;
+    const updateData = req.body
     try {
-        const response = await updateUserModel(id);
-        res.status(200).send(response);
+        const response = await updateUserModel(id, updateData);
+        res.status(200).json(response);
     } catch (error) {
-        res.status(500).send({message: error.message});
+        res.status(500).json({message: error.message});
     }
 }
 
-const readAllUsers = async ()=>{
+const readAllUsers = async (req, res)=>{
     try {
-        const dbUsers = await findAll();
-        const usersData = data;
-        return [...dbUsers, ...usersData]
+        const dbUsers = await readAll();
+        res.status(200).json(dbUsers)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -43,7 +43,7 @@ const deleteUser = async (req, res) => {
     }
 }
 
-const getUsersById = async (id)=>{
+const getUsersById = async (req, res)=>{
     const {id} = req.params;
     try {
         let usersDB = await getOneUser(id)
@@ -54,18 +54,16 @@ const getUsersById = async (id)=>{
     }
 };
 
-const getUsersByQuery = async (name)=>{
-const dbUsers = await findByName(name);
-const users = dbUsers.map(u=>{
-    return{
-        id: u.id,
-        name:[u.name[0],u.name[1]],
-        DNI: u.DNI,
-        isActive: u.isActiverue,
-        roleId: u.roleId
+const getUsersByQuery = async (req, res)=>{
+    const {name}= req.query;
+    try {
+        const dbUsers = await findByName(name);
+        res.status(200).json(dbUsers)
+    } catch (error) {
+        res.status(500).send({message: error.message});
     }
-})
-return users
+
+
 };
 
 
