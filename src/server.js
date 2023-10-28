@@ -6,7 +6,7 @@ const cors = require("cors");
 const {BASE_URL}= process.env;
 const path = require('path');
 
-// Swagger mi rey
+// Swagger
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerSpec = {
