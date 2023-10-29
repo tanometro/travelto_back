@@ -6,14 +6,14 @@ const cors = require("cors");
 const {BASE_URL}= process.env;
 const path = require('path');
 
-// Swagger mi rey
+// Swagger
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerSpec = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'Node Sequelize API',
+            title: 'TravelTo docs API',
             version: '1.0.0',  
         },
         servers: [
