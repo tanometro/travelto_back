@@ -8,6 +8,7 @@ const creadodefault = async (req, res) => {
         id: user.id,
         name: [user.name[0], user.name[1]],
         dni: user.DNI,
+        image: user.image,
         email: user.email,
         password: user.password,
         isActive: user.isActive,
@@ -22,13 +23,13 @@ const creadodefault = async (req, res) => {
         id: user.dataValues.id,
         name: user.dataValues.name,
         dni: user.dataValues.dni,
+        image: user.dataValues.image,
         email: user.dataValues.email,
         password: user.dataValues.password,
         isActive: user.dataValues.isActive,
         roleID: user.dataValues.roleID,
       };
     });
-
     return userValues;
   } catch (error) {
     throw new Error(
@@ -43,7 +44,8 @@ const createUsersLocal = async (
   roleId,
   email,
   password,
-  isActive
+  isActive,
+  image
 ) => {
   try {
     const create = await User.create({
@@ -53,10 +55,11 @@ const createUsersLocal = async (
       email: email,
       password: password,
       isActive: isActive,
+      image: image,
     });
     return create;
   } catch (error) {
-    throw new Error("No se pudo crear el user " + error.message);
+    throw new Error("No se pudo crear el usuario " + error.message);
   }
 };
 
