@@ -59,7 +59,7 @@ const createUsersLocal = async (
     });
     return create;
   } catch (error) {
-    throw new Error("No se pudo crear el user " + error.message);
+    throw new Error("No se pudo crear el usuario " + error.message);
   }
 };
 
