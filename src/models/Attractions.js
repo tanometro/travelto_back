@@ -12,7 +12,11 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    description: {
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    city: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -25,12 +29,16 @@ module.exports = (dataBase) => {
       allowNull: false
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    ranking: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     hours: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     duration: {
       type: DataTypes.STRING,
