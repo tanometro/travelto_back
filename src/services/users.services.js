@@ -42,6 +42,7 @@ const createUsersLocal = async (
   dni,
   roleId,
   email,
+  image,
   password,
   isActive
 ) => {
@@ -51,6 +52,7 @@ const createUsersLocal = async (
       dni: dni,
       roleID: roleId,
       email: email,
+      image: image,
       password: password,
       isActive: isActive,
     });

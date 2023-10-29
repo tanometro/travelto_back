@@ -1,14 +1,13 @@
 const { createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, findByName } = require('../services/users.services');
 
 const createUsers = async (req, res) => {
-    const { name, dni, email, password } = req.body;
+    const { name, dni, image, email, password } = req.body;
     const roleId = 3;
     const isActive = true;
-    console.log(name);
     try {
-        if (!name || !dni || !roleId || !email || !password) throw new Error('Faltan datos, revisa tu form');
+        if (!name || !dni || !image || !email || !password) throw new Error('Faltan datos');
 
-        const response = await createUsersLocal(name, dni, roleId, email, password, isActive);
+        const response = await createUsersLocal(name, dni, roleId, image, email, password, isActive);
         console.log(response);
         res.status(200).json(response);
     } catch (error) {
