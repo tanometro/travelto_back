@@ -1,11 +1,11 @@
 const {createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, findByName} = require('../services/users.services');
 
 const createUsers = async (req, res)=>{
-    const {name, dni, roleId, email,password, isActive } = req.body;
+    const {name, dni, roleId, email,password, isActive,image } = req.body;
     try {
-        if (!name || !dni || !roleId || !email || !password) 'Faltan datos, revisa tu form';
+        if (!name || !dni || !roleId || !email || !password ) 'Faltan datos, revisa tu form';
 
-        const response = await createUsersLocal(name, dni, roleId, email,password, isActive);
+        const response = await createUsersLocal(name, dni, roleId, email,password, isActive, image);
         res.status(200).json(response);
     } catch (error) {
         res.status(500).send({message: error.message});
