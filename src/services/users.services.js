@@ -1,9 +1,12 @@
 const { User } = require("../db");
 const usuarios = require("../../Api/Users.json");
+const bcrypt = require('bcrypt');
+
 
 const creadodefault = async (req, res) => {
   try {
     const userDefault = usuarios.users.map((user) => {
+      
       return {
         id: user.id,
         name: [user.name[0], user.name[1]],
@@ -48,12 +51,13 @@ const createUsersLocal = async (
   image
 ) => {
   try {
+    const hashedPassword = await bcrypt.hash(password, 10)
     const create = await User.create({
       name: name,
       dni: dni,
       roleID: roleId,
       email: email,
-      password: password,
+      password: hashedPassword,
       isActive: isActive,
       image: image,
     });
