@@ -9,7 +9,7 @@
       "password": "Admin1234",
       "isActive": true,
       "roleId": 1,
-      "email": "superadmin@gmail.com"
+      "emailadmin": "superadmin@gmail.com"
     }
   ]
 }
