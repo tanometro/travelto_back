@@ -9,10 +9,8 @@ const paymentsRoutes = require('./payments.routes')
 
 router.use('/attractions', attractionsRoutes);
 router.use('/locations', locationsRoutes);
-// router.use('/users', usersRoutes);
+router.use('/users', usersRoutes);
 router.use('/comments', commentsRoutes);
 router.use('/payments', paymentsRoutes);
 
 module.exports = router;
-
-//Prueba deploy
