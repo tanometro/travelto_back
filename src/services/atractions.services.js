@@ -5,10 +5,13 @@ const bulkAttraction = async (attractions) => {
     try {
       const mappedAttractions = attractions.map(attractionData => ({
         name: attractionData.name,
-        description: attractionData.description,
+        city: attractionData.city,
+        country: attractionData.country,
+        image: attractionData.image,
         latitude: attractionData.latitude,
         longitude: attractionData.longitude,
         price: attractionData.price,
+        ranking: attractionData.ranking,
         hours: attractionData.hours || "0",
         duration: attractionData.duration,
         isActive: attractionData.isActive,
@@ -24,7 +27,7 @@ const bulkAttraction = async (attractions) => {
   const readAttractions = async () => {
     try {
         const dbAttractions = await Attraction.findAll({
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'city', 'country', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
         });
         return dbAttractions;
       } catch (error) {
@@ -53,8 +56,8 @@ const bulkAttraction = async (attractions) => {
           }
           const attractions = await Attraction.findAll({
             where: {
-                name: {[Op.like]: `%${name}%`},
-            },
+              name: { [Op.iLike]: `%${name.toLowerCase()}%` }
+            }
           });
           return attractions;
         } catch (error) {
@@ -66,27 +69,32 @@ const createOneAttraction = async (data) => {
     try {
         const {
           name,
-          hours,
+          city,
+          country,
           latitude,
           longitude,
           price,
+          hours,
           duration,
-          description,
+          image,
           isActive,
           location,
         } = data;
-        if (!name || !latitude || !longitude || !price || !duration) {
+        if (!name || !latitude || !longitude || !price || !duration || !city || !country
+          ||!image || !hours) {
           throw new Error("Faltan campos obligatorios");
         }
         const newAttraction = await Attraction.create({
-            name,
-            hours,
-            latitude,
-            longitude,
-            price,
-            duration,
-            description,
-            isActive,
+          name,
+          city,
+          country,
+          latitude,
+          longitude,
+          price,
+          hours,
+          duration,
+          image,
+          isActive,
           });
           if (location) {
             await newAttraction.setLocation(location);
@@ -97,40 +105,50 @@ const createOneAttraction = async (data) => {
         throw new Error("Error en la creación de una atracción: " + error.message);
       }
     };
-
-const destroyAttraction = (id) => {
-    try {
-        const destroy = Attraction.destroy({
-            where: {
-            id: id
-            }
-        })
-        return destroy
-    } catch (error) {
-        `Bro, no se borró la atracción con ${id}, lo que pasó es que ` + error.message
-    }
-}
-
-const updateAttractionModel = (id, updateData) => {
-  try {
-    const response = Attraction.update(updateData, {
-        where: {
-            id: id
+    const updateAttractionModel = async (id, updateData) => {
+      try {
+        if (!id) {
+          throw new Error('Se requiere un ID válido');
         }
-    })
-    id(!id) ('No existe ese id')
-    return response;
-} catch (error) {
-    (`No se pudo editar la attraction con id ${id}` + error.message)
-}
-}
+    
+        const [updatedCount] = await Attraction.update(updateData, {
+          where: {
+            id: id,
+          },
+        });
+    
+        if (updatedCount === 0) {
+          throw new Error(`No se encontró una atracción con ID ${id}`);
+        }
+    
+        return { message: 'Atracción actualizada exitosamente' };
+      } catch (error) {
+        throw new Error(`Error al actualizar la atracción con ID ${id}: ${error.message}`);
+      }
+    };
+    
+    const destroyAttraction = async (id) => {
+      try {
+        const attraction = await Attraction.findByPk(id);
+    
+        if (!attraction) {
+          throw new Error(`No existe la atracción con ID ${id}`);
+        }
+    
+        const result = await attraction.destroy();
+        return result;
+      } catch (error) {
+        throw new Error(`No se pudo eliminar la atracción con ID ${id}: ${error.message}`);
+      }
+    };
+    
 
 module.exports = {
-    createOneAttraction,
-    readAttractions,
-    updateAttractionModel,
-    destroyAttraction,
     bulkAttraction,
+    readAttractions,
     attractionById,
     attractionByQuery,
+    createOneAttraction,
+    updateAttractionModel,
+    destroyAttraction,
 }

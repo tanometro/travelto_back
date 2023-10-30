@@ -1,16 +1,5 @@
-const { Attraction } = require("../db");
 const data = require("../../Api/attractions.json");
-const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel} = require('../services/atractions.services')
-
-const createNewAttraction = async (req, res) => {
-  try {
-    const newAttraction = await createOneAttraction(req.body);
-    res.status(201).json(newAttraction);
-  } catch (error) {
-    console.error("Error en la creación de una atracción:", error);
-    res.status(500).json({ error: "Error en el servidor" });
-  }
-};
+const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
 
 const dataAttraction = async (req, res) => {
   try {
@@ -56,7 +45,7 @@ const readAttractionById = async (req, res) => {
 
 const readAttractionByQuery = async(req, res) => {
   try {
-    const { name } = req.query; // Obtén el parámetro 'name' de la consulta
+    const { name } = req.query;
     const attractions = await attractionByQuery(name);
 
     if (attractions.length > 0) {
@@ -72,15 +61,44 @@ const readAttractionByQuery = async(req, res) => {
   }
 };
 
-const updateAttraction = async (req, res) => {
-  const {id} = req.params;
+const createNewAttraction = async (req, res) => {
   try {
-      const response = await updateAttractionModel(id);
-      res.status(200).send(response);
+    const newAttraction = await createOneAttraction(req.body);
+    res.status(201).json(newAttraction);
   } catch (error) {
-      res.status(500).send({message: error.message});
+    console.error("Error en la creación de una atracción:", error);
+    res.status(500).json({ error: "Error en el servidor" });
   }
-}
+};
+
+const updateAttraction = async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+
+  try {
+    const response = await updateAttractionModel(id, updateData);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteAttraction = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const result = await destroyAttraction(id);
+    if (result) {
+      res.status(204).send('Attracction deleted');
+    } else {
+      res.status(404).json({ error: `No se encontró la atracción con ID ${id}` });
+    }
+  } catch (error) {
+    res.status(500).json({ error: `Error al eliminar la atracción: ${error.message}` });
+  }
+};
+
+
 
 module.exports = {
   createNewAttraction,
@@ -89,4 +107,5 @@ module.exports = {
   readAttractionByQuery,
   updateAttraction,
   dataAttraction,
+  deleteAttraction,
 };

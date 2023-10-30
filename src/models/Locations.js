@@ -12,27 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    latitud: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    longitud: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    prefijo: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    cp: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: false
-    },
-    website: {
+    city: {
       type: DataTypes.STRING,
       allowNull: false
     },
