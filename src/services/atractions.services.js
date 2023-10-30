@@ -7,6 +7,7 @@ const bulkAttraction = async (attractions) => {
         name: attractionData.name,
         city: attractionData.city,
         country: attractionData.country,
+        description: attractionData.description,
         image: attractionData.image,
         latitude: attractionData.latitude,
         longitude: attractionData.longitude,
@@ -27,7 +28,7 @@ const bulkAttraction = async (attractions) => {
   const readAttractions = async () => {
     try {
         const dbAttractions = await Attraction.findAll({
-          attributes: ['id', 'name', 'city', 'country', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
+          attributes: ['id','name', 'city', 'country','description', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
         });
         return dbAttractions;
       } catch (error) {
@@ -37,7 +38,11 @@ const bulkAttraction = async (attractions) => {
 
     const attractionById = async (id) => {
         try {
-          const attractionDB = await Attraction.findByPk(id);
+          const attractionDB = await Attraction.findByPk(id, {
+            attributes: {
+              exclude: ["isActive"],
+            },
+          });
       
           if (attractionDB) {
             return attractionDB;
@@ -71,6 +76,7 @@ const createOneAttraction = async (data) => {
           name,
           city,
           country,
+          description,
           latitude,
           longitude,
           price,
@@ -81,13 +87,14 @@ const createOneAttraction = async (data) => {
           location,
         } = data;
         if (!name || !latitude || !longitude || !price || !duration || !city || !country
-          ||!image || !hours) {
+          ||!image || !hours || !description) {
           throw new Error("Faltan campos obligatorios");
         }
         const newAttraction = await Attraction.create({
           name,
           city,
           country,
+          description,
           latitude,
           longitude,
           price,
