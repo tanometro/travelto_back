@@ -1,4 +1,4 @@
-const { createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, findByName } = require('../services/users.services');
+const { createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, findByName, findByEmailAndPassword } = require('../services/users.services');
 
 const createUsers = async (req, res) => {
     const { name, dni, image, email, password } = req.body;
@@ -7,7 +7,7 @@ const createUsers = async (req, res) => {
     try {
         if (!name || !dni || !image || !email || !password) throw new Error('Faltan datos');
 
-        const response = await createUsersLocal(name, dni, roleId, image, email, password, isActive);
+        const response = await createUsersLocal(name, dni, roleId, email, image, password, isActive);
         console.log(response);
         res.status(200).json(response);
     } catch (error) {
@@ -65,10 +65,17 @@ const getUsersByQuery = async (req, res) => {
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
-
-
 };
 
+const getUserLog = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const dbUsers = await findByEmailAndPassword(email, password);
+        res.status(200).json(dbUsers)
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+};
 
 module.exports = {
     createUsers,
@@ -76,5 +83,6 @@ module.exports = {
     getUsersByQuery,
     readAllUsers,
     deleteUser,
-    updateUser
+    updateUser,
+    getUserLog
 }

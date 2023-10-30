@@ -148,6 +148,22 @@ const findByName = async (name) => {
   }
 };
 
+const findByEmailAndPassword = async (email, password) => {
+  try {
+    const usuario = await User.findOne({ where: { email, password: password } });
+
+    if (!usuario) {
+      throw new Error('No se encuentra el usuario registrado');
+    }
+
+    return usuario;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+
+}
+
+
 module.exports = {
   createUsersLocal,
   readAll,
@@ -155,4 +171,5 @@ module.exports = {
   destroyUser,
   getOneUser,
   findByName,
+  findByEmailAndPassword,
 };
