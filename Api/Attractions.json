@@ -559,6 +559,20 @@
         "ranking": 40,
         "country": "Russia",
         "image": "https://www.eltiempo.com/files/image_640_428/files/crop/uploads/2018/06/26/5b32ad6d7aefd.r_1586960043749.0-78-3000-1566.jpeg"
+      },
+      {
+        "id": 41,
+        "name": "Museo del prueba",
+        "isActive": true,
+        "hours": "10:30 AM - 6:00 PM",
+        "city": "St. Petersburg",
+        "latitude": "59.9343",
+        "longitude": "30.3351",
+        "price": 1400,
+        "duration": "2-3 hours",
+        "ranking": 40,
+        "country": "Russia",
+        "image": "https://www.eltiempo.com/files/image_640_428/files/crop/uploads/2018/06/26/5b32ad6d7aefd.r_1586960043749.0-78-3000-1566.jpeg"
       }
     ]
   }
