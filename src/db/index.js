@@ -10,19 +10,19 @@ const UserModel = require('../models/Users')
 const CommentModel = require('../models/Comments')
 const CompraModel = require ('../models/Compras')
 
-const dataBase = new Sequelize(
-  url,
-    {
-      logging: false,
-      native: false,
-    }) 
-
 // const dataBase = new Sequelize(
-//   DB_DEPLOY,
-//   {
-//     logging: false,
-//     native: false,
-//   }) 
+//   url,
+//     {
+//       logging: false,
+//       native: false,
+//     }) 
+
+const dataBase = new Sequelize(
+  DB_DEPLOY,
+  {
+    logging: false,
+    native: false,
+  }) 
 
 LocationModel (dataBase)
 AttractionModel (dataBase)
