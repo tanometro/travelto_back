@@ -14,5 +14,3 @@ router.use('/comments', commentsRoutes);
 router.use('/payments', paymentsRoutes);
 
 module.exports = router;
-
-//Prueba deploy
