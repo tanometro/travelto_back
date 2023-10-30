@@ -14,5 +14,9 @@ router.use('/locations', locationsRoutes);
 router.use('/users', usersRoutes);
 router.use('/comments', commentsRoutes);
 router.use('/payments', paymentsRoutes);
+
 router.use('/login',loginFunction)
 module.exports = router;
+
+
+

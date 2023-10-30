@@ -12,11 +12,13 @@
         "duration": "2-3 hours",
         "ranking": 1,
         "country": "France",
-        "image": "https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL"
+        "image": "https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL",
+        "description": "La Torre Eiffel es un icónico símbolo de París y Francia. Construida en 1889 como parte de la Exposición Universal, es una estructura de hierro forjado que ofrece impresionantes vistas de la ciudad de París."
       },
       {
         "id": 2,
         "name": "Coliseo Romano",
+        "description": "El Coliseo Romano es un antiguo anfiteatro situado en el centro de Roma, Italia. Es un símbolo de la Roma antigua y ha sido escenario de eventos históricos, incluyendo batallas de gladiadores.",
         "isActive": true,
         "hours": "8:30 AM - 7:15 PM",
         "city": "Rome",
@@ -31,6 +33,7 @@
       {
         "id": 3,
         "name": "Acropolis de Atenas",
+        "description": "La Acrópolis de Atenas es uno de los sitios arqueológicos más icónicos del mundo. Este antiguo complejo incluye el Partenón, el Erecteión y el Templo de Atenea Niké, entre otros. Ofrece una visión impresionante de la historia y la arquitectura griega antigua, además de brindar vistas panorámicas de la ciudad de Atenas. Una visita obligada para los amantes de la historia y la cultura.",
         "isActive": true,
         "hours": "8:00 AM - 8:00 PM",
         "city": "Athens",
@@ -45,6 +48,7 @@
       {
         "id": 4,
         "name": "Museo del Louvre",
+        "description":  "El Museo del Louvre es uno de los museos más famosos y visitados del mundo. Situado en el corazón de París, alberga una colección impresionante de arte y antigüedades, que abarca desde la antigüedad hasta el siglo XIX. Los visitantes pueden maravillarse con obras maestras como la Mona Lisa, la Venus de Milo y la Victoria de Samotracia. Además de su inigualable colección, el edificio en sí es una obra maestra arquitectónica, con su icónica pirámide de vidrio. Una visita al Louvre es una inmersión en la historia y el arte de la humanidad, y es una experiencia cultural inolvidable.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Paris",
@@ -59,6 +63,7 @@
       {
         "id": 5,
         "name": "Gran Cañón del Verdon",
+        "description": "El Gran Cañón del Verdon, ubicado en la región de Provence, en Francia, es un impresionante desfiladero que ofrece una experiencia natural única. Con aguas de color turquesa que serpentean a lo largo del cañón, y acantilados de hasta 700 metros de altura, este destino es un paraíso para los amantes de la naturaleza y la aventura. Los visitantes pueden explorar sus senderos escénicos, disfrutar de actividades como el senderismo y el kayak, y maravillarse con las vistas panorámicas que ofrece este espectacular lugar. El Gran Cañón del Verdon es una joya natural que te dejará sin aliento.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Provence",
@@ -73,6 +78,7 @@
       {
         "id": 6,
         "name": "Puente de Carlos",
+        "description": "El Puente de Carlos, situado en la hermosa ciudad de Praga, es uno de los puentes más icónicos de Europa. Este puente histórico, construido en el siglo XIV, cruza el río Moldava y es una obra maestra de la arquitectura gótica. Adornado con impresionantes estatuas y con unas vistas panorámicas excepcionales de la ciudad, el Puente de Carlos es un lugar imprescindible para los visitantes. Pasear por este puente te transporta a la historia medieval de Praga y te permite disfrutar de una atmósfera única. Además, artistas callejeros y vendedores de souvenirs aportan un ambiente encantador a esta joya arquitectónica.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Prague",
@@ -87,6 +93,7 @@
       {
         "id": 7,
         "name": "Parque Güell",
+        "description": "El Parque Güell, diseñado por el famoso arquitecto Antoni Gaudí, es una joya arquitectónica y uno de los destinos más emblemáticos de Barcelona. Este parque público es una muestra de la genialidad de Gaudí y su estilo modernista único. Sus vibrantes mosaicos, esculturas y la arquitectura sinuosa hacen que sea un lugar mágico para explorar. Desde sus terrazas, se pueden disfrutar de vistas panorámicas espectaculares de la ciudad de Barcelona. El Parque Güell es un lugar ideal para dar un paseo, maravillarse con la creatividad de Gaudí y disfrutar de la belleza de la naturaleza y el arte en perfecta armonía.",
         "isActive": true,
         "hours": "8:00 AM - 9:30 PM",
         "city": "Barcelona",
@@ -101,6 +108,7 @@
       {
         "id": 8,
         "name": "Museo del Prado",
+        "description": "El Museo del Prado, ubicado en el corazón de Madrid, es uno de los museos de arte más prestigiosos del mundo. Alberga una vasta colección de obras maestras de pintores famosos como Velázquez, Goya, El Bosco, Rubens y muchos otros. Pasear por sus galerías es un viaje a través de la historia del arte, desde el Renacimiento hasta el siglo XIX. Los visitantes pueden contemplar algunas de las pinturas más icónicas de la historia, como 'Las Meninas' de Velázquez o 'El Jardín de las Delicias' de El Bosco. El Museo del Prado es un lugar imprescindible para los amantes del arte y la cultura, y una ventana a la rica herencia artística de España y el mundo.",
         "isActive": true,
         "hours": "10:00 AM - 8:00 PM",
         "city": "Madrid",
@@ -115,6 +123,7 @@
       {
         "id": 9,
         "name": "Puerta de Alcalá",
+        "description": "La Puerta de Alcalá es un monumento emblemático de Madrid y una de las puertas históricas más famosas de la ciudad. Construida en el siglo XVIII, esta majestuosa puerta neoclásica es un símbolo de la grandeza arquitectónica de la capital española. Se encuentra en el Parque del Retiro y es una parada obligatoria para los visitantes que desean conocer la historia y la belleza de Madrid. La Puerta de Alcalá se ilumina por la noche, creando una vista espectacular, y es un lugar perfecto para dar un paseo relajante o tomar fotografías para recordar tu visita a la ciudad.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Madrid",
@@ -129,6 +138,7 @@
       {
         "id": 10,
         "name": "Acrópolis de Lindos",
+        "description": "La Acrópolis de Lindos, ubicada en la isla de Rodas, Grecia, es un antiguo sitio arqueológico que te transporta de vuelta a la época de los antiguos griegos. Este imponente y bien conservado conjunto de ruinas incluye el Templo de Atenea Lindia, el Estoa de los Atenienses y otras estructuras antiguas. Desde la cima de la colina, se obtienen vistas panorámicas impresionantes de la ciudad de Lindos y el mar Egeo. Visitar la Acrópolis de Lindos es una experiencia cultural y arqueológica única que te permite explorar la rica herencia de la antigua Grecia mientras disfrutas de un entorno pintoresco y hermoso en la isla de Rodas.",
         "isActive": true,
         "hours": "8:00 AM - 7:00 PM",
         "city": "Rhodes",
@@ -143,6 +153,7 @@
       {
         "id": 11,
         "name": "Museo Británico",
+        "description": "El Museo Británico, ubicado en el corazón de Londres, es uno de los museos más grandes y prestigiosos del mundo. Alberga una colección excepcional de arte, antigüedades y objetos históricos que abarcan culturas y períodos de la historia de todo el mundo. Entre las piezas más famosas se encuentran la Piedra Rosetta y el Partenón de Atenas. Pasear por sus galerías es un viaje a través de la historia y la cultura de la humanidad. El impresionante edificio del museo, con su majestuosa fachada neoclásica, es un lugar icónico en Londres. Una visita al Museo Británico es una oportunidad única para sumergirse en la riqueza del conocimiento humano y explorar tesoros culturales de todo el mundo.",
         "isActive": true,
         "hours": "10:00 AM - 5:30 PM",
         "city": "London",
@@ -157,6 +168,7 @@
       {
         "id": 12,
         "name": "Abadía de Westminster",
+        "description": "La Abadía de Westminster, situada en el corazón de Londres, es un lugar histórico y religioso de gran importancia. Esta magnífica abadía gótica es conocida por ser el lugar de coronación de los monarcas británicos y ha sido escenario de innumerables eventos históricos a lo largo de los siglos. En su interior, se pueden admirar impresionantes obras de arte, tumbas de figuras históricas, vitrales espectaculares y una arquitectura gótica asombrosa. Visitar la Abadía de Westminster es sumergirse en la historia de Inglaterra y experimentar la solemnidad y la belleza de este sitio religioso. Es un destino imperdible para quienes desean explorar la herencia británica y su patrimonio cultural.",
         "isActive": true,
         "hours": "9:30 AM - 3:30 PM",
         "city": "London",
@@ -171,6 +183,7 @@
       {
         "id": 13,
         "name": "Museo Van Gogh",
+        "description": "El Museo Van Gogh, ubicado en Ámsterdam, es un tributo al genio artístico de Vincent van Gogh, uno de los pintores más influyentes de la historia. El museo alberga la colección más grande de obras de Van Gogh en el mundo, incluyendo sus famosos autorretratos y obras maestras como 'La Noche Estrellada'. Explorar sus galerías es sumergirse en la mente creativa del artista y descubrir la evolución de su arte a lo largo de su vida. El edificio del museo en sí es una obra de arte arquitectónica y proporciona un entorno impresionante para apreciar las obras del maestro. Una visita al Museo Van Gogh es una experiencia única para los amantes del arte y una oportunidad para comprender la vida y obra de un artista excepcional.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Amsterdam",
@@ -185,6 +198,7 @@
       {
         "id": 14,
         "name": "Plaza Dam",
+        "description": "La Plaza Dam, ubicada en el corazón de Ámsterdam, es el centro histórico y geográfico de la ciudad. Rodeada de edificios emblemáticos como el Palacio Real y el Nieuwe Kerk (Iglesia Nueva), esta plaza es un importante punto de encuentro y un lugar lleno de historia y energía. Los visitantes pueden pasear por la plaza, disfrutar de la arquitectura neerlandesa y observar a los transeúntes mientras disfrutan de la vida urbana. La Plaza Dam es también el lugar de eventos y festivales, y a menudo alberga mercados y conciertos al aire libre. Es un lugar ideal para comenzar a explorar la encantadora ciudad de Ámsterdam y sumergirse en su atmósfera única.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Amsterdam",
@@ -199,6 +213,7 @@
       {
         "id": 15,
         "name": "Castillo de Edimburgo",
+        "description": "El Castillo de Edimburgo, ubicado en la cima de una colina con vistas panorámicas a la ciudad, es uno de los destinos más emblemáticos de Escocia. Con una historia que se remonta siglos atrás, este castillo es un testigo de los eventos más importantes de la historia escocesa. Los visitantes pueden explorar sus murallas, salas históricas, el Salón de la Corona y la Piedra del Destino, un símbolo de la monarquía escocesa. El castillo ofrece vistas espectaculares de Edimburgo y el paisaje circundante. Es un lugar ideal para aprender sobre la rica historia de Escocia y disfrutar de su patrimonio cultural. Una visita al Castillo de Edimburgo es una experiencia inolvidable en el corazón de Escocia.",
         "isActive": true,
         "hours": "9:30 AM - 6:00 PM",
         "city": "Edinburgh",
@@ -213,6 +228,7 @@
       {
         "id": 16,
         "name": "Puente de Londres",
+        "description": "El Puente de Londres es uno de los puentes más emblemáticos de la capital del Reino Unido. Este puente levadizo, con sus dos torres impresionantes, cruza el río Támesis y es un ícono reconocible de Londres. Aunque es comúnmente conocido como el 'Puente de Londres', su nombre oficial es el 'Puente de la Torre'. Los visitantes pueden caminar sobre el puente y disfrutar de las vistas panorámicas del río y de la Torre de Londres en una dirección, y del Ayuntamiento de Londres y el Shard en la otra. El Puente de Londres es un símbolo de la ciudad y es un lugar ideal para dar un paseo escénico y capturar fotografías memorables de Londres.",
         "isActive": true,
         "hours": "Open all day",
         "city": "London",
@@ -227,6 +243,7 @@
       {
         "id": 17,
         "name": "Catedral de Notre-Dame",
+        "description": "La Catedral de Notre-Dame, ubicada en el corazón de París, es una obra maestra de la arquitectura gótica y uno de los lugares más emblemáticos de la ciudad. Con una historia que se remonta a más de 800 años, esta catedral es un símbolo de la fe, la cultura y la historia de Francia. Los visitantes pueden admirar su impresionante fachada, sus vitrales coloridos y su interior majestuoso. Subir a la torre de la catedral ofrece vistas panorámicas de París, incluyendo la Torre Eiffel y el río Sena. La Catedral de Notre-Dame ha sido escenario de eventos históricos y literarios, y es un lugar de gran importancia en la cultura francesa. Es un destino imperdible para quienes visitan París y desean explorar su patrimonio artístico y religioso.",
         "isActive": true,
         "hours": "8:00 AM - 6:45 PM",
         "city": "Paris",
@@ -241,6 +258,7 @@
       {
         "id": 18,
         "name": "Monte Saint-Michel",
+        "description": "El Monte Saint-Michel es una maravilla arquitectónica y natural situada en la costa de Normandía, Francia. Este sitio histórico es famoso por su abadía medieval construida en la cima de una colina rocosa rodeada por las mareas del océano. El Monte Saint-Michel es un lugar mágico que parece sacado de un cuento de hadas. Los visitantes pueden explorar las estrechas calles empedradas del monte, subir a la abadía y disfrutar de vistas impresionantes del paisaje circundante. Además, es un lugar único para presenciar las mareas, ya que el nivel del agua sube y baja drásticamente, transformando la isla en una península o una isla en función de las mareas. Visitar el Monte Saint-Michel es una experiencia inolvidable y una oportunidad para explorar la historia y la belleza natural de Francia.",
         "isActive": true,
         "hours": "9:00 AM - 7:00 PM",
         "city": "Normandy",
@@ -255,6 +273,7 @@
       {
         "id": 19,
         "name": "Basílica de San Pedro",
+        "description": "La Basílica de San Pedro, ubicada en el Vaticano, es una de las iglesias más impresionantes y sagradas del mundo. Como sede del papado y un importante sitio de peregrinación, esta basílica es un tesoro arquitectónico y espiritual. Los visitantes pueden maravillarse con su majestuosa fachada, sus columnatas que abrazan la Plaza de San Pedro y su interior ornamentado con obras de arte y esculturas de renombre mundial. Subir a la cúpula de la basílica ofrece vistas panorámicas de la Ciudad del Vaticano y de Roma. La Basílica de San Pedro alberga tesoros artísticos como la Pietà de Miguel Ángel y la tumba de San Pedro. Es un lugar de gran importancia religiosa y cultural, y una visita obligada para quienes desean explorar la historia y la espiritualidad en Roma.",
         "isActive": true,
         "hours": "7:00 AM - 7:00 PM",
         "city": "Rome",
@@ -269,6 +288,7 @@
       {
         "id": 20,
         "name": "Puente de Rialto",
+        "description": "El Puente de Rialto es uno de los íconos más emblemáticos de Venecia y uno de los puentes más famosos del mundo. Este puente histórico, construido en el siglo XVI, cruza el Gran Canal de Venecia y conecta las dos orillas de la ciudad. Es conocido por su arquitectura elegante y su estructura de arco único que se alza sobre el canal. Los visitantes pueden pasear por el puente y disfrutar de vistas espectaculares del Gran Canal, con góndolas y embarcaciones tradicionales que navegan bajo él. En sus alrededores, encontrarás tiendas, restaurantes y mercados, lo que lo convierte en un lugar ideal para explorar y experimentar la vida veneciana. El Puente de Rialto es un símbolo de la belleza y la historia de Venecia, y es un lugar imprescindible para cualquier visita a la ciudad.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Venice",
@@ -283,6 +303,7 @@
       {
         "id": 21,
         "name": "Castillo de Neuschwanstein",
+        "description": "El Castillo de Neuschwanstein, ubicado en Bavaria, Alemania, es un castillo de cuento de hadas que ha inspirado a generaciones de visitantes y artistas. Construido en el siglo XIX por el rey Luis II de Baviera, este castillo es conocido por su arquitectura romántica y su ubicación en lo alto de una colina con vistas a un paisaje impresionante. Sus torres puntiagudas, sus murallas y su interior ricamente decorado lo convierten en un destino mágico. Los visitantes pueden explorar las lujosas salas del castillo, incluyendo el Salón del Trono y las habitaciones reales. Además, las vistas desde el castillo de los Alpes bávaros y los lagos circundantes son espectaculares. El Castillo de Neuschwanstein es un símbolo de la imaginación y la opulencia, y es un lugar que te transportará a un mundo de cuentos de hadas.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Bavaria",
@@ -297,6 +318,7 @@
       {
         "id": 22,
         "name": "Castillo de Praga",
+        "description": "El Castillo de Praga, situado en la colina Hradčany en Praga, es uno de los complejos de castillos más grandes del mundo y un símbolo histórico de la República Checa. Con una historia que abarca más de mil años, este castillo es un testigo de la rica historia de Praga y Europa Central. Los visitantes pueden explorar sus patios, palacios, catedrales y museos. El punto culminante es la majestuosa Catedral de San Vito, con su arquitectura gótica impresionante. El Castillo de Praga ofrece vistas panorámicas de Praga y el río Moldava, lo que lo convierte en un lugar perfecto para apreciar la belleza de la ciudad. Es un destino cultural y arquitectónico de primer orden, y una visita al castillo es una inmersión en la historia y la cultura checa.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Prague",
@@ -311,6 +333,7 @@
       {
         "id": 23,
         "name": "Catedral de San Basilio",
+        "description": "La Catedral de San Basilio, situada en la Plaza Roja de Moscú, es una de las estructuras arquitectónicas más icónicas y coloridas de Rusia. Construida en el siglo XVI, esta catedral ortodoxa rusa es conocida por sus cúpulas en forma de bulbo y su diseño único. Cada cúpula está bellamente decorada con patrones y colores vibrantes, creando una vista espectacular. Los visitantes pueden explorar el interior de la catedral y descubrir sus capillas y altares ornamentados. La catedral es un símbolo de la historia y la religión de Rusia y un testimonio de la riqueza cultural del país. La Catedral de San Basilio es un lugar que te transportará a la Rusia medieval y te dejará maravillado por su belleza arquitectónica.",
         "isActive": true,
         "hours": "10:00 AM - 6:00 PM",
         "city": "Moscow",
@@ -325,6 +348,7 @@
       {
         "id": 24,
         "name": "Castillo de Chambord",
+        "description": "El Castillo de Chambord, ubicado en el Valle del Loira, es una joya arquitectónica renacentista que se destaca por su elegante diseño y su historia fascinante. Construido en el siglo XVI durante el reinado de Francisco I, este castillo es un ejemplo sobresaliente de la arquitectura renacentista francesa. Su fachada está adornada con torres, balcones y una escalera de doble hélice que es una obra maestra del diseño. Los visitantes pueden explorar las lujosas salas del castillo, que están decoradas con mobiliario antiguo y arte de la época. Los jardines y el parque que rodean el castillo son igualmente impresionantes. El Castillo de Chambord es un símbolo del esplendor del Renacimiento francés y una visita a este lugar te transportará a una época de opulencia y belleza artística.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Loir-et-Cher",
@@ -339,6 +363,7 @@
       {
         "id": 25,
         "name": "Plaza de España",
+        "description": "La Plaza de España, ubicada en Sevilla, es un monumento arquitectónico impresionante que combina la grandeza arquitectónica con la belleza artística. Construida en 1928 para la Exposición Iberoamericana, esta plaza es conocida por su diseño semicircular y su canal que cruza la plaza en forma de un puente. Los edificios que rodean la plaza están decorados con azulejos cerámicos coloridos que representan las diferentes regiones de España. Los visitantes pueden dar un paseo por los puentes, disfrutar de las vistas panorámicas y admirar la arquitectura única. La Plaza de España es un lugar emblemático que refleja la rica herencia cultural de España y es un destino imperdible en Sevilla.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Seville",
@@ -353,6 +378,7 @@
       {
         "id": 26,
         "name": "Puerta del Sol",
+        "description": "La Puerta del Sol, situada en el corazón de Madrid, es un lugar emblemático y un punto de referencia importante en la capital de España. Esta plaza es conocida por su famoso reloj, la estatua del Oso y el Madroño, y el Kilómetro Cero, que marca el punto de partida de las carreteras radiales de España. La Puerta del Sol es un lugar lleno de vida y actividad, con numerosas tiendas, restaurantes y cafeterías que la rodean. Es el lugar elegido para celebrar eventos importantes y festividades, como la Nochevieja, cuando miles de personas se reúnen en la plaza para dar la bienvenida al nuevo año. Esta plaza es un símbolo de Madrid y un punto de encuentro para los madrileños y visitantes de todo el mundo.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Madrid",
@@ -367,6 +393,7 @@
       {
         "id": 27,
         "name": "Puente de Carlos",
+        "description": "El Puente de Carlos, conocido localmente como Karluv Most, es uno de los puentes más icónicos y pintorescos de Europa. Este puente de piedra, construido en el siglo XIV, cruza el río Moldava y conecta la Ciudad Vieja con el barrio de Mala Strana en Praga. El puente está adornado con 30 estatuas barrocas a lo largo de sus pasillos, y es un lugar ideal para disfrutar de las vistas panorámicas de la ciudad, el castillo de Praga y la iglesia de San Nicolás. A lo largo del puente, encontrarás artistas callejeros, músicos y vendedores de souvenirs que crean un ambiente animado. El Puente de Carlos es un lugar histórico y cultural imprescindible para los visitantes de Praga, y su belleza arquitectónica lo convierte en un lugar perfecto para pasear y disfrutar de la atmósfera única de la ciudad.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Prague",
@@ -381,6 +408,7 @@
       {
         "id": 28,
         "name": "Puente de las Cadenas",
+        "description": "El Puente de las Cadenas, conocido como Széchenyi Lánchíd en húngaro, es uno de los puentes más emblemáticos de Budapest y un símbolo de la ciudad. Construido en el siglo XIX, es el puente más antiguo que cruza el río Danubio en Budapest y conecta las dos partes de la ciudad, Buda y Pest. El puente es una obra maestra de la arquitectura y se caracteriza por sus torres y cadenas que sostienen la estructura. Ofrece unas vistas impresionantes del río Danubio y de algunos de los monumentos más destacados de la ciudad, como el Castillo de Buda y el Parlamento. Pasear por el Puente de las Cadenas es una experiencia inolvidable que te sumergirá en la historia y la belleza de Budapest, y es un lugar ideal para tomar fotografías y disfrutar de la brisa del río.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Budapest",
@@ -395,6 +423,7 @@
       {
         "id": 29,
         "name": "Castillo de Buda",
+        "description": "El Castillo de Buda, conocido como el Palacio Real de Buda, es una joya histórica y arquitectónica que se encuentra en la orilla occidental del río Danubio en Budapest. Este impresionante castillo es un testimonio de la rica historia de la ciudad y ha desempeñado un papel importante a lo largo de los siglos. El castillo alberga museos, galerías de arte y bibliotecas, y es un lugar destacado para explorar la historia y la cultura de Hungría. Desde el Castillo de Buda, se pueden disfrutar de vistas panorámicas espectaculares de Budapest, incluyendo el Parlamento y el Puente de las Cadenas. Pasear por sus calles empedradas y admirar la arquitectura medieval es como dar un paso atrás en el tiempo. Una visita al Castillo de Buda es esencial para cualquier viajero que desee sumergirse en la historia y la belleza de Budapest.",
         "isActive": true,
         "hours": "9:00 AM - 6:00 PM",
         "city": "Budapest",
@@ -409,6 +438,7 @@
       {
         "id": 30,
         "name": "Puente de Rialto",
+        "description": "El Puente de Rialto es uno de los puentes más famosos de Venecia y una icónica estructura que cruza el Gran Canal. Construido en el siglo XVI, es conocido por su elegante arquitectura y su posición estratégica en el corazón de la ciudad. El puente es un lugar emblemático para los visitantes de Venecia y ofrece impresionantes vistas del Gran Canal y la vida urbana veneciana. A lo largo del puente, encontrarás tiendas y puestos de mercado que venden productos locales, como joyas, ropa y recuerdos. El Puente de Rialto es un lugar perfecto para pasear, tomar fotografías y disfrutar de la belleza única de Venecia. Ya sea de día o de noche, este puente es un punto de referencia esencial en la ciudad y un lugar encantador para explorar.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Venice",
@@ -423,6 +453,7 @@
       {
         "id": 31,
         "name": "Museo de Orsay",
+        "description": "El Museo de Orsay es uno de los museos más renombrados de París y alberga una impresionante colección de arte impresionista y postimpresionista. Está ubicado en una majestuosa estación de tren convertida en museo, lo que le confiere una atmósfera única. En su interior, podrás admirar obras maestras de artistas como Monet, Degas, Van Gogh, Cézanne y muchos otros. El museo también alberga esculturas, fotografías y artes decorativas. El Museo de Orsay es un lugar imprescindible para los amantes del arte y la cultura, y ofrece una visión inigualable del arte europeo del siglo XIX y principios del siglo XX. Pasea por sus amplias galerías y déjate llevar por la belleza de las obras maestras que alberga.",
         "isActive": true,
         "hours": "9:30 AM - 6:00 PM",
         "city": "Paris",
@@ -437,6 +468,7 @@
       {
         "id": 32,
         "name": "Puente de Alejandro III",
+        "description": "El Puente de Alejandro III es una de las joyas arquitectónicas de París que cruza el río Sena. Este elegante puente, construido a finales del siglo XIX, es conocido por su exquisita ornamentación y su diseño intrincado. El puente lleva el nombre del zar ruso Alejandro III y es un testimonio de la amistad franco-rusa en esa época. Sus esculturas, farolas y detalles artísticos hacen que sea uno de los puentes más fotogénicos de la ciudad. Desde el Puente de Alejandro III, podrás disfrutar de unas vistas impresionantes de algunos de los monumentos más emblemáticos de París, como la Torre Eiffel y el Hôtel des Invalides. Pasear por este puente es como dar un paseo por la historia y la elegancia parisina.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Paris",
@@ -451,6 +483,7 @@
       {
         "id": 33,
         "name": "Museo de Historia del Arte",
+        "description": "El Museo de Historia del Arte (Kunsthistorisches Museum) es uno de los museos más destacados de Viena y alberga una rica colección de arte que abarca desde la antigüedad hasta el Renacimiento. El edificio en sí es una obra maestra arquitectónica con una impresionante fachada y una decoración opulenta. En su interior, encontrarás obras maestras de artistas como Rafael, Rembrandt, Tiziano y Vermeer, junto con una amplia colección de arte egipcio y antigüedades griegas y romanas. Explorar las galerías del museo es como hacer un viaje a través de la historia del arte europeo. Además de las obras de arte, el museo cuenta con salas impresionantes con techos decorados y detalles arquitectónicos magníficos. Es un lugar imprescindible para los amantes del arte y la historia.",
         "isActive": true,
         "hours": "10:00 AM - 6:00 PM",
         "city": "Vienna",
@@ -465,6 +498,7 @@
       {
         "id": 34,
         "name": "Catedral de San Esteban",
+        "description": "La Catedral de San Esteban (Stephansdom) es uno de los íconos más reconocibles de Viena y una joya arquitectónica de la ciudad. Esta catedral gótica, con su característico tejado de azulejos y la torre sur, domina el centro histórico de Viena. El interior de la catedral es igual de impresionante, con vitrales coloridos, esculturas ornamentadas y un ambiente de solemnidad. Puedes subir a la torre sur para disfrutar de una vista panorámica de la ciudad y explorar las catacumbas debajo de la catedral. La Catedral de San Esteban es un lugar de importancia histórica y religiosa, así como un hito cultural. Es un sitio imperdible para cualquier visitante de Viena y ofrece una visión única de la rica historia de la ciudad.",
         "isActive": true,
         "hours": "6:00 AM - 10:00 PM",
         "city": "Vienna",
@@ -479,6 +513,7 @@
       {
         "id": 35,
         "name": "Museo de la Acrópolis",
+        "description": "El Museo de la Acrópolis es un lugar fascinante que alberga una impresionante colección de tesoros arqueológicos relacionados con la Acrópolis de Atenas. El museo está diseñado de manera moderna y elegante, y sus exhibiciones ofrecen una visión profunda de la antigua Grecia y la importancia cultural e histórica de la Acrópolis. Entre las piezas notables se encuentran esculturas, frisos y objetos antiguos que datan de la antigua Grecia. El edificio del museo en sí es una obra maestra arquitectónica y está estratégicamente ubicado, lo que permite vistas panorámicas de la Acrópolis desde varias galerías. Explorar el Museo de la Acrópolis es un viaje en el tiempo que te sumerge en la rica herencia cultural de Grecia.",
         "isActive": true,
         "hours": "8:00 AM - 8:00 PM",
         "city": "Athens",
@@ -493,6 +528,7 @@
       {
         "id": 36,
         "name": "Galería de los Uffizi",
+        "description": "La Galería de los Uffizi es uno de los museos más importantes y prestigiosos de Italia y del mundo. Ubicado en el corazón de Florencia, este museo alberga una vasta colección de arte renacentista, incluyendo obras maestras de artistas como Botticelli, Michelangelo, Leonardo da Vinci y Rafael. El edificio en sí es una obra maestra arquitectónica, y su interior es un tesoro de la historia del arte. Explorar las salas de la Galería de los Uffizi es como hacer un viaje en el tiempo a la época dorada del Renacimiento italiano. Además de las pinturas, el museo cuenta con esculturas, antigüedades y exhibiciones que te sumergen en la rica herencia cultural de Italia.",
         "isActive": true,
         "hours": "8:15 AM - 6:50 PM",
         "city": "Florence",
@@ -507,6 +543,7 @@
       {
         "id": 37,
         "name": "Plaza Mayor",
+        "description": "La Plaza Mayor es uno de los lugares más emblemáticos de Madrid y un punto de referencia en la ciudad. Rodeada de edificios de tres pisos con balcones y arcos de piedra, la plaza es un hermoso ejemplo de arquitectura barroca. En el centro de la plaza se encuentra una estatua ecuestre de Felipe III. La Plaza Mayor ha sido el escenario de numerosos eventos a lo largo de la historia, desde corridas de toros y procesiones hasta mercados y celebraciones culturales. Hoy en día, es un lugar ideal para disfrutar de la vida urbana madrileña, con numerosos restaurantes, cafeterías y tiendas que la rodean. Un paseo por la Plaza Mayor es una experiencia imprescindible para quienes visitan Madrid.",
         "isActive": true,
         "hours": "Open all day",
         "city": "Madrid",
@@ -521,6 +558,7 @@
       {
         "id": 38,
         "name": "Panteón de Agripa",
+        "description": "El Panteón de Agripa es uno de los monumentos históricos más impresionantes de Atenas y un testimonio de la grandeza arquitectónica de la antigua Grecia. Este templo dedicado a todos los dioses es conocido por su diseño circular y su impresionante cúpula. Construido en el siglo II d.C., el Panteón de Agripa es uno de los pocos edificios antiguos que se conserva en excelente estado. Su cúpula de hormigón es un logro arquitectónico notable y ha inspirado a generaciones de arquitectos. El interior del Panteón alberga una serie de esculturas y detalles arquitectónicos que muestran la rica historia y cultura de la antigua Grecia. Una visita al Panteón de Agripa es un viaje en el tiempo para apreciar la habilidad y la visión de los antiguos constructores griegos.",
         "isActive": true,
         "hours": "8:00 AM - 6:00 PM",
         "city": "Athens",
@@ -535,6 +573,7 @@
       {
         "id": 39,
         "name": "Catedral de San Vito",
+        "description": "La Catedral de San Vito, situada en el corazón de Praga, es un magnífico ejemplo de la arquitectura gótica. Esta impresionante catedral es la sede de la Arquidiócesis de Praga y un importante símbolo religioso en la República Checa. Su construcción comenzó en el siglo XIV y se prolongó durante varios siglos, lo que resultó en una combinación de estilos arquitectónicos, incluido el gótico y el barroco. La catedral alberga numerosos tesoros artísticos y religiosos, incluidos vitrales, esculturas y las joyas de la corona checa. Los visitantes pueden explorar su interior y admirar la belleza de su arquitectura, así como disfrutar de vistas panorámicas de Praga desde sus torres. La Catedral de San Vito es un lugar de gran significado cultural e histórico que atrae a visitantes de todo el mundo.",
         "isActive": true,
         "hours": "9:00 AM - 4:00 PM",
         "city": "Prague",
@@ -549,6 +588,22 @@
       {
         "id": 40,
         "name": "Museo del Hermitage",
+        "description": "El Museo del Hermitage es uno de los museos más grandes y prestigiosos del mundo, ubicado en la hermosa ciudad de San Petersburgo, Rusia. Fundado en 1764 por Catalina la Grande, el museo cuenta con una colección impresionante que abarca desde arte antiguo y tesoros arqueológicos hasta obras maestras de la pintura europea. El Hermitage se encuentra en un complejo de edificios históricos, siendo el Palacio de Invierno el más destacado de ellos. Los visitantes pueden explorar sus opulentas salas y galerías, donde se exhiben obras maestras de artistas como Leonardo da Vinci, Rafael, Rembrandt, y muchas otras figuras icónicas del arte. Además de su colección permanente, el museo alberga exposiciones temporales, lo que lo convierte en un destino cultural en constante evolución. Los jardines del Hermitage y la orilla del río Neva que lo rodean también son lugares de gran belleza y ofrecen vistas espectaculares. Este museo es una joya del arte y la cultura que atrae a visitantes de todo el mundo y es un lugar imperdible para quienes visitan San Petersburgo.",
+        "isActive": true,
+        "hours": "10:30 AM - 6:00 PM",
+        "city": "St. Petersburg",
+        "latitude": "59.9343",
+        "longitude": "30.3351",
+        "price": 1400,
+        "duration": "2-3 hours",
+        "ranking": 40,
+        "country": "Russia",
+        "image": "https://www.eltiempo.com/files/image_640_428/files/crop/uploads/2018/06/26/5b32ad6d7aefd.r_1586960043749.0-78-3000-1566.jpeg"
+      },
+      {
+        "id": 41,
+        "name": "Museo del prueba",
+        "description": "",
         "isActive": true,
         "hours": "10:30 AM - 6:00 PM",
         "city": "St. Petersburg",
