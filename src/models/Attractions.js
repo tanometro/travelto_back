@@ -12,6 +12,10 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
     country: {
       type: DataTypes.STRING,
       allowNull: false
