@@ -1,5 +1,6 @@
-const { Attraction } = require('../db');
+const { Attraction, Location } = require('../db');
 const { Op } = require('sequelize');
+
 
 const bulkAttraction = async (attractions) => {
     try {
@@ -28,7 +29,11 @@ const bulkAttraction = async (attractions) => {
   const readAttractions = async () => {
     try {
         const dbAttractions = await Attraction.findAll({
-          attributes: ['id','name', 'city', 'country','description', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
+          attributes: ['id','name','description', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
+          include: {
+            model: Location,
+            attributes: ["city", "country"],
+          }
         });
         return dbAttractions;
       } catch (error) {
@@ -74,26 +79,25 @@ const createOneAttraction = async (data) => {
     try {
         const {
           name,
-          city,
-          country,
           description,
           latitude,
           longitude,
           price,
           hours,
+          ranking,
           duration,
           image,
           isActive,
           location,
         } = data;
-        if (!name || !latitude || !longitude || !price || !duration || !city || !country
+        if (!name || !latitude || !longitude || !price || !ranking || !duration 
           ||!image || !hours || !description) {
           throw new Error("Faltan campos obligatorios");
         }
         const newAttraction = await Attraction.create({
           name,
-          city,
-          country,
+          location,
+          ranking,
           description,
           latitude,
           longitude,
@@ -103,15 +107,18 @@ const createOneAttraction = async (data) => {
           image,
           isActive,
           });
-          if (location) {
-            await newAttraction.setLocation(location);
-          }
-    
-        return newAttraction;
-      } catch (error) {
-        throw new Error("Error en la creación de una atracción: " + error.message);
-      }
-    };
+      
+          // Asociar la atracción con la ubicación encontrada
+          await newAttraction.setLocation(location);
+      
+          return newAttraction;
+        } catch (error) {
+          throw new Error("Error en la creación de una atracción: " + error.message);
+        }
+      };
+      
+      
+      
     const updateAttractionModel = async (id, updateData) => {
       try {
         if (!id) {
