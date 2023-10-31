@@ -48,8 +48,6 @@ const createUsersLocal = async (
   email,
   image,
   password,
-  isActive,
-  image
 ) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -58,9 +56,8 @@ const createUsersLocal = async (
       dni: dni,
       roleID: roleId,
       email: email,
-      password: hashedPassword,
-      isActive: isActive,
       image: image,
+      password: hashedPassword,
     });
     return create;
   } catch (error) {

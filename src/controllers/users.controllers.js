@@ -3,11 +3,10 @@ const { createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, fin
 const createUsers = async (req, res) => {
     const { name, dni, image, email, password } = req.body;
     const roleId = 3;
-    const isActive = true;
     try {
         if (!name || !dni || !image || !email || !password) throw new Error('Faltan datos');
 
-        const response = await createUsersLocal(name, dni, roleId, email, image, password, isActive);
+        const response = await createUsersLocal(name, dni, roleId, email, image, password);
         console.log(response);
         res.status(200).json(response);
     } catch (error) {
