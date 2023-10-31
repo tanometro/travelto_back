@@ -44,7 +44,6 @@ const findOneLocationService = async (id) => {
 
 const findByName = async (lugar) => {
     try {
-      console.log(lugar)
       if (!lugar) {
         throw new Error('Falta el parámetro de consulta "lugar"');
       }

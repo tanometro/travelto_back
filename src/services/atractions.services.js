@@ -35,7 +35,6 @@ const bulkAttraction = async (attractions) => {
             attributes: ["city", "country"],
           }
         });
-        console.log(dbAttractions)
         return dbAttractions;
       } catch (error) {
         throw new Error("No pude obtener las atracciones: " + error.message);
