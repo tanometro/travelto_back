@@ -3,6 +3,7 @@
       {
         "id": 1,
         "name": "Torre Eiffel",
+        "description": "La Torre Eiffel es un icónico símbolo de París y Francia. Construida en 1889 como parte de la Exposición Universal, es una estructura de hierro forjado que ofrece impresionantes vistas de la ciudad de París.",
         "isActive": true,
         "hours": "9:30 AM - 11:00 PM",
         "city": "Paris",
@@ -12,8 +13,7 @@
         "duration": "2-3 hours",
         "ranking": 1,
         "country": "France",
-        "image": "https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL",
-        "description": "La Torre Eiffel es un icónico símbolo de París y Francia. Construida en 1889 como parte de la Exposición Universal, es una estructura de hierro forjado que ofrece impresionantes vistas de la ciudad de París."
+        "image": "https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL"
       },
       {
         "id": 2,

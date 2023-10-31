@@ -1,4 +1,4 @@
-const { Attraction } = require('../db');
+const { Attraction, Location } = require('../db');
 const { Op } = require('sequelize');
 
 const bulkAttraction = async (attractions) => {
@@ -70,48 +70,62 @@ const bulkAttraction = async (attractions) => {
         }
       };
 
-const createOneAttraction = async (data) => {
-    try {
-        const {
-          name,
-          city,
-          country,
-          description,
-          latitude,
-          longitude,
-          price,
-          hours,
-          duration,
-          image,
-          isActive,
-          location,
-        } = data;
-        if (!name || !latitude || !longitude || !price || !duration || !city || !country
-          ||!image || !hours || !description) {
-          throw new Error("Faltan campos obligatorios");
-        }
-        const newAttraction = await Attraction.create({
-          name,
-          city,
-          country,
-          description,
-          latitude,
-          longitude,
-          price,
-          hours,
-          duration,
-          image,
-          isActive,
-          });
-          if (location) {
-            await newAttraction.setLocation(location);
+      const createOneAttraction = async (data) => {
+        try {
+          const {
+            name,
+            city,
+            description,
+            latitude,
+            longitude,
+            price,
+            hours,
+            duration,
+            image,
+            isActive,
+            ranking,
+            country,
+          } = data;
+      
+          if (!name || !latitude || !longitude || !price || !city || !country || !duration || !image || !hours || !description || !ranking) {
+            throw new Error("Faltan campos obligatorios");
           }
-    
-        return newAttraction;
-      } catch (error) {
-        throw new Error("Error en la creación de una atracción: " + error.message);
-      }
-    };
+      
+          // Buscar una ubicación existente por el país y la ciudad
+          const location = await Location.findOne({
+            where: { country, city },
+          });
+      
+          if (!location) {
+            throw new Error("No se encontró una ubicación correspondiente para el país y ciudad proporcionado");
+          }
+      
+          const newAttraction = await Attraction.create({
+            name,
+            city,
+            country,
+            description,
+            latitude,
+            longitude,
+            price,
+            hours,
+            duration,
+            image,
+            isActive,
+            ranking,
+          });
+      
+          // Asociar la atracción con la ubicación encontrada
+          await newAttraction.setLocation(location);
+      
+          return newAttraction;
+        } catch (error) {
+          throw new Error("Error en la creación de una atracción: " + error.message);
+        }
+      };
+      
+      
+      
     const updateAttractionModel = async (id, updateData) => {
       try {
         if (!id) {

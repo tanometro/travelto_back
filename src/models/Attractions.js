@@ -18,7 +18,7 @@ module.exports = (dataBase) => {
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     city: {
       type: DataTypes.STRING,
