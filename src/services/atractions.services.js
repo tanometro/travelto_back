@@ -81,12 +81,13 @@ const createOneAttraction = async (data) => {
           longitude,
           price,
           hours,
+          ranking,
           duration,
           image,
           isActive,
           location,
         } = data;
-        if (!name || !latitude || !longitude || !price || !duration || !city || !country
+        if (!name || !latitude || !longitude || !price || !ranking || !duration || !city || !country
           ||!image || !hours || !description) {
           throw new Error("Faltan campos obligatorios");
         }
@@ -94,6 +95,7 @@ const createOneAttraction = async (data) => {
           name,
           city,
           country,
+          ranking,
           description,
           latitude,
           longitude,
