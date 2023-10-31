@@ -7,12 +7,12 @@
     },
     {
       "id": 2,
-      "city": "Roma",
+      "city": "Rome",
       "country": "Italia"
     },
     {
       "id": 3,
-      "city": "Atenas",
+      "city": "Athenas",
       "country": "Grecia"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "id": 8,
-      "city": "Londres",
+      "city": "London",
       "country": "Reino Unido"
     },
     {
