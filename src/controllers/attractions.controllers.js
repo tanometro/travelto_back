@@ -106,6 +106,6 @@ module.exports = {
   readAttractionById,
   readAttractionByQuery,
   updateAttraction,
-  dataAttraction,
+  //dataAttraction,
   deleteAttraction,
 };
