@@ -71,6 +71,7 @@ const getUserLog = async (req, res) => {
     const { email, password } = req.body;
     try {
         const dbUsers = await findByEmailAndPassword(email, password);
+        console.log(dbUsers);
         res.status(200).json(dbUsers)
     } catch (error) {
         res.status(500).send({ message: error.message });
