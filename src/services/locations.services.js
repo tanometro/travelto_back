@@ -7,11 +7,6 @@ const bulkLocation = async (locations) => {
       const mappedLocations = locations.map(locationData => ({
         city: locationData.city,
         country: locationData.country,
-        latitude: locationData.latitude,
-        longitude: locationData.longitude,
-        prefijo: locationData.prefijo,
-        cp: locationData.cp || "0",
-        image: locationData.image,
       }));
       const insertedLocations = await Location.bulkCreate(mappedLocations);
   
@@ -49,6 +44,7 @@ const findOneLocationService = async (id) => {
 
 const findByName = async (lugar) => {
     try {
+      console.log(lugar)
       if (!lugar) {
         throw new Error('Falta el parámetro de consulta "lugar"');
       }
@@ -73,13 +69,7 @@ const findByName = async (lugar) => {
         const newLocation = await Location.create({
             city: data.city,
             country: data.country,
-            latitude: data.latitude,
-            longitude: data.longitude,
-            prefijo: data.prefijo,
-            cp: data.cp || [],
-            image: data.image
         });
-
         return newLocation;
     } catch (error) {
         throw new Error("No se pudo crear la ubicación: " + error.message);
