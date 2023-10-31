@@ -1,0 +1,18 @@
+{
+    "attractions": [
+      {
+        "id": 1,
+        "name": "Torre Eiffel",
+        "isActive": true,
+        "hours": "9:30 AM - 11:00 PM",
+        "city": "Paris",
+        "latitude": "48.858844",
+        "longitude": "2.294351",
+        "price": 1500,
+        "duration": "2-3 hours",
+        "ranking": 1,
+        "country": "Francia",
+        "image": "https://www.toureiffel.paris/sites/default/files/styles/mobile_x1_560/public/actualite/image_principale/vue_depuisjardins_webbanner_3.jpg?itok=YjGzrcsL"
+      }
+    ]
+    }
