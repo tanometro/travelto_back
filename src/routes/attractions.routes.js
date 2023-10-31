@@ -166,7 +166,7 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  */
 
 
-router.get('/data', dataAttraction);
+// router.get('/data', dataAttraction);
 router.get('/name', readAttractionByQuery);
 
 
