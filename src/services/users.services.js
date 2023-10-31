@@ -1,5 +1,4 @@
 const { User } = require("../db");
-const usuarios = require("../../Api/Users.json");
 const bcrypt = require('bcrypt');
 
 
