@@ -14,7 +14,8 @@ module.exports = (dataBase) => {
     },
     dni: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     image: {
       type: DataTypes.STRING,
@@ -32,8 +33,9 @@ module.exports = (dataBase) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    roleID: {
-      type: DataTypes.INTEGER
+    roleId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
-}, {timestamp: false})
+}, {timestamps: false})
 }

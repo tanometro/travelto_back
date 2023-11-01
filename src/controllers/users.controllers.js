@@ -1,14 +1,25 @@
-const {register, createUsersLocal, destroyUser, getOneUser, updateUserModel, readAll, findByName} = require('../services/users.services');
+const {register, destroyUser, getOneUser, updateUserModel, readAll, findByName} = require('../services/users.services');
 
 const registerUser = async (req, res) => {
     try {
       const { name, dni, image, email, password, roleId } = req.body;
+  
+      // Validación de datos
+      if (!name || !dni || !image || !email || !password) {
+        return res.status(400).json({ message: "Por favor, proporciona todos los campos requeridos." });
+      }
       const result = await register(name, dni, image, email, password, roleId);
-      return res.status(200).json(result);
+  
+      if (result.error) {
+        return res.status(400).json({ message: result.error });
+      }
+  
+      res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
   };
+  
 
   const readAllUsers = async (req, res)=>{
     try {
@@ -63,20 +74,20 @@ const deleteUser = async (req, res) => {
     }
 }
 //! -------------------------------------------------------------------------
-const createUsers = async (req, res)=>{
-    const {name, dni, roleId, email,password, isActive,image } = req.body;
-    try {
-        if (!name || !dni || !roleId || !email || !password ) 'Faltan datos, revisa tu form';
+// const createUsers = async (req, res)=>{
+//     const {name, dni, roleId, email,password, isActive,image } = req.body;
+//     try {
+//         if (!name || !dni || !roleId || !email || !password ) 'Faltan datos, revisa tu form';
 
-        const response = await createUsersLocal(name, dni, roleId, email,password, isActive, image);
-        res.status(200).json(response);
-    } catch (error) {
-        res.status(500).send({message: error.message});
-    }
-};
+//         const response = await createUsersLocal(name, dni, roleId, email,password, isActive, image);
+//         res.status(200).json(response);
+//     } catch (error) {
+//         res.status(500).send({message: error.message});
+//     }
+// };
 module.exports = {
     registerUser,
-    createUsers,
+    // createUsers,
     getUsersById,
     getUsersByQuery,
     readAllUsers,
