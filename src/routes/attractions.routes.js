@@ -9,7 +9,7 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *  schemas: 
  *      Attraction:
  *          type: object
- *          propertys: 
+ *          properties: 
  *              name: 
  *                  type: string
  *                  description: name of the attraction
@@ -73,7 +73,7 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *              application/json
  *                  schema:
  *                      type: object
- *                      $ref: '#/components/schemas/Attractions'
+ *                      $ref: '#/components/schemas/Attraction'
  *      responses:
  *          200:
  *              description: new attraction created
@@ -93,7 +93,7 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *                      schema:
  *                          type: array
  *                          items:
- *                              $ref: '#/components/schemas/Attractions'
+ *                              $ref: '#/components/schemas/Attraction'
  *          
  */
 
@@ -118,7 +118,7 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *                  application/json:
  *                      schema:
  *                          type: object
- *                          $ref: '#/components/schemas/Attractions'
+ *                          $ref: '#/components/schemas/Attraction'
  *          404:
  *              description: attraction not found
  */

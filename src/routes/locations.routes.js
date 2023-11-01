@@ -9,7 +9,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  *  schemas: 
  *      Location:
  *          type: object
- *          propertys: 
+ *          properties: 
  *              country: 
  *                  type: string
  *                  descripcion: country where the location is
