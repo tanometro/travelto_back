@@ -1,45 +1,45 @@
 const { User } = require("../db");
-const usuarios = require("../../Api/Users.json");
+// const usuarios = require("../../Api/Users.json");
 const bcrypt = require('bcrypt');
 
 
-const creadodefault = async (req, res) => {
-  try {
-    const userDefault = usuarios.users.map((user) => {
+// const creadodefault = async (req, res) => {
+//   try {
+//     const userDefault = usuarios.users.map((user) => {
       
-      return {
-        id: user.id,
-        name: [user.name[0], user.name[1]],
-        dni: user.DNI,
-        image: user.image,
-        email: user.email,
-        password: user.password,
-        isActive: user.isActive,
-        roleID: user.roleId,
-      };
-    });
+//       return {
+//         id: user.id,
+//         name: [user.name[0], user.name[1]],
+//         dni: user.DNI,
+//         image: user.image,
+//         email: user.email,
+//         password: user.password,
+//         isActive: user.isActive,
+//         roleID: user.roleId,
+//       };
+//     });
 
-    const addUser = await User.bulkCreate(userDefault);
+//     const addUser = await User.bulkCreate(userDefault);
 
-    const userValues = addUser.map((user) => {
-      return {
-        id: user.dataValues.id,
-        name: user.dataValues.name,
-        dni: user.dataValues.dni,
-        image: user.dataValues.image,
-        email: user.dataValues.email,
-        password: user.dataValues.password,
-        isActive: user.dataValues.isActive,
-        roleID: user.dataValues.roleID,
-      };
-    });
-    return userValues;
-  } catch (error) {
-    throw new Error(
-      "No se a podido crear el usuario por defecto " + error.message
-    );
-  }
-};
+//     const userValues = addUser.map((user) => {
+//       return {
+//         id: user.dataValues.id,
+//         name: user.dataValues.name,
+//         dni: user.dataValues.dni,
+//         image: user.dataValues.image,
+//         email: user.dataValues.email,
+//         password: user.dataValues.password,
+//         isActive: user.dataValues.isActive,
+//         roleID: user.dataValues.roleID,
+//       };
+//     });
+//     return userValues;
+//   } catch (error) {
+//     throw new Error(
+//       "No se a podido crear el usuario por defecto " + error.message
+//     );
+//   }
+// };
 
 const createUsersLocal = async (
   name,

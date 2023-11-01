@@ -96,7 +96,7 @@ const deleteLocation = async (req, res) => {
 }
 
 module.exports = {
-    dataLocal,
+    // dataLocal,
     createLocation, 
     readAllLocations,
     readOneLocation,
