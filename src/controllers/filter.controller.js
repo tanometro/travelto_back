@@ -2,6 +2,7 @@ const attractionService = require('../services/atractions.services')
 const locationService = require('../services/locations.services')
 const { Attraction } = require('../db')
 
+
 const filterAtracByCity = async (req, res) => {
     try {
       const { city } = req.params; 
