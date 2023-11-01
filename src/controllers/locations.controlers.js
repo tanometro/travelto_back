@@ -1,5 +1,4 @@
-// const data = require('../../Api/Locations.json')
-const {bulkLocation,getAllLocations, destroyOneLocation, createOneLocation, findOneLocationService, updateLocationService, findByName} = require('../services/locations.services');
+const {getAllLocations, destroyOneLocation, createOneLocation, findOneLocationService, updateLocationService, findByName} = require('../services/locations.services');
 
 // const dataLocal = async (req, res) => {
 //     try {
