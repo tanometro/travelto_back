@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-const data = require("../../Api/attractions.json");
-const {readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
-=======
 // const data = require("../../Api/attractions.json");
 const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
->>>>>>> 548b9d23fe6f8fd027738e64b85273c6cbfd176c
 
 // const dataAttraction = async (req, res) => {
 //   try {
@@ -111,9 +106,6 @@ module.exports = {
   readAttractionById,
   readAttractionByQuery,
   updateAttraction,
-<<<<<<< HEAD
-=======
   //dataAttraction,
->>>>>>> 548b9d23fe6f8fd027738e64b85273c6cbfd176c
   deleteAttraction,
 };
