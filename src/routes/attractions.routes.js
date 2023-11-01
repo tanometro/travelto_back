@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const router = Router()
-const { readAllAttraction, readAttractionById,readAttractionByQuery, createNewAttraction, dataAttraction, updateAttraction, deleteAttraction } = require('../controllers/attractions.controllers')
+const { readAllAttraction, readAttractionById,readAttractionByQuery, createNewAttraction, updateAttraction, deleteAttraction } = require('../controllers/attractions.controllers')
 const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.controller')
 
 /**

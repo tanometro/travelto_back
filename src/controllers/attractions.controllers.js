@@ -1,5 +1,6 @@
 // const data = require("../../Api/attractions.json");
-const {bulkAttraction, readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
+const {readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
+
 
 // const dataAttraction = async (req, res) => {
 //   try {
@@ -106,6 +107,8 @@ module.exports = {
   readAttractionById,
   readAttractionByQuery,
   updateAttraction,
+
   //dataAttraction,
+
   deleteAttraction,
 };
