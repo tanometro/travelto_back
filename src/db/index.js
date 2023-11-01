@@ -48,8 +48,8 @@ Comment.belongsTo(Attraction)
 Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
 
 //TODO: User - Role
-User.belongsToMany(Role, {through: 'UserRole'})
-User.belongsTo(Role, {foreignKey: 'roleID'})
+// User.belongsToMany(Role, {through: 'UserRole'})
+// User.belongsTo(Role, {foreignKey: 'roleID'})
 
 //TODO: User - Location
 User.belongsToMany(Location, { through: 'Destination'})
