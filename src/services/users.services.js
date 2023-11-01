@@ -2,11 +2,10 @@ const { User, Role } = require("../db");
 const bcrypt = require('bcrypt');
 
 const jwt = require("jsonwebtoken");
-const { secretKey } = require('../controllers/login.controller')
+const secretKey = 'Dracarys'
 
-const register = async (req, res) => {
+const register = async (name, dni, image, email, password, roleID) => {
   try {
-    const { name, dni, image, email, password, roleId } = req.body;
     let err = "";
 
     if (!name || !dni || !image || !email || !password) {
@@ -19,7 +18,7 @@ const register = async (req, res) => {
     }
 
     if (err) {
-      res.status(400).send(err);
+      return { error: err }; // Devolver un objeto con el mensaje de error
     } else {
       let cryptPass;
       if (password.length >= 5) {
@@ -29,35 +28,33 @@ const register = async (req, res) => {
       }
 
       const user = await User.create({
-        name: [name],
+        name,
         dni,
         image,
         email,
         password: cryptPass,
+        roleID
       });
 
-      // Ahora, asigna el rol al usuario
-      if (roleId) {
-        const role = await Role.findByPk(roleId);
-        if (role) {
-          await user.addRole(role);
-        }
-      }
-
+      // // Ahora, asigna el rol al usuario
+      // if (roleID) {
+      //   const role = await Role.findByPk(roleID);
+      //   if (role) {
+      //     await user.addRole(role);
+      //   }
+      // }
       // Genera un token para el usuario
       let token = jwt.sign({ user: user }, secretKey, {
-        expiresIn: "24hs",
+        expiresIn: "24h",
       });
 
-      res.json({
-        user: user,
-        token: token,
-      });
+      return { user, token }; // Devolver un objeto con los datos del usuario y el token
     }
   } catch (error) {
-      res.status(500).json(error.message);
+    return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
 }
+
 
 
 const readAll = async () => {
@@ -144,36 +141,36 @@ const destroyUser = async (id) => {
   }
 };
 //! unica que ricardo usa, porque debe andar imagino ------------------------------------
-const createUsersLocal = async (
-  name,
-  dni,
-  roleId,
-  email,
-  password,
-  isActive,
-  image
-) => {
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10)
-    const create = await User.create({
-      name: name,
-      dni: dni,
-      roleID: roleId,
-      email: email,
-      password: hashedPassword,
-      isActive: isActive,
-      image: image,
-    });
-    return create;
-  } catch (error) {
-    throw new Error("No se pudo crear el usuario " + error.message);
-  }
-};
+// const createUsersLocal = async (
+//   name,
+//   dni,
+//   roleId,
+//   email,
+//   password,
+//   isActive,
+//   image
+// ) => {
+//   try {
+//     const hashedPassword = await bcrypt.hash(password, 10)
+//     const create = await User.create({
+//       name: name,
+//       dni: dni,
+//       roleID: roleId,
+//       email: email,
+//       password: hashedPassword,
+//       isActive: isActive,
+//       image: image,
+//     });
+//     return create;
+//   } catch (error) {
+//     throw new Error("No se pudo crear el usuario " + error.message);
+//   }
+// };
 //! unica que ricardo usa, porque debe andar imagino ------------------------------------
 
 module.exports = {
   register,
-  createUsersLocal,
+  // createUsersLocal,
   readAll,
   updateUserModel,
   destroyUser,
