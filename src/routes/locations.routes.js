@@ -144,7 +144,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  *              description: location not found
  */
 
-router.get('/data', dataLocal)
+// router.get('/data', dataLocal)
 router.get('/name', getLocationByQuery)
 router.get('/:id', readOneLocation);
 router.get('/', readAllLocations);
