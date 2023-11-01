@@ -33,7 +33,7 @@ module.exports = (dataBase) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
-    roleId: {
+    roleID: {
       type: DataTypes.INTEGER,
       allowNull: true
     }

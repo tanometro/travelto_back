@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const secretKey = 'Dracarys'
 
-const register = async (name, dni, image, email, password, roleId) => {
+const register = async (name, dni, image, email, password, roleID) => {
   try {
     let err = "";
 
@@ -36,8 +36,8 @@ const register = async (name, dni, image, email, password, roleId) => {
       });
 
       // Ahora, asigna el rol al usuario
-      if (roleId) {
-        const role = await Role.findByPk(roleId);
+      if (roleID) {
+        const role = await Role.findByPk(roleID);
         if (role) {
           await user.addRole(role);
         }

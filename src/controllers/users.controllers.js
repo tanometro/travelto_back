@@ -2,13 +2,13 @@ const {register, destroyUser, getOneUser, updateUserModel, readAll, findByName} 
 
 const registerUser = async (req, res) => {
     try {
-      const { name, dni, image, email, password, roleId } = req.body;
+      const { name, dni, image, email, password, roleID } = req.body;
   
       // Validación de datos
       if (!name || !dni || !image || !email || !password) {
         return res.status(400).json({ message: "Por favor, proporciona todos los campos requeridos." });
       }
-      const result = await register(name, dni, image, email, password, roleId);
+      const result = await register(name, dni, image, email, password, roleID);
   
       if (result.error) {
         return res.status(400).json({ message: result.error });
