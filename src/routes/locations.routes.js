@@ -9,7 +9,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  *  schemas: 
  *      Location:
  *          type: object
- *          propertys: 
+ *          properties: 
  *              country: 
  *                  type: string
  *                  descripcion: country where the location is
@@ -144,7 +144,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  *              description: location not found
  */
 
-router.get('/data', dataLocal)
+// router.get('/data', dataLocal)
 router.get('/name', getLocationByQuery)
 router.get('/:id', readOneLocation);
 router.get('/', readAllLocations);

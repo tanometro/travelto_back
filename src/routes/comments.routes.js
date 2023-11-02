@@ -7,7 +7,7 @@ const {createOneComment,readAllComment, readOneComment, updateOneComment, delete
  *  schemas: 
  *      Comments:
  *          type: object
- *          propertys: 
+ *          properties: 
  *              rating: 
  *                  type: float
  *                  description: the user asign a number to a attraction

@@ -9,28 +9,30 @@ const AttractionModel = require('../models/Attractions')
 const UserModel = require('../models/Users')
 const CommentModel = require('../models/Comments')
 const CompraModel = require ('../models/Compras')
-
-const dataBase = new Sequelize(
-  url,
-    {
-      logging: false,
-      native: false,
-    }) 
+const RoleModel = require('../models/Roles')
 
 // const dataBase = new Sequelize(
-//   DB_DEPLOY,
-//   {
-//     logging: false,
-//     native: false,
-//   }) 
+//   url,
+//     {
+//       logging: false,
+//       native: false,
+//     }) 
+
+const dataBase = new Sequelize(
+  DB_DEPLOY,
+  {
+    logging: false,
+    native: false,
+  }) 
 
 LocationModel (dataBase)
 AttractionModel (dataBase)
 UserModel (dataBase)
 CommentModel(dataBase)
 CompraModel (dataBase)
+RoleModel(dataBase)
 
-const { Location, Attraction, User, Comment, Compra } = dataBase.models
+const { Location, Attraction, User, Comment, Compra, Role } = dataBase.models
 
 //! Relaciones ------------------------------------------------------------
 //TODO: Location - Attraction
@@ -44,6 +46,10 @@ User.hasMany(Comment) // Relacion de 1 Usuario a muchos comentarios
 //TODO: Comment - Attraction
 Comment.belongsTo(Attraction)
 Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
+
+//TODO: User - Role
+// User.belongsToMany(Role, {through: 'UserRole'})
+// User.belongsTo(Role, {foreignKey: 'roleID'})
 
 //TODO: User - Location
 User.belongsToMany(Location, { through: 'Destination'})
@@ -59,6 +65,7 @@ module.exports = {
   User,
   Comment,
   Compra,
+  Role,
 // exportar todas los modelos con dataBase.models es indiferente
   conn: dataBase,
 

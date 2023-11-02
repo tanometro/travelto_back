@@ -22,7 +22,7 @@ const swaggerSpec = {
             }
         ]
     },
-    apis: [`${path.join(__dirname, './routes/index.js')}`]
+    apis: [`${path.join(__dirname, './routes/*.js')}`]
 };
 
 server.use(express.urlencoded({extended: false}))

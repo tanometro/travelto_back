@@ -14,7 +14,8 @@ module.exports = (dataBase) => {
     },
     dni: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     image: {
       type: DataTypes.STRING,
@@ -33,7 +34,8 @@ module.exports = (dataBase) => {
       defaultValue: true
     },
     roleID: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
-}, {timestamp: false})
+}, {timestamps: false})
 }
