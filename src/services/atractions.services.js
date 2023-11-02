@@ -47,6 +47,10 @@ const { Op } = require('sequelize');
             attributes: {
               exclude: ["isActive"],
             },
+            includes: {
+              model: Location,
+              attributes: ["city", "country"],
+            }
           });
       
           if (attractionDB) {
@@ -67,6 +71,10 @@ const { Op } = require('sequelize');
           const attractions = await Attraction.findAll({
             where: {
               name: { [Op.iLike]: `%${name.toLowerCase()}%` }
+            },
+            includes: {
+              model: Location,
+              attributes: ["city", "country"],
             }
           });
           return attractions;
