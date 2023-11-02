@@ -6,23 +6,7 @@ const secretKey = 'Dracarys'
 
 const register = async (name, dni, image, email, password, roleID) => {
   try {
-<<<<<<< HEAD
-    const userDefault = usuarios.users.map((user) => {
-
-      return {
-        id: user.id,
-        name: [user.name[0], user.name[1]],
-        dni: user.DNI,
-        image: user.image,
-        email: user.email,
-        password: user.password,
-        isActive: user.isActive,
-        roleID: user.roleId,
-      };
-    });
-=======
     let err = "";
->>>>>>> 644784704f1f7c3f04120be26746d4d068376e67
 
     if (!name || !dni || !image || !email || !password) {
       err += 'Provide all required fields: ';

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { findUser } = require('../services/login.services');
 
 const secretKey = 'Dracarys'
 

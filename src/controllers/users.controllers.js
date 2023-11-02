@@ -92,6 +92,5 @@ module.exports = {
     getUsersByQuery,
     readAllUsers,
     deleteUser,
-    updateUser,
-    getUserLog
+    updateUser
 }
