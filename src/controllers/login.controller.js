@@ -1,8 +1,4 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const { findUser } = require('../services/login.services');
-
-const secretKey = 'Dracarys'
+const { login } = require('../services/login.services');
 
 const loginFunction = async (req, res) => {
   const { email, password } = req.body;
@@ -25,5 +21,3 @@ const loginFunction = async (req, res) => {
   }
 
 }
-
-module.exports = loginFunction

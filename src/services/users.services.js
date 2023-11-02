@@ -4,13 +4,14 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const secretKey = 'Dracarys'
 
-const register = async (name, dni, image, email, password, roleID) => {
+const register = async (name, lastName, dni, image, email, password, roleID) => {
   try {
     let err = "";
 
-    if (!name || !dni || !image || !email || !password) {
+    if (!name || !lastName || !dni || !image || !email || !password) {
       err += 'Provide all required fields: ';
       if (!name) err += "name ";
+      if (!lastName) err += "lastName ";
       if (!dni) err += "dni ";
       if (!image) err += "image ";
       if (!email) err += "email ";
@@ -29,6 +30,7 @@ const register = async (name, dni, image, email, password, roleID) => {
 
       const user = await User.create({
         name,
+        lastName,
         dni,
         image,
         email,
@@ -45,6 +47,9 @@ const register = async (name, dni, image, email, password, roleID) => {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
 }
+
+// Otras funciones sin cambios...
+
 
 
 
@@ -96,7 +101,7 @@ const findByName = async (searchName) => {
 
     return results;
   } catch (error) {
-
+    throw new Error("No se pudo encontrar al usuario " + error.message);
   }
 };
 
