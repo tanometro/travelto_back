@@ -1,4 +1,4 @@
-const { User, Role } = require("../db");
+const { User } = require("../db");
 const bcrypt = require('bcrypt');
 
 const jwt = require("jsonwebtoken");
@@ -35,15 +35,6 @@ const register = async (name, dni, image, email, password, roleID) => {
         password: cryptPass,
         roleID
       });
-
-      // // Ahora, asigna el rol al usuario
-      // if (roleID) {
-      //   const role = await Role.findByPk(roleID);
-      //   if (role) {
-      //     await user.addRole(role);
-      //   }
-      // }
-      // Genera un token para el usuario
       let token = jwt.sign({ user: user }, secretKey, {
         expiresIn: "24h",
       });
