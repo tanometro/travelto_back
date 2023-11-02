@@ -21,22 +21,7 @@ const registerUser = async (req, res) => {
 };
 
 
-<<<<<<< HEAD
-const updateUser = async (req, res) => {
-    const { id } = req.params;
-    const updateData = req.body
-    try {
-        const response = await updateUserModel(id, updateData);
-        res.status(200).json(response);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-}
-
 const readAllUsers = async (req, res) => {
-=======
-  const readAllUsers = async (req, res)=>{
->>>>>>> 644784704f1f7c3f04120be26746d4d068376e67
     try {
         const dbUsers = await readAll();
         res.status(200).json(dbUsers)
@@ -45,19 +30,6 @@ const readAllUsers = async (req, res) => {
     }
 };
 
-<<<<<<< HEAD
-const deleteUser = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const response = await destroyUser(id);
-        res.status(200).json(response);
-    }
-    catch (error) {
-        res.status(500).send({ message: error.message });
-    }
-}
-=======
->>>>>>> 644784704f1f7c3f04120be26746d4d068376e67
 
 const getUsersById = async (req, res) => {
     const { id } = req.params;
@@ -80,29 +52,16 @@ const getUsersByQuery = async (req, res) => {
     }
 };
 
-<<<<<<< HEAD
-const getUserLog = async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const dbUsers = await findByEmailAndPassword(email, password);
-        console.log(dbUsers);
-        res.status(200).json(dbUsers)
-    } catch (error) {
-        res.status(500).send({ message: error.message });
-    }
-};
-=======
 const updateUser = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const updateData = req.body
     try {
         const response = await updateUserModel(id, updateData);
         res.status(200).json(response);
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 }
->>>>>>> 644784704f1f7c3f04120be26746d4d068376e67
 
 const deleteUser = async (req, res) => {
     const { id } = req.params;
