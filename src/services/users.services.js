@@ -1,10 +1,12 @@
 const { User } = require("../db");
-const usuarios = require("../../Api/Users.json");
 const bcrypt = require('bcrypt');
 
+const jwt = require("jsonwebtoken");
+const secretKey = 'Dracarys'
 
-const creadodefault = async (req, res) => {
+const register = async (name, dni, image, email, password, roleID) => {
   try {
+<<<<<<< HEAD
     const userDefault = usuarios.users.map((user) => {
 
       return {
@@ -18,63 +20,61 @@ const creadodefault = async (req, res) => {
         roleID: user.roleId,
       };
     });
+=======
+    let err = "";
+>>>>>>> 644784704f1f7c3f04120be26746d4d068376e67
 
-    const addUser = await User.bulkCreate(userDefault);
+    if (!name || !dni || !image || !email || !password) {
+      err += 'Provide all required fields: ';
+      if (!name) err += "name ";
+      if (!dni) err += "dni ";
+      if (!image) err += "image ";
+      if (!email) err += "email ";
+      if (!password) err += "password ";
+    }
 
-    const userValues = addUser.map((user) => {
-      return {
-        id: user.dataValues.id,
-        name: user.dataValues.name,
-        dni: user.dataValues.dni,
-        image: user.dataValues.image,
-        email: user.dataValues.email,
-        password: user.dataValues.password,
-        isActive: user.dataValues.isActive,
-        roleID: user.dataValues.roleID,
-      };
-    });
-    return userValues;
+    if (err) {
+      return { error: err }; // Devolver un objeto con el mensaje de error
+    } else {
+      let cryptPass;
+      if (password.length >= 5) {
+        cryptPass = bcrypt.hashSync(password, 10);
+      } else {
+        cryptPass = password;
+      }
+
+      const user = await User.create({
+        name,
+        dni,
+        image,
+        email,
+        password: cryptPass,
+        roleID
+      });
+      let token = jwt.sign({ user: user }, secretKey, {
+        expiresIn: "24h",
+      });
+
+      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+    }
   } catch (error) {
-    throw new Error(
-      "No se a podido crear el usuario por defecto " + error.message
-    );
+    return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
-};
+}
 
-const createUsersLocal = async (
-  name,
-  dni,
-  roleId,
-  email,
-  image,
-  password,
-) => {
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10)
-    const create = await User.create({
-      name: name,
-      dni: dni,
-      roleID: roleId,
-      email: email,
-      image: image,
-      password: hashedPassword,
-    });
-    return create;
-  } catch (error) {
-    throw new Error("No se pudo crear el usuario " + error.message);
-  }
-};
 
-const destroyUser = (id) => {
+
+const readAll = async () => {
   try {
-    const response = User.destroy({
-      where: {
-        id: id,
-      },
-    });
-    return response;
+    const users = await User.findAll()
+
+    if (users.length === 0) {
+      return 'no hay usuarios en la bdd'
+    }
+    return users
   } catch (error) {
-    throw new Error("No se pudo eliminar el user " + error.message);
+    console.error(error.message);
+    throw error;
   }
 };
 
@@ -92,64 +92,88 @@ const getOneUser = async (id) => {
   }
 };
 
-const updateUserModel = async (id, updateData) => {
+const findByName = async (searchName) => {
   try {
-    const response = await User.update(updateData, {
-      where: {
-        id: id,
-      },
-    });
-    if (response[0] === 0) {
-      throw new Error("No existe ese id");
+    const usuarios = await readAll()
+
+    if (!usuarios || !searchName) {
+      throw new Error('no se encontraron usuarios')
     }
 
-    return response;
+    const results = usuarios.filter((user) => {
+      const userNames = user.name.map((us) => us.toLowerCase());
+      searchName = searchName.toLowerCase();
+      return userNames.some((us) => us.includes(searchName));
+    });
+
+    if (results.length === 0) {
+      throw new Error(`No se encontraron usuarios cuyos nombres contengan "${searchName}"`);
+    }
+
+    return results;
+  } catch (error) {
+
+  }
+};
+
+const updateUserModel = async (id, updateData) => {
+  try {
+    const user = await User.findByPk(id)
+
+    if (!user) {
+      throw new Error('Usuario no encontrado')
+    }
+
+    const updatedUser = await User.update(updateData)
+
+    return updatedUser
   } catch (error) {
     throw new Error(`No se pudo editar el user con id ${id}` + error.message);
   }
 };
 
-const readAll = async () => {
+const destroyUser = async (id) => {
   try {
-    const response = await User.findAll();
+    const user = await User.findByPk(id)
 
-    if (response.length === 0) {
-      await creadodefault();
+    if (!user) {
+      throw new Error('Usuario no encontrado')
     }
-    const usu = await User.findAll();
 
-    return usu;
+    await user.update({ isActive: false })
+
+    return 'Usuario desactivado exitosamente'
   } catch (error) {
-    console.error(error.message);
-    throw error;
+    throw new Error("No se pudo desactivar el usuario " + error.message);
   }
 };
-
-const findByName = async (name) => {
-  try {
-    const usuarios = await readAll();
-    if (!usuarios) {
-      throw new Error(
-        "No se pudo encontrar a los usuarios en la base de datos"
-      );
-    }
-    const busqueda = usuarios.find((user) => {
-      return user.name
-        .map((userName) => userName.toLowerCase())
-        .includes(name.toLowerCase());
-    });
-
-    if (!busqueda) {
-      throw new Error(
-        `No se pudo encontrar ningún usuario con nombre "${name}"`
-      );
-    }
-
-    return busqueda;
-  } catch (error) {
-    `No se pudo encontrar ningun usuario con nombre ${name}` + error.message;
-  }
-};
+//! unica que ricardo usa, porque debe andar imagino ------------------------------------
+// const createUsersLocal = async (
+//   name,
+//   dni,
+//   roleId,
+//   email,
+//   password,
+//   isActive,
+//   image
+// ) => {
+//   try {
+//     const hashedPassword = await bcrypt.hash(password, 10)
+//     const create = await User.create({
+//       name: name,
+//       dni: dni,
+//       roleID: roleId,
+//       email: email,
+//       password: hashedPassword,
+//       isActive: isActive,
+//       image: image,
+//     });
+//     return create;
+//   } catch (error) {
+//     throw new Error("No se pudo crear el usuario " + error.message);
+//   }
+// };
+//! unica que ricardo usa, porque debe andar imagino ------------------------------------
 
 const findByEmailAndPassword = async (email, password) => {
   try {
@@ -168,7 +192,8 @@ const findByEmailAndPassword = async (email, password) => {
 
 
 module.exports = {
-  createUsersLocal,
+  register,
+  // createUsersLocal,
   readAll,
   updateUserModel,
   destroyUser,

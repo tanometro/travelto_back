@@ -1,15 +1,14 @@
-const data = require('../../Api/Locations.json')
-const {bulkLocation,getAllLocations, destroyOneLocation, createOneLocation, findOneLocationService, updateLocationService, findByName} = require('../services/locations.services');
+const {getAllLocations, destroyOneLocation, createOneLocation, findOneLocationService, updateLocationService, findByName} = require('../services/locations.services');
 
-const dataLocal = async (req, res) => {
-    try {
-      const response = await bulkLocation(data.locations);
-      res.status(200).json(response);
-    } catch (error) {
-      console.error("Error en la inserción de ubicaciones en la base de datos:", error);
-      res.status(500).json({ error: "Error en el servidor" });
-    }
-};
+// const dataLocal = async (req, res) => {
+//     try {
+//       const response = await bulkLocation(data.locations);
+//       res.status(200).json(response);
+//     } catch (error) {
+//       console.error("Error en la inserción de ubicaciones en la base de datos:", error);
+//       res.status(500).json({ error: "Error en el servidor" });
+//     }
+// };
 
 const readAllLocations = async (req, res) => {
     try{
@@ -96,7 +95,6 @@ const deleteLocation = async (req, res) => {
 }
 
 module.exports = {
-    dataLocal,
     createLocation, 
     readAllLocations,
     readOneLocation,

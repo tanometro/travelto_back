@@ -1,44 +1,27 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const { User } = require('../db')
-
 const secretKey = 'Dracarys'
 
 const loginFunction = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      throw new Error('No existe email o contraseña');
-    }
-    const user = await User.findOne({
-      where: { email },
-    });
-    //*si el usuario no existe ... devolvemos un error
-    if (!user) { throw new Error("No se encontro un usuario con este email"); }
-    //si la contraseña no coincide enviamos un error
+    const user = await findUser(email);
 
-    if (!bcrypt.compareSync(password, user.password)) {
+    if (!user.dataValues.email) {
+      return res.status(401).send('Credenciales inválidas, no existe usuario');
+    }
+
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
       return res.status(401).send('Credenciales inválidas, contraseña incorrecta');
     }
 
-    let token = jwt.sign({ user: { name: user.name, email: user.email, image: user.image } }, secretKey, { expiresIn: '1d' });
-
-    const userLog = {
-      name: user.name, email: user.email, image: user.image
-    };
-
-    res.json({ user: userLog, token: token, });
-
-
+    const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+    res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(500).json({ error: "Error en el servidor de login" });
   }
-
-
-
-
-
 
 }
 
