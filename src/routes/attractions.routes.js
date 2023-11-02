@@ -108,7 +108,7 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *         schema: 
  *           type: string
  *         required: true
- *         description: the user id    
+ *         description: the attraction id    
  *     responses:
  *       200:
  *         description: obtain all attractions 
