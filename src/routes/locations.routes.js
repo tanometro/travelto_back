@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const router = Router()
-const {dataLocal,createLocation, readAllLocations, updateLocation, deleteLocation, readOneLocation, getLocationByQuery} = require('../controllers/locations.controlers');
-const { filterLocByCountry } = require('../controllers/filter.controller')
+const { Router } = require('express');
+const router = Router();
+const { dataLocal, createLocation, readAllLocations, updateLocation, deleteLocation, readOneLocation, getLocationByQuery } = require('../controllers/locations.controlers');
+const { filterLocByCountry } = require('../controllers/filter.controller');
 
 /**
  * @swagger 
@@ -78,7 +78,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  *           application/json:
  *             schema:
  *               type: object
- *               $ref: '#/components/schemas/location'
+ *               $ref: '#/components/schemas/Location'
  *       404:
  *         description: location not found
  */
@@ -87,7 +87,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  * @swagger 
  * /locations/update/{id}:
  *   put:
- *     summary: update an location
+ *     summary: update a location
  *     tags: [locations]
  *     parameters: 
  *       - in: path
@@ -107,7 +107,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  * @swagger 
  * /locations/delete/{id}:
  *   delete:
- *     summary: delete an location
+ *     summary: delete a location
  *     tags: [locations]
  *     parameters: 
  *       - in: path
@@ -151,15 +151,15 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  * @swagger 
  * /locations/country/{country}:
  *   get:
- *     summary: get locations by city
+ *     summary: get locations by country
  *     tags: [locations]
  *     parameters: 
  *      - in: path
- *         name: city
+ *         name: country
  *         schema: 
  *           type: string
  *         required: true
- *         description: the city of the location    
+ *         description: the country of the location    
  *     responses:
  *       200:
  *         description: locations found
@@ -168,16 +168,16 @@ const { filterLocByCountry } = require('../controllers/filter.controller')
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Attraction'
+ *                 $ref: '#/components/schemas/Location'
  */
 
-// router.get('/data', dataLocal)
-router.get('/name', getLocationByQuery) 
+// router.get('/data', dataLocal);
+router.get('/name', getLocationByQuery);
 router.get('/:id', readOneLocation);
 router.get('/', readAllLocations); 
 router.post('/create', createLocation);
-router.put('/update/:id', updateLocation) 
+router.put('/update/:id', updateLocation);
 router.delete('/delete/:id', deleteLocation); 
-router.get('/country/:country', filterLocByCountry) 
+router.get('/country/:country', filterLocByCountry);
 
 module.exports = router;
