@@ -8,6 +8,7 @@ const commentsRoutes = require('./comments.routes');
 const paymentsRoutes = require('./payments.routes');
 const loginRoutes = require('./login.routes');
 
+
 router.use('/attractions', attractionsRoutes);
 router.use('/locations', locationsRoutes);
 router.use('/users', usersRoutes);
