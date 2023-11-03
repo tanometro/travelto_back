@@ -18,7 +18,7 @@ const login = async (email, password) => {
 
     if (bcrypt.compareSync(password, user.password)) {
       let token = jwt.sign({ user: user }, secretKey, {
-        expiresIn: '1h',
+        expiresIn: '24h',
       });
 
       return {
