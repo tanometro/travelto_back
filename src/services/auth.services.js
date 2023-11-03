@@ -1,4 +1,7 @@
 const {User} = require('../db');
+const jwt = require("jsonwebtoken");
+const secretKey = 'Dracarys'
+
 
 const findUser = async (email, password) => {
     try {
@@ -22,7 +25,30 @@ const findUser = async (email, password) => {
         throw new Error("Amig@ intenta de nuevo. " + error.message);
     }
 };
+//! ----------------------------------------------------------------------------
+
+const token = async (token) => {
+  try {
+    if (!token) {
+      throw new Error('Acceso no autorizado');
+    }
+
+    const decoded = jwt.verify(token, secretKey);
+    const user = await User.findByPk(decoded.user.id, {
+      attributes: ['name', 'email']
+    });
+
+    if (!user) {
+      throw new Error('No existe el usuario');
+    }
+
+    return user;
+  } catch (error) {
+    throw new Error('No autorizado');
+  }
+};
 
 module.exports = {
-    findUser
+    findUser,
+    token
 }
