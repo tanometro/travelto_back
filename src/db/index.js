@@ -11,19 +11,19 @@ const CommentModel = require('../models/Comments')
 const CompraModel = require ('../models/Compras')
 const RoleModel = require('../models/Roles')
 
-// const dataBase = new Sequelize(
-//   url,
-//     {
-//       logging: false,
-//       native: false,
-//     }) 
-
 const dataBase = new Sequelize(
-  DB_DEPLOY,
-  {
-    logging: false,
-    native: false,
-  }) 
+  url,
+    {
+      logging: false,
+      native: false,
+    }) 
+
+// const dataBase = new Sequelize(
+//   DB_DEPLOY,
+//   {
+//     logging: false,
+//     native: false,
+//   }) 
 
 LocationModel (dataBase)
 AttractionModel (dataBase)
