@@ -1,4 +1,4 @@
-const {findUser} = require('../services/auth.services')
+const {findUser, token} = require('../services/auth.services')
 
 const auth = async (req, res) => {
     const {email, password} = req.body;
@@ -9,5 +9,20 @@ const auth = async (req, res) => {
     } catch (error) {
         
     }
-    
 }
+
+//! ---------------------------------------------------------------
+const authenticateUser = async (req, res, next) => {
+    try {
+      const authtoken = req.headers.authorization.split(' ')[1];
+      const user = await token(authtoken);
+      req.user = user;
+      next();
+    } catch (error) {
+      return res.status(401).json({ message: error.message });
+    }
+  };
+
+  module.exports = {
+    authenticateUser
+  };
