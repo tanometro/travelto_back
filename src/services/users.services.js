@@ -1,9 +1,6 @@
 const { User } = require("../db");
 const bcrypt = require('bcrypt');
 
-const jwt = require("jsonwebtoken");
-const secretKey = 'Dracarys'
-
 const register = async (name, lastName, dni, image, email, password, roleID) => {
   try {
     let err = "";
@@ -37,11 +34,12 @@ const register = async (name, lastName, dni, image, email, password, roleID) => 
         password: cryptPass,
         roleID
       });
-      let token = jwt.sign({ user: user }, secretKey, {
+      /* let token = jwt.sign({ user: user }, secretKey, {
         expiresIn: "24h",
-      });
+      }); */
 
-      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+      //return { user, token }; // Devolver un objeto con los datos del usuario y el token
+      return user;
     }
   } catch (error) {
     return { error: error.message }; // Devolver un objeto con el mensaje de error

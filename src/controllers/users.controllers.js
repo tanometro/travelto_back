@@ -4,11 +4,6 @@ const registerUser = async (req, res) => {
     try {
         const { name, lastName, dni, image, email, password } = req.body;
         const roleID = 3;
-
-        // Validación de datos
-        if (!name || !lastName || !dni || !image || !email || !password) {
-            return res.status(400).json({ message: "Por favor, proporciona todos los campos requeridos." });
-        }
         const result = await register(name, lastName, dni, image, email, password, roleID);
 
         if (result.error) {
