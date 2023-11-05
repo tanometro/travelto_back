@@ -60,4 +60,21 @@ module.exports = router;
  *         identificación: {DNI, 36555444}
  */
 
+/**
+ * @swagger
+ * /payments/createOrder:
+ *   post:
+ *     summary: create a new order
+ *     tags: [payments]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Attraction'
+ *     responses:
+ *       200:
+ *         description: new order created
+ */
+
 
