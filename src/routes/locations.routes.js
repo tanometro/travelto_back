@@ -1,7 +1,15 @@
-const { Router } = require('express');
-const router = Router();
-const { dataLocal, createLocation, readAllLocations, updateLocation, deleteLocation, readOneLocation, getLocationByQuery } = require('../controllers/locations.controlers');
-const { filterLocByCountry } = require('../controllers/filter.controller');
+const { Router } = require('express')
+const router = Router()
+const {createLocation, readAllLocations, updateLocation, deleteLocation, readOneLocation, getLocationByQuery} = require('../controllers/locations.controlers');
+const { filterLocByCountry } = require('../controllers/filter.controller')
+
+router.get('/name', getLocationByQuery) 
+router.get('/:id', readOneLocation);
+router.get('/', readAllLocations); 
+router.post('/create', createLocation);
+router.put('/update/:id', updateLocation) 
+router.delete('/delete/:id', deleteLocation); 
+router.get('/country/:country', filterLocByCountry) 
 
 /**
  * @swagger 
@@ -28,7 +36,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller');
  * @swagger
  * /locations/create:
  *   post:
- *     summary: create a new attraction 
+ *     summary: create a new location 
  *     tags: [locations]
  *     requestBody: 
  *       required: true
@@ -60,7 +68,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller');
 
 /**
  * @swagger
- * /locations/{id}: 
+ * /locations/{id}:
  *   get:
  *     summary: return a location by id
  *     tags: [locations]
@@ -154,7 +162,7 @@ const { filterLocByCountry } = require('../controllers/filter.controller');
  *     summary: get locations by country
  *     tags: [locations]
  *     parameters: 
- *      - in: path
+ *       - in: path
  *         name: country
  *         schema: 
  *           type: string
@@ -170,14 +178,5 @@ const { filterLocByCountry } = require('../controllers/filter.controller');
  *               items:
  *                 $ref: '#/components/schemas/Location'
  */
-
-// router.get('/data', dataLocal);
-router.get('/name', getLocationByQuery);
-router.get('/:id', readOneLocation);
-router.get('/', readAllLocations); 
-router.post('/create', createLocation);
-router.put('/update/:id', updateLocation);
-router.delete('/delete/:id', deleteLocation); 
-router.get('/country/:country', filterLocByCountry);
 
 module.exports = router;
