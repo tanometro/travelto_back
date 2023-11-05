@@ -1,4 +1,5 @@
 const axios = require("axios");
+const {Payment} = require('../db')
 
 const paymentService = async (details) => {
     const url = "https://api.mercadopago.com/checkout/preferences";

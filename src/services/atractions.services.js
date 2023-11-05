@@ -1,31 +1,6 @@
 const { Attraction, Location } = require('../db');
 const { Op } = require('sequelize');
 
-
-// const bulkAttraction = async (attractions) => {
-//     try {
-//       const mappedAttractions = attractions.map(attractionData => ({
-//         name: attractionData.name,
-//         city: attractionData.city,
-//         country: attractionData.country,
-//         description: attractionData.description,
-//         image: attractionData.image,
-//         latitude: attractionData.latitude,
-//         longitude: attractionData.longitude,
-//         price: attractionData.price,
-//         ranking: attractionData.ranking,
-//         hours: attractionData.hours || "0",
-//         duration: attractionData.duration,
-//         isActive: attractionData.isActive,
-//       }));
-//       const insertedAttractions = await Attraction.bulkCreate(mappedAttractions);
-  
-//       return insertedAttractions;
-//     } catch (error) {
-//       throw new Error("No pude insertar atracciones en la base de datos: " + error.message);
-//     }
-//   };
-
   const readAttractions = async () => {
     try {
         const dbAttractions = await Attraction.findAll({
@@ -107,8 +82,7 @@ const createOneAttraction = async (data) => {
           image,
           isActive,
           });
-      
-          // Asociar la atracción con la ubicación encontrada
+
           await newAttraction.setLocation(location);
       
           return newAttraction;
