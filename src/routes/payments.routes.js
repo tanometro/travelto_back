@@ -18,54 +18,46 @@ module.exports = router;
  *     Payment:
  *       type: object
  *       properties: 
- *         name: 
- *           type: string
- *           description: name of the attraction
- *         country: 
- *           type: string
- *           description: country where the attraction is
- *         city: 
- *           type: string
- *           description: city where the attraction is
- *         latitude: 
- *           type: string
- *         longitude: 
- *           type: string
- *         price: 
+ *         currency_id: 
  *           type: number
- *           description: the price of one visit
- *         ranking: 
+ *           description: id of the currency, 1 = Peso, 2 = US Dollar
+ *         picture_url: 
+ *           type: string
+ *           description: It's always 'https://www.mercadopago.com/org-img/MP3/home/logomp3.gif'
+ *         description: 
+ *           type: string
+ *           description: description of the transaction
+ *         quantity: 
  *           type: number
- *           description: the media of reviews
- *         hours: 
+ *         unit_price: 
+ *           type: number
+ *         payerName: 
  *           type: string
- *           description: time when the attraction is open
- *         duration: 
+ *         surname: 
  *           type: string
- *         image:
+ *         email: 
  *           type: string
- *         isActive:
- *           type: boolean
+ *         identification: 
+ *           type: string
+ *           description: array con tipo ( = DNI, CI, Pasaporte ) y número de documento
  *       required:
- *         - name
- *         - country
- *         - city
- *         - latitude
- *         - longitude
- *         - price
- *         - ranking
- *         - hours
- *         - duration
+ *         - currency_id
+ *         - picture_url
+ *         - quantity
+ *         - unit_price
+ *         - payerName
+ *         - surname
+ *         - identification
  *       example:
- *         name: Colosseo
- *         country: Italia
- *         city: Roma
- *         latitude: 41°53′25″N
- *         longitude: 12°29′32″E
- *         price: 120
- *         ranking: 4.5
- *         hours: 9:00 am sat
- *         duration: 1.2 hs
- *         image: example.jpg
- *         isActive: true
+ *         currency_id: 1
+ *         picture_url: 'https://www.mercadopago.com/org-img/MP3/home/logomp3.gif'
+ *         description: The entire museum experience
+ *         quantity: 10
+ *         unit_price: 200
+ *         payer_name: Carlitos Nicolás
+ *         surname: JavaBro
+ *         email: carlitosjs@henry.com
+ *         identificación: {DNI, 36555444}
  */
+
+

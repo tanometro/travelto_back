@@ -3,7 +3,7 @@ const {Payment} = require('../db')
 
 const paymentService = async (details) => {
     const url = "https://api.mercadopago.com/checkout/preferences";
-    const {id, title, currency_id, description, category_id, quantity,
+    const {id, title, currency_id, description, quantity,
     unit_price, payerName, payerSurname, payerEmail, identification} = details;
     const body = {
           items: [
@@ -13,7 +13,6 @@ const paymentService = async (details) => {
                 currency_id: currency_id,
                 picture_url: 'https://www.mercadopago.com/org-img/MP3/home/logomp3.gif',
                 description: description,
-                category_id: category_id,
                 quantity: quantity,
                 unit_price: unit_price
             }

@@ -17,9 +17,6 @@ module.exports = (sequelize) => {
     description: {
         type: DataTypes.STRING,
     },
-    category_id: {
-        type: DataTypes.INTEGER,
-    },
     quantity: {
         type: DataTypes.INTEGER,
     },
@@ -35,11 +32,12 @@ module.exports = (sequelize) => {
     email: {
         type: DataTypes.STRING
     },
-    identification: {
-        type: DNI,
-        number: identification.number,
-    },
 }, {timestamp: false})
 }
 
 // !! Identification es objeto con esas dos propiedades 
+// Agregar
+// identification: {
+//     type: DNI,
+//     number: identification.number,
+// },

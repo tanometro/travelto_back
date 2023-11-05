@@ -36,7 +36,7 @@ router.get('/country/:country', filterLocByCountry)
  * @swagger
  * /locations/create:
  *   post:
- *     summary: create a new attraction 
+ *     summary: create a new location 
  *     tags: [locations]
  *     requestBody: 
  *       required: true
@@ -68,7 +68,7 @@ router.get('/country/:country', filterLocByCountry)
 
 /**
  * @swagger
- * /locations/{id}: 
+ * /locations/{id}:
  *   get:
  *     summary: return a location by id
  *     tags: [locations]
@@ -86,7 +86,7 @@ router.get('/country/:country', filterLocByCountry)
  *           application/json:
  *             schema:
  *               type: object
- *               $ref: '#/components/schemas/location'
+ *               $ref: '#/components/schemas/Location'
  *       404:
  *         description: location not found
  */
@@ -95,7 +95,7 @@ router.get('/country/:country', filterLocByCountry)
  * @swagger 
  * /locations/update/{id}:
  *   put:
- *     summary: update an location
+ *     summary: update a location
  *     tags: [locations]
  *     parameters: 
  *       - in: path
@@ -115,7 +115,7 @@ router.get('/country/:country', filterLocByCountry)
  * @swagger 
  * /locations/delete/{id}:
  *   delete:
- *     summary: delete an location
+ *     summary: delete a location
  *     tags: [locations]
  *     parameters: 
  *       - in: path
@@ -159,15 +159,15 @@ router.get('/country/:country', filterLocByCountry)
  * @swagger 
  * /locations/country/{country}:
  *   get:
- *     summary: get locations by city
+ *     summary: get locations by country
  *     tags: [locations]
  *     parameters: 
- *      - in: path
- *         name: city
+ *       - in: path
+ *         name: country
  *         schema: 
  *           type: string
  *         required: true
- *         description: the city of the location    
+ *         description: the country of the location    
  *     responses:
  *       200:
  *         description: locations found
@@ -176,7 +176,7 @@ router.get('/country/:country', filterLocByCountry)
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Attraction'
+ *                 $ref: '#/components/schemas/Location'
  */
 
 module.exports = router;
