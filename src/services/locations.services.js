@@ -1,7 +1,6 @@
 const { Location } = require('../db');
 const { Op } = require('sequelize');
 
-
 const bulkLocation = async (locations) => {
     try {
       const mappedLocations = locations.map(locationData => ({

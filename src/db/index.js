@@ -5,11 +5,12 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env
 const url = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`
 
 const LocationModel = require('../models/Locations');
-const AttractionModel = require('../models/Attractions')
-const UserModel = require('../models/Users')
-const CommentModel = require('../models/Comments')
-const CompraModel = require ('../models/Compras')
-const RoleModel = require('../models/Roles')
+const AttractionModel = require('../models/Attractions');
+const UserModel = require('../models/Users');
+const CommentModel = require('../models/Comments');
+const CompraModel = require ('../models/Compras');
+const RoleModel = require('../models/Roles');
+const PaymentModel = require('../models/Payments')
 
 // const dataBase = new Sequelize(
 //   url,
@@ -31,8 +32,9 @@ UserModel (dataBase)
 CommentModel(dataBase)
 CompraModel (dataBase)
 RoleModel(dataBase)
+PaymentModel(dataBase)
 
-const { Location, Attraction, User, Comment, Compra, Role } = dataBase.models
+const { Location, Attraction, User, Comment, Compra, Role, Payment } = dataBase.models
 
 //! Relaciones ------------------------------------------------------------
 //TODO: Location - Attraction
@@ -57,6 +59,9 @@ User.belongsToMany(Location, { through: 'Destination'})
 //TODO: User - Compra
 User.belongsToMany(Compra, {through: 'Reservas'})
 
+//TODO: User - Pagos
+User.belongsToMany(Payment, {through: 'Reservas'})
+
 //! Relaciones ------------------------------------------------------------
 
 module.exports = {
@@ -66,6 +71,7 @@ module.exports = {
   Comment,
   Compra,
   Role,
+  Payment,
 // exportar todas los modelos con dataBase.models es indiferente
   conn: dataBase,
 

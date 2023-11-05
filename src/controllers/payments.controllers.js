@@ -23,8 +23,17 @@ const successOrder = (req, res) => {
     res.status(200).send('Orden exitosa')
 }
 
-const receiveWebhook = (req, res) => {
-    res.status(200).send('Orden exitosa')
+const receiveWebhook = async (req, res) => {
+    const payment = req.query;
+    try {
+        if(payment.type === 'payment'){
+            const data = await mercadopago.payment.findById(payment['data.id']);
+        
+        res.status(200).send('Orden exitosa'); 
+     } 
+    } catch (error) {
+        return res.status(400).send({error: error.message})
+    }
 }
 
 module.exports = {
