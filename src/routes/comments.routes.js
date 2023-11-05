@@ -5,12 +5,12 @@ const {createOneComment,readAllComment, readOneComment, updateOneComment, delete
  * @swagger 
  * components: 
  *  schemas: 
- *      Comments:
+ *      Comment:
  *          type: object
  *          properties: 
  *              rating: 
  *                  type: float
- *                  description: the user asign a number to a attraction
+ *                  description: the user asign a number to a comment
  *              description: 
  *                  type: string
  *                  descripcion: the comment properly
@@ -19,13 +19,13 @@ const {createOneComment,readAllComment, readOneComment, updateOneComment, delete
  *              - description
  *          example:
  *              - 4.5
- *              - This attraction fabulous
+ *              - This comment fabulous
  * 
  */
 
 /**
- * @swagger
- * /comments/
+ * @swagger //
+ * /comments/create:
  *  post:
  *      summary: create a new comment 
  *      tags: [comments]
@@ -43,7 +43,7 @@ const {createOneComment,readAllComment, readOneComment, updateOneComment, delete
 
 /**
  * @swagger
- * /comments/{id}
+ * /comments/{id}:
  *  get:
  *      summary: return a comment
  *      tags: [comments]
@@ -62,16 +62,16 @@ const {createOneComment,readAllComment, readOneComment, updateOneComment, delete
  *                  application/json:
  *                      schema:
  *                          type: object
- *                          $ref: '#/components/schemas/Attractions'
+ *                          $ref: '#/components/schemas/comments'
  *          404:
- *              description: attraction not found
+ *              description: comment not found
  */
 
 /**
  * @swagger
- * /comments/delete/{id}
+ * /comments/delete/{id}:
  *  delete:
- *      summary: delete an attraction
+ *      summary: delete an comment
  *      tags: [comments]
  *      parameters: 
  *          -   in: path
@@ -83,17 +83,17 @@ const {createOneComment,readAllComment, readOneComment, updateOneComment, delete
  *              description: the user id    
  *      responses:
  *          200:
- *              description: deleted attraction 
+ *              description: deleted comment 
  *          404:
- *              description: attraction not found
+ *              description: comment not found
  */
 
 /**
  * @swagger
- * /attractions/update/{id}
+ * /comments/update/{id}:
  *  put:
- *      summary: delete an attraction
- *      tags: [attractions]
+ *      summary: delete an comment
+ *      tags: [comments]
  *      parameters: 
  *          -   in: path
  *              name: id
