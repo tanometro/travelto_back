@@ -1,19 +1,5 @@
-// const data = require("../../Api/attractions.json");
 const {readAttractions, attractionById,attractionByQuery, createOneAttraction, updateAttractionModel,destroyAttraction} = require('../services/atractions.services')
 
-
-// const dataAttraction = async (req, res) => {
-//   try {
-//     const response = await bulkAttraction(data.attractions);
-//     res.status(200).json(response);
-//   } catch (error) {
-//     console.error(
-//       "Error en la inserción de atracciones en la base de datos:",
-//       error
-//     );
-//     res.status(500).json({ error: "Error en el servidor" });
-//   }
-// };
 
 const readAllAttraction = async (req, res) => {
   try {
@@ -107,8 +93,5 @@ module.exports = {
   readAttractionById,
   readAttractionByQuery,
   updateAttraction,
-
-  //dataAttraction,
-
   deleteAttraction,
 };

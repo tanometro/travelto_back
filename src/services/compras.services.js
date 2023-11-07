@@ -30,7 +30,20 @@ const consultaDeCompras = async (usuarioId)=>{
     }
     };
 
+const readAllCompras =async ()=>{
+    try {
+        const allCompras = await Compra.findAll()
+        if(allCompras.length ===0){
+            return 'No hay registrada ninguna compra'
+        }
+        return allCompras;
+    } catch (error) {
+        
+    }
+}
+
 module.exports ={
     shoppingRecord,
-    consultaDeCompras
+    consultaDeCompras,
+    readAllCompras
 } 
