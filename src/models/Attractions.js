@@ -13,7 +13,7 @@ module.exports = (dataBase) => {
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     latitude: {
@@ -25,12 +25,16 @@ module.exports = (dataBase) => {
       allowNull: false
     },
     price: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    ranking: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     hours: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     duration: {
       type: DataTypes.STRING,

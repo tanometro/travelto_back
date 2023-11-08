@@ -1,30 +1,14 @@
-const { Attraction } = require('../db');
-const { Op, fn, col } = require('sequelize');
-
-const bulkAttraction = async (attractions) => {
-    try {
-      const mappedAttractions = attractions.map(attractionData => ({
-        name: attractionData.name,
-        description: attractionData.description,
-        latitude: attractionData.latitude,
-        longitude: attractionData.longitude,
-        price: attractionData.price,
-        hours: attractionData.hours || "0",
-        duration: attractionData.duration,
-        isActive: attractionData.isActive,
-      }));
-      const insertedAttractions = await Attraction.bulkCreate(mappedAttractions);
-  
-      return insertedAttractions;
-    } catch (error) {
-      throw new Error("No pude insertar atracciones en la base de datos: " + error.message);
-    }
-  };
+const { Attraction, Location } = require('../db');
+const { Op } = require('sequelize');
 
   const readAttractions = async () => {
     try {
         const dbAttractions = await Attraction.findAll({
-          attributes: ['id', 'name'],
+          attributes: ['id','name','description', 'latitude', 'longitude','price','hours','duration','ranking', 'image', 'isActive'],
+          include: {
+            model: Location,
+            attributes: ["city", "country"],
+          }
         });
         return dbAttractions;
       } catch (error) {
@@ -34,7 +18,15 @@ const bulkAttraction = async (attractions) => {
 
     const attractionById = async (id) => {
         try {
-          const attractionDB = await Attraction.findByPk(id);
+          const attractionDB = await Attraction.findByPk(id, {
+            attributes: {
+              exclude: ["isActive"],
+            },
+            include: {
+              model: Location,
+              attributes: ["city", "country"],
+            }
+          });
       
           if (attractionDB) {
             return attractionDB;
@@ -54,6 +46,10 @@ const bulkAttraction = async (attractions) => {
           const attractions = await Attraction.findAll({
             where: {
               name: { [Op.iLike]: `%${name.toLowerCase()}%` }
+            },
+            include: {
+              model: Location,
+              attributes: ["city", "country"],
             }
           });
           return attractions;
@@ -66,65 +62,84 @@ const createOneAttraction = async (data) => {
     try {
         const {
           name,
-          hours,
+          description,
           latitude,
           longitude,
           price,
+          hours,
+          ranking,
           duration,
-          description,
+          image,
           isActive,
           location,
         } = data;
-        if (!name || !latitude || !longitude || !price || !duration) {
+        if (!name || !latitude || !longitude || !price || !ranking || !duration 
+          ||!image || !hours || !description) {
           throw new Error("Faltan campos obligatorios");
         }
         const newAttraction = await Attraction.create({
-            name,
-            hours,
-            latitude,
-            longitude,
-            price,
-            duration,
-            description,
-            isActive,
+          name,
+          location,
+          ranking,
+          description,
+          latitude,
+          longitude,
+          price,
+          hours,
+          duration,
+          image,
+          isActive,
           });
-          if (location) {
-            await newAttraction.setLocation(location);
-          }
+
+          await newAttraction.setLocation(location);
+      
+          return newAttraction;
+        } catch (error) {
+          throw new Error("Error en la creación de una atracción: " + error.message);
+        }
+      };
+      
+      
+      
+    const updateAttractionModel = async (id, updateData) => {
+      try {
+        if (!id) {
+          throw new Error('Se requiere un ID válido');
+        }
     
-        return newAttraction;
+        const [updatedCount] = await Attraction.update(updateData, {
+          where: {
+            id: id,
+          },
+        });
+    
+        if (updatedCount === 0) {
+          throw new Error(`No se encontró una atracción con ID ${id}`);
+        }
+    
+        return { message: 'Atracción actualizada exitosamente' };
       } catch (error) {
-        throw new Error("Error en la creación de una atracción: " + error.message);
+        throw new Error(`Error al actualizar la atracción con ID ${id}: ${error.message}`);
       }
     };
-    const updateAttractionModel = (id, updateData) => {
+    
+    const destroyAttraction = async (id) => {
       try {
-        const response = Attraction.update(updateData, {
-            where: {
-                id: id
-            }
-        })
-        id(!id) ('No existe ese id')
-        return response;
-    } catch (error) {
-        (`No se pudo editar la attraction con id ${id}` + error.message)
-    }
-    }
-    const destroyAttraction = (id) => {
-        try {
-            const destroy = Attraction.destroy({
-                where: {
-                id: id
-                }
-            })
-            return destroy
-        } catch (error) {
-            `Bro, no se borró la atracción con ${id}, lo que pasó es que ` + error.message
+        const attraction = await Attraction.findByPk(id);
+    
+        if (!attraction) {
+          throw new Error(`No existe la atracción con ID ${id}`);
         }
-    }
+    
+        const result = await attraction.destroy();
+        return result;
+      } catch (error) {
+        throw new Error(`No se pudo eliminar la atracción con ID ${id}: ${error.message}`);
+      }
+    };
+    
 
 module.exports = {
-    bulkAttraction,
     readAttractions,
     attractionById,
     attractionByQuery,

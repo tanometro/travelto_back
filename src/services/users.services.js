@@ -1,76 +1,179 @@
-const {User} = require('../db');
+const { User, Role } = require("../db");
+const bcrypt = require('bcrypt');
 
-const createUsersLocal = (body) => {
-    try {
-        const create = User.create(body);
-        return create;
-    } catch (error) {
-        throw new Error ('No se pudo crear el user ' + error.message)
-    }
-}
+const jwt = require("jsonwebtoken");
+const secretKey = 'Dracarys'
 
-const destroyUser = (id) => {
-    try {
-        const response = User.destroy({
-            where: {
-                id: id
-            }
-        })
-        return response;
-    } catch (error) {
-        throw new Error ('No se pudo eliminar el user ' + error.message)
-    }
-}
+const register = async (name, dni, image, email, password, roleID) => {
+  try {
+    let err = "";
 
-const getOneUser = (id) => {
-    try {
-        const response = User.findByPk(id);
-        return response;
-    } catch (error) {
-        throw new Error (`No se pudo encontrar el user con id ${id}` + error.message)
-    }
-}
-
-const updateUserModel = (id, updateData) => {
-    try {
-        const response = User.update(updateData, {
-            where: {
-                id: id
-            }
-        })
-        id(!id) ('No existe ese id')
-        return response;
-    } catch (error) {
-        (`No se pudo editar el user con id ${id}` + error.message)
-    }
-}
-
-const findAll = async () => {
-    try {
-        const response = await User.findAll();
-        if(response.length === 0) ('No existen usuarios')
-    } catch (error) {
-        (error.message)
-    }
-  
-}
-
-const findByName = async (name) => {
-    try {
-        const response = await User.findAll({where: {name: name}})
-        return response;
-    } catch (error) {
-        (`No se pudo encontrar ningun usuario con nombre ${name}` + error.message)
+    if (!name || !dni || !image || !email || !password) {
+      err += 'Provide all required fields: ';
+      if (!name) err += "name ";
+      if (!dni) err += "dni ";
+      if (!image) err += "image ";
+      if (!email) err += "email ";
+      if (!password) err += "password ";
     }
 
+    if (err) {
+      return { error: err }; // Devolver un objeto con el mensaje de error
+    } else {
+      let cryptPass;
+      if (password.length >= 5) {
+        cryptPass = bcrypt.hashSync(password, 10);
+      } else {
+        cryptPass = password;
+      }
+
+      const user = await User.create({
+        name,
+        dni,
+        image,
+        email,
+        password: cryptPass,
+        roleID
+      });
+
+      // // Ahora, asigna el rol al usuario
+      // if (roleID) {
+      //   const role = await Role.findByPk(roleID);
+      //   if (role) {
+      //     await user.addRole(role);
+      //   }
+      // }
+      // Genera un token para el usuario
+      let token = jwt.sign({ user: user }, secretKey, {
+        expiresIn: "24h",
+      });
+
+      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+    }
+  } catch (error) {
+    return { error: error.message }; // Devolver un objeto con el mensaje de error
+  }
 }
+
+
+
+const readAll = async () => {
+  try {
+    const users = await User.findAll()
+
+    if(users.length === 0) {
+      return 'no hay usuarios en la bdd'
+    }
+    return users
+    } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+};
+
+const getOneUser = async (id) => {
+  try {
+    const response = await User.findByPk(id);
+    if (!response) {
+      return "No se encontro el usuario solicitado";
+    }
+    return response;
+  } catch (error) {
+    throw new Error(
+      `No se pudo encontrar el user con id ${id}` + error.message
+    );
+  }
+};
+
+const findByName = async (searchName) => {
+  try {
+    const usuarios = await readAll()
+
+    if(!usuarios || !searchName) {
+      throw new Error('no se encontraron usuarios')
+    }
+
+    const results = usuarios.filter((user) => {
+      const userNames = user.name.map((us) => us.toLowerCase());
+      searchName = searchName.toLowerCase();
+      return userNames.some((us) => us.includes(searchName));
+    });
+
+    if (results.length === 0) {
+      throw new Error(`No se encontraron usuarios cuyos nombres contengan "${searchName}"`);
+    }
+
+    return results;
+  } catch (error) {
     
+  }
+};
+
+const updateUserModel = async (id, updateData) => {
+  try {
+    const user = await User.findByPk(id)
+
+    if(!user) {
+      throw new Error('Usuario no encontrado')
+    }
+
+    const updatedUser = await User.update(updateData)
+
+    return updatedUser
+  } catch (error) {
+    throw new Error(`No se pudo editar el user con id ${id}` + error.message);
+  }
+};
+
+const destroyUser = async (id) => {
+  try {
+    const user = await User.findByPk(id)
+
+    if(!user) {
+      throw new Error('Usuario no encontrado')
+    }
+
+    await user.update({ isActive: false })
+
+    return 'Usuario desactivado exitosamente'
+  } catch (error) {
+    throw new Error("No se pudo desactivar el usuario " + error.message);
+  }
+};
+//! unica que ricardo usa, porque debe andar imagino ------------------------------------
+// const createUsersLocal = async (
+//   name,
+//   dni,
+//   roleId,
+//   email,
+//   password,
+//   isActive,
+//   image
+// ) => {
+//   try {
+//     const hashedPassword = await bcrypt.hash(password, 10)
+//     const create = await User.create({
+//       name: name,
+//       dni: dni,
+//       roleID: roleId,
+//       email: email,
+//       password: hashedPassword,
+//       isActive: isActive,
+//       image: image,
+//     });
+//     return create;
+//   } catch (error) {
+//     throw new Error("No se pudo crear el usuario " + error.message);
+//   }
+// };
+//! unica que ricardo usa, porque debe andar imagino ------------------------------------
 
 module.exports = {
-    createUsersLocal,
-    findAll,
-    updateUserModel,
-    destroyUser,
-    getOneUser,
-    findByName
-}
+  register,
+  // createUsersLocal,
+  readAll,
+  updateUserModel,
+  destroyUser,
+  getOneUser,
+  findByName,
+};

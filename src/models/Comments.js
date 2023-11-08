@@ -13,7 +13,7 @@ module.exports = (dataBase) => {
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     }
 }, {timestamp: false})
