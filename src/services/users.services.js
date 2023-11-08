@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const secretKey = 'Dracarys'
 
-const register = async (name, dni, image, email, password, roleID) => {
+const register = async (name, dni, image, email, password, googlePass, roleID) => {
   try {
     let err = "";
 
@@ -20,10 +20,14 @@ const register = async (name, dni, image, email, password, roleID) => {
       return { error: err }; // Devolver un objeto con el mensaje de error
     } else {
       let cryptPass;
+      let cryptGooglePass;
       if (password.length >= 5) {
         cryptPass = bcrypt.hashSync(password, 10);
       } else {
         throw new Error('La contraseña no puede tener menos de 5 caracteres')
+      }
+      if (googlePass) {
+        cryptGooglePass = bcrypt.hashSync(googlePass, 10);
       }
 
       const user = await User.create({
@@ -32,6 +36,7 @@ const register = async (name, dni, image, email, password, roleID) => {
         image,
         email,
         password: cryptPass,
+        googlePass: cryptGooglePass,
         roleID
       });
 
