@@ -22,6 +22,7 @@ const register = async (name, lastName, dni, image, email, password, roleID) => 
       if (password.length >= 5) {
         cryptPass = bcrypt.hashSync(password, 10);
       } else {
+        //aca deberia ir un error
         cryptPass = password;
       }
 

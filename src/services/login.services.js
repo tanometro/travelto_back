@@ -13,7 +13,7 @@ const login = async (email, password) => {
   });
 
   if (!user) {
-    throw new Error('Credenciales inválidas');
+    throw new Error('Registrece para continuar');
   }
 
   if (bcrypt.compareSync(password, user.password)) {
