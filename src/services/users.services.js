@@ -1,51 +1,41 @@
 const { User, Role } = require("../db");
 const bcrypt = require('bcrypt');
 
-const jwt = require("jsonwebtoken");
-const secretKey = 'Dracarys'
+/* const jwt = require("jsonwebtoken");
+const secretKey = 'Dracarys' */
 
-const register = async (name, dni, image, email, password, googlePass, roleID) => {
+const register = async (name, dni, image, email, password, roleID) => {
   try {
-    let err = "";
+    let cryptPass;
 
-    if (!name || !image || !email || !password) {
-      err += 'Provide all required fields: ';
-      if (!name) err += "name ";
-      if (!image) err += "image ";
-      if (!email) err += "email ";
-      if (!password) err += "password ";
-    }
-
-    if (err) {
-      return { error: err }; // Devolver un objeto con el mensaje de error
+    //let cryptGooglePass;
+    if (password.length >= 5) {
+      cryptPass = bcrypt.hashSync(password, 10);
     } else {
-      let cryptPass;
-      let cryptGooglePass;
-      if (password.length >= 5) {
-        cryptPass = bcrypt.hashSync(password, 10);
-      } else {
-        throw new Error('La contraseña no puede tener menos de 5 caracteres')
-      }
-      if (googlePass) {
-        cryptGooglePass = bcrypt.hashSync(googlePass, 10);
-      }
-
-      const user = await User.create({
-        name,
-        dni,
-        image,
-        email,
-        password: cryptPass,
-        googlePass: cryptGooglePass,
-        roleID
-      });
-
-      /*     let token = jwt.sign({ user: user }, secretKey, {
-            expiresIn: "24h",
-          }); */
-
-      return user; // Devolver el usuario
+      throw new Error('La contraseña no puede tener menos de 5 caracteres')
     }
+    /* if (googlePass) {
+      cryptGooglePass = bcrypt.hashSync(googlePass, 10);
+    } */
+
+    const user = await User.create({
+      name,
+      dni,
+      image,
+      email,
+      password: cryptPass,
+      roleID
+    });
+
+    console.log(user);
+
+    console.log("llego bien");
+    /*     let token = jwt.sign({ user: user }, secretKey, {
+          expiresIn: "24h",
+        }); */
+
+    return user; // Devolver el usuario
+
   } catch (error) {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
