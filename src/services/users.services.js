@@ -35,19 +35,11 @@ const register = async (name, dni, image, email, password, roleID) => {
         roleID
       });
 
-      // // Ahora, asigna el rol al usuario
-      // if (roleID) {
-      //   const role = await Role.findByPk(roleID);
-      //   if (role) {
-      //     await user.addRole(role);
-      //   }
-      // }
-      // Genera un token para el usuario
-      let token = jwt.sign({ user: user }, secretKey, {
-        expiresIn: "24h",
-      });
+      /*     let token = jwt.sign({ user: user }, secretKey, {
+            expiresIn: "24h",
+          }); */
 
-      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+      return user; // Devolver el usuario
     }
   } catch (error) {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
