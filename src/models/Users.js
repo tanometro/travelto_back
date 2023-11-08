@@ -14,7 +14,6 @@ module.exports = (dataBase) => {
     },
     dni: {
       type: DataTypes.STRING,
-      allowNull: false,
       unique: true
     },
     image: {
@@ -37,5 +36,5 @@ module.exports = (dataBase) => {
       type: DataTypes.INTEGER,
       allowNull: true
     }
-}, {timestamps: false})
+  }, { timestamps: false })
 }
