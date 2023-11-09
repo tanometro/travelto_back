@@ -9,7 +9,7 @@ module.exports = (dataBase) => {
       allowNull: false,
     },
     name: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false
     },
     dni: {

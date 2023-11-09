@@ -10,7 +10,6 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: "Por favor, proporciona todos los campos requeridos." });
         }
         const result = await register(name, dni, image, email, password, roleID);
-        console.log(result);
 
         if (result.error) {
             return res.status(400).json({ message: result.error });

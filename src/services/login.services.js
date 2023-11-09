@@ -1,13 +1,14 @@
 const { User } = require('../db');
 const bcrypt = require('bcrypt');
 
-const findUser = async (email, googlePass) => {
+const findUserAddGooglePass = async (email, googlePass) => {
     try {
         const user = await User.findOne({
             where: {
                 email: email
             }
         });
+        console.log(user.dataValues);
         if (googlePass && !user.googlePass) {
             let cryptGooglePass = bcrypt.hashSync(googlePass, 10);
             user.googlePass = cryptGooglePass;
@@ -15,12 +16,12 @@ const findUser = async (email, googlePass) => {
             console.log('Valor de googlePass actualizado correctamente');
 
         }
-        return user
+        return user.dataValues;
     } catch (error) {
         throw new Error(error.message);
     }
 }
 
 module.exports = {
-    findUser
+    findUserAddGooglePass,
 }

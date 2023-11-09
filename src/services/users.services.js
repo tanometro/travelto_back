@@ -8,7 +8,6 @@ const register = async (name, dni, image, email, password, roleID) => {
   try {
     let cryptPass;
 
-    //let cryptGooglePass;
     if (password.length >= 5) {
       cryptPass = bcrypt.hashSync(password, 10);
     } else {
@@ -27,9 +26,6 @@ const register = async (name, dni, image, email, password, roleID) => {
       roleID
     });
 
-    console.log(user);
-
-    console.log("llego bien");
     /*     let token = jwt.sign({ user: user }, secretKey, {
           expiresIn: "24h",
         }); */
