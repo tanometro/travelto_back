@@ -1,4 +1,4 @@
-const { User, Role } = require("../db");
+const { User } = require("../db");
 const bcrypt = require('bcrypt');
 
 /* const jwt = require("jsonwebtoken");
@@ -23,13 +23,12 @@ const register = async (name, dni, image, email, password, roleID) => {
       image,
       email,
       password: cryptPass,
-      roleID
+      roleID,
     });
 
     /*     let token = jwt.sign({ user: user }, secretKey, {
           expiresIn: "24h",
         }); */
-
     return user; // Devolver el usuario
 
   } catch (error) {

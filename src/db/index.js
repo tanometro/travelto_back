@@ -12,19 +12,19 @@ const CompraModel = require('../models/Compras');
 const RoleModel = require('../models/Roles');
 const PaymentModel = require('../models/Payments')
 
-// const dataBase = new Sequelize(
-//   url,
-//     {
-//       logging: false,
-//       native: false,
-//     }) 
-
 const dataBase = new Sequelize(
-  DB_DEPLOY,
+  url,
   {
     logging: false,
     native: false,
   })
+
+/* const dataBase = new Sequelize(
+  DB_DEPLOY,
+  {
+    logging: false,
+    native: false,
+  }) */
 
 LocationModel(dataBase)
 AttractionModel(dataBase)
