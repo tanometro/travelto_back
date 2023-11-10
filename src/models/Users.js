@@ -9,12 +9,11 @@ module.exports = (dataBase) => {
       allowNull: false,
     },
     name: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.STRING,
       allowNull: false
     },
     dni: {
       type: DataTypes.STRING,
-      allowNull: false,
       unique: true
     },
     image: {
@@ -29,6 +28,9 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    googlePass: {
+      type: DataTypes.STRING,
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
@@ -37,5 +39,5 @@ module.exports = (dataBase) => {
       type: DataTypes.INTEGER,
       allowNull: true
     }
-}, {timestamps: false})
+  }, { timestamps: false })
 }

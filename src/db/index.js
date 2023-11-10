@@ -8,29 +8,29 @@ const LocationModel = require('../models/Locations');
 const AttractionModel = require('../models/Attractions');
 const UserModel = require('../models/Users');
 const CommentModel = require('../models/Comments');
-const CompraModel = require ('../models/Compras');
+const CompraModel = require('../models/Compras');
 const RoleModel = require('../models/Roles');
 const PaymentModel = require('../models/Payments')
 
-// const dataBase = new Sequelize(
-//   url,
-//     {
-//       logging: false,
-//       native: false,
-//     }) 
-
 const dataBase = new Sequelize(
+  url,
+  {
+    logging: false,
+    native: false,
+  })
+
+/* const dataBase = new Sequelize(
   DB_DEPLOY,
   {
     logging: false,
     native: false,
-  }) 
+  }) */
 
-LocationModel (dataBase)
-AttractionModel (dataBase)
-UserModel (dataBase)
+LocationModel(dataBase)
+AttractionModel(dataBase)
+UserModel(dataBase)
 CommentModel(dataBase)
-CompraModel (dataBase)
+CompraModel(dataBase)
 RoleModel(dataBase)
 PaymentModel(dataBase)
 
@@ -54,13 +54,13 @@ Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
 // User.belongsTo(Role, {foreignKey: 'roleID'})
 
 //TODO: User - Location
-User.belongsToMany(Location, { through: 'Destination'})
+User.belongsToMany(Location, { through: 'Destination' })
 
 //TODO: User - Compra
-User.belongsToMany(Compra, {through: 'Reservas'})
+User.belongsToMany(Compra, { through: 'Reservas' })
 
 //TODO: User - Pagos
-User.belongsToMany(Payment, {through: 'Reservas'})
+User.belongsToMany(Payment, { through: 'Reservas' })
 
 //! Relaciones ------------------------------------------------------------
 
@@ -72,7 +72,7 @@ module.exports = {
   Compra,
   Role,
   Payment,
-// exportar todas los modelos con dataBase.models es indiferente
+  // exportar todas los modelos con dataBase.models es indiferente
   conn: dataBase,
 
 }
