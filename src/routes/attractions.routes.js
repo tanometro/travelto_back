@@ -3,6 +3,15 @@ const router = Router()
 const { readAllAttraction, readAttractionById,readAttractionByQuery, createNewAttraction, updateAttraction, deleteAttraction } = require('../controllers/attractions.controllers')
 const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.controller')
 
+router.get('/name', readAttractionByQuery);
+router.get('/orderByPrice', OrderByPrice)
+router.get('/:id', readAttractionById);
+router.get('/', readAllAttraction);
+router.post('/create', createNewAttraction);
+router.put('/update/:id', updateAttraction);
+router.delete('/delete/:id', deleteAttraction);
+router.get('/city/:city', filterAtracByCity)
+
 /**
  * @swagger 
  * components: 
@@ -61,14 +70,13 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *         image: example.jpg
  *         isActive: true
  */
-
 /**
  * @swagger
  * /attractions/create:
  *   post:
- *     summary: create a new attraction 
+ *     summary: create a new attraction
  *     tags: [attractions]
- *     requestBody: 
+ *     requestBody:
  *       required: true
  *       content:
  *         application/json:
@@ -102,16 +110,16 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *   get:
  *     summary: return an attraction
  *     tags: [attractions]
- *     parameters: 
+ *     parameters:
  *       - in: path
  *         name: id
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
- *         description: the attraction id    
+ *         description: the attraction id
  *     responses:
  *       200:
- *         description: obtain all attractions 
+ *         description: obtain all attractions
  *         content:
  *           application/json:
  *             schema:
@@ -127,16 +135,16 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *   put:
  *     summary: update an attraction
  *     tags: [attractions]
- *     parameters: 
+ *     parameters:
  *       - in: path
  *         name: id
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
- *         description: the attraction id    
+ *         description: the attraction id
  *     responses:
  *       200:
- *         description: updated attraction 
+ *         description: updated attraction
  *       404:
  *         description: attraction not found
  */
@@ -147,16 +155,16 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *   delete:
  *     summary: delete an attraction
  *     tags: [attractions]
- *     parameters: 
+ *     parameters:
  *       - in: path
  *         name: id
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
- *         description: the attraction id    
+ *         description: the attraction id
  *     responses:
  *       200:
- *         description: deleted attraction 
+ *         description: deleted attraction
  *       404:
  *         description: attraction not found
  */
@@ -167,13 +175,13 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *   get:
  *     summary: get attractions by name
  *     tags: [attractions]
- *     parameters: 
+ *     parameters:
  *       - in: query
  *         name: name
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
- *         description: the name of the attraction    
+ *         description: the name of the attraction
  *     responses:
  *       200:
  *         description: attractions found
@@ -208,13 +216,13 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *   get:
  *     summary: get attractions by city
  *     tags: [attractions]
- *     parameters: 
- *      - in: path
+ *     parameters:
+ *       - in: path
  *         name: city
- *         schema: 
+ *         schema:
  *           type: string
  *         required: true
- *         description: the city of the attraction    
+ *         description: the city of the attraction
  *     responses:
  *       200:
  *         description: attractions found
@@ -225,21 +233,5 @@ const { filterAtracByCity, OrderByPrice } = require('../controllers/filter.contr
  *               items:
  *                 $ref: '#/components/schemas/Attraction'
  */
-
-
-// router.get('/data', dataAttraction);
-router.get('/name', readAttractionByQuery);
-
-
-router.get('/orderByPrice', OrderByPrice)
-router.get('/:id', readAttractionById);
-
-router.get('/', readAllAttraction);
-router.post('/create', createNewAttraction);
-router.put('/update/:id', updateAttraction);
-router.delete('/delete/:id', deleteAttraction);
-
-router.get('/city/:city', filterAtracByCity)
-
 
 module.exports = router
