@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { findUserAddGooglePass } = require('../services/login.services');
@@ -27,5 +28,30 @@ const loginFunction = async (req, res) => {
   }
 
 }
+=======
+const { login } = require('../services/login.services');
 
-module.exports = loginFunction
+const loginFunction = async (req, res) => {
+  try {
+    const { email, password } = req.query;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Faltan datos' });
+    }
+
+    const result = await login(email, password);
+
+    if (result.error) {
+      return res.status(401).json({ message: result.error });
+    }
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Error en el servidor de login' });
+  }
+};
+>>>>>>> 98e3cc5ed6917982bf091abe6c98dd8bde1c6ff4
+
+module.exports = {
+  loginFunction
+};

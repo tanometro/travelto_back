@@ -14,6 +14,7 @@ const PaymentModel = require('../models/Payments')
 
 const dataBase = new Sequelize(
   url,
+<<<<<<< HEAD
   {
     logging: false,
     native: false,
@@ -25,6 +26,19 @@ const dataBase = new Sequelize(
     logging: false,
     native: false,
   }) */
+=======
+    {
+      logging: false,
+      native: false,
+    }) 
+
+// const dataBase = new Sequelize(
+//   DB_DEPLOY,
+//   {
+//     logging: false,
+//     native: false,
+//   }) 
+>>>>>>> 98e3cc5ed6917982bf091abe6c98dd8bde1c6ff4
 
 LocationModel(dataBase)
 AttractionModel(dataBase)

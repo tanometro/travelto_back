@@ -4,14 +4,51 @@ const bcrypt = require('bcrypt');
 /* const jwt = require("jsonwebtoken");
 const secretKey = 'Dracarys' */
 
-const register = async (name, dni, image, email, password, roleID) => {
+const register = async (name, lastName, dni, image, email, password, roleID) => {
   try {
     let cryptPass;
 
+<<<<<<< HEAD
     if (password.length >= 5) {
       cryptPass = bcrypt.hashSync(password, 10);
     } else {
       throw new Error('La contraseña no puede tener menos de 5 caracteres')
+=======
+    if (!name ||!lastName || !dni || !image || !email || !password) {
+      err += 'Provide all required fields: ';
+      if (!name) err += "name ";
+      if (!lastName) err += "lastName ";
+      if (!dni) err += "dni ";
+      if (!image) err += "image ";
+      if (!email) err += "email ";
+      if (!password) err += "password ";
+    }
+
+    if (err) {
+      return { error: err }; // Devolver un objeto con el mensaje de error
+    } else {
+      let cryptPass;
+      if (password.length >= 5) {
+        cryptPass = bcrypt.hashSync(password, 10);
+      } else {
+        cryptPass = password;
+      }
+
+      const user = await User.create({
+        name,
+        lastName,
+        dni,
+        image,
+        email,
+        password: cryptPass,
+        roleID
+      });
+      let token = jwt.sign({ user: user }, secretKey, {
+        expiresIn: "24h",
+      });
+
+      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+>>>>>>> 98e3cc5ed6917982bf091abe6c98dd8bde1c6ff4
     }
     /* if (googlePass) {
       cryptGooglePass = bcrypt.hashSync(googlePass, 10);
@@ -35,6 +72,9 @@ const register = async (name, dni, image, email, password, roleID) => {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
 }
+
+// Otras funciones sin cambios...
+
 
 
 
@@ -86,7 +126,11 @@ const findByName = async (searchName) => {
 
     return results;
   } catch (error) {
+<<<<<<< HEAD
 
+=======
+    throw new Error("No se pudo encontrar al usuario " + error.message);
+>>>>>>> 98e3cc5ed6917982bf091abe6c98dd8bde1c6ff4
   }
 };
 

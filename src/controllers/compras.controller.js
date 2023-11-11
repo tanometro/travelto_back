@@ -1,4 +1,4 @@
-const { shoppingRecord, consultaDeCompras } = require("../services/compras");
+const { shoppingRecord, consultaDeCompras,readAllCompras } = require("../services/compras");
 
 const registroDeCompras = async (req, res) => {
     const {  usuarioId,
@@ -7,6 +7,9 @@ const registroDeCompras = async (req, res) => {
         amount
       }= req.body
   try {
+    if(!usuarioId || !attractionId || !cantidadEntradas || !amount) {
+      res.status(400).json({error: 'Por favor complete todos los campos requeridos'})
+    }
     const registrar = await shoppingRecord(
       usuarioId,
       attractionId,
@@ -29,7 +32,17 @@ const consultaCompra = async (req, res) => {
   }
 };
 
+const consultarTodasLasCompras = async (req, res) => {
+try {
+  const dbCompras = await readAllCompras();
+  res.status(200).json(dbCompras)
+} catch (error) {
+  res.status(400).json({error: error.message})
+}
+}
+
 module.exports = {
   registroDeCompras,
   consultaCompra,
+  consultarTodasLasCompras
 };
