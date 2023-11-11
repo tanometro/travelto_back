@@ -10,14 +10,10 @@ module.exports = (dataBase) => {
     },
     name: {
       type: DataTypes.STRING,
-<<<<<<< HEAD
-=======
       allowNull: false
     },
     lastName: {
       type: DataTypes.STRING,
->>>>>>> 98e3cc5ed6917982bf091abe6c98dd8bde1c6ff4
-      allowNull: false
     },
     dni: {
       type: DataTypes.STRING,
@@ -29,7 +25,8 @@ module.exports = (dataBase) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
