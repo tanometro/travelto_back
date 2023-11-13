@@ -32,7 +32,6 @@ server.use(cors());
 server.use(express.urlencoded({ extended: false }))
 server.use(express.json());
 server.use(morgan('dev'));
-server.use(cors());
 server.use('/', routes);
 server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
