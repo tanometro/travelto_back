@@ -37,7 +37,3 @@ server.use('/', routes);
 server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
 module.exports = server;
-server.use('/', routes);
-server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
-
-module.exports = server;
