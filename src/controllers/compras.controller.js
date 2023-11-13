@@ -1,4 +1,6 @@
-const { shoppingRecord, consultaDeCompras,readAllCompras } = require("../services/compras");
+const { shoppingRecord, consultaDeCompras,readAllCompras } = require("../services/compras.services");
+
+
 
 const registroDeCompras = async (req, res) => {
     const {  usuarioId,
