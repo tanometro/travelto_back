@@ -25,9 +25,6 @@ const swaggerSpec = {
     apis: [`${path.join(__dirname, './routes/*.js')}`]
 };
 
-server.use(express.urlencoded({extended: false}))
-server.use(express.json());
-server.use(morgan('dev'));
 server.use(express.urlencoded({ extended: false }))
 server.use(express.json());
 server.use(morgan('dev'));
