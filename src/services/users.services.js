@@ -13,9 +13,6 @@ const register = async (name, dni, image, email, password, roleID) => {
     } else {
       throw new Error('La contraseña no puede tener menos de 5 caracteres')
     }
-    /* if (googlePass) {
-      cryptGooglePass = bcrypt.hashSync(googlePass, 10);
-    } */
 
     const user = await User.create({
       name,
@@ -26,15 +23,15 @@ const register = async (name, dni, image, email, password, roleID) => {
       roleID,
     });
 
-    /*     let token = jwt.sign({ user: user }, secretKey, {
-          expiresIn: "24h",
-        }); */
     return user; // Devolver el usuario
 
   } catch (error) {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
 }
+
+// Otras funciones sin cambios...
+
 
 
 
@@ -86,7 +83,7 @@ const findByName = async (searchName) => {
 
     return results;
   } catch (error) {
-
+    throw new Error("No se pudo encontrar al usuario " + error.message);
   }
 };
 

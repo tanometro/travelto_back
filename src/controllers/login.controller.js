@@ -1,13 +1,15 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { findUserAddGooglePass } = require('../services/login.services');
+const { findUser } = require('../services/auth.services');
 
 const secretKey = 'Dracarys'
 
 const loginFunction = async (req, res) => {
-  const { email, password, googlePass } = req.body;
+  const { email, password, googlePass } = req.user;
   try {
-    const user = await findUserAddGooglePass(email, googlePass);
+    //traigo el usuario
+    const user = await findUser(email);
 
     if (!user.email) {
       return res.status(401).send('Credenciales inválidas, no existe usuario');
@@ -18,8 +20,6 @@ const loginFunction = async (req, res) => {
     }
 
     const token = jwt.sign({ email, password }, secretKey, { expiresIn: '1h' });
-    console.log("user con token");
-    console.log({ name: user.name, email: user.email, dni: user.dni, picture: user.image, roleID: user.roleID, token: token });
 
     res.status(200).json({ name: user.name, email: user.email, dni: user.dni, picture: user.image, roleID: user.roleID, token: token });
   } catch (error) {
@@ -28,4 +28,6 @@ const loginFunction = async (req, res) => {
 
 }
 
-module.exports = loginFunction
+module.exports = {
+  loginFunction
+};
