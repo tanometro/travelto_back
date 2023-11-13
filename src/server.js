@@ -28,7 +28,10 @@ const swaggerSpec = {
 server.use(express.urlencoded({ extended: false }))
 server.use(express.json());
 server.use(morgan('dev'));
-server.use(cors());
+server.use(cors({
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 204,
+}));
 server.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
