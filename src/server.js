@@ -2,7 +2,7 @@ const express = require("express");
 const server = express();
 const routes = require('./routes/index.js');
 const morgan = require("morgan");
-const cors = require("cors");
+//const cors = require("cors");
 const {BASE_URL}= process.env;
 const path = require('path');
 
@@ -40,7 +40,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-server.use(cors());
+//server.use(cors());
 server.use('/', routes);
 server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
