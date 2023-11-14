@@ -1,5 +1,22 @@
 const {Compra}= require('../db/index');
+require('dotenv').config()
+const apiKey =process.env.API_KEY
+const travelEmail = process.env.email;
+const sgMail = require('@sendgrid/mail');
+const {getUsersById} = require('../controllers/users.controllers')
+sgMail.setApiKey(apiKey);
 
+
+function sendEmail(destinatario, asunto, mensaje) {
+  const correo = {
+      to: destinatario,
+      from: travelEmail, 
+      subject: asunto,
+      text: mensaje,
+  };
+
+  return sgMail.send(correo);
+}
 
 
 const shoppingRecord = async (usuarioId,attractionId,cantidadEntradas, amount)=>{
@@ -12,6 +29,13 @@ try {
         amount
 
     })
+    const userInfo = await getUsersById(usuarioId);
+    const destinatario = userInfo.email;
+    const asunto= 'Confirmacion de Compra';
+    const mensaje= `Gracias por tu compra en nuestra aplicación. Detalles de la compra:\n\nCantidad de entradas: ${cantidadEntradas}\nTotal: ${amount}`
+    
+    await sendEmail(destinatario, asunto, mensaje);
+    
     return buys;
 
 } catch (error) {
