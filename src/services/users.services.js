@@ -37,6 +37,7 @@ const register = async (name, dni, image, email, password, roleID) => {
       password: cryptPass,
       roleID
     });
+    // aca llamo a la funcion para enviar el email
 
 
     return user; // Devolver el usuario
