@@ -1,30 +1,132 @@
 const { User } = require("../db");
 const bcrypt = require('bcrypt');
 
-/* const jwt = require("jsonwebtoken");
-const secretKey = 'Dracarys' */
+const jwt = require("jsonwebtoken");
+const secretKey = 'Dracarys'
 
-const register = async (name, dni, image, email, password, roleID) => {
+require('dotenv').config()
+const apiKey = process.env.API_KEY
+const travelEmail = process.env.email;
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(apiKey);
+
+function sendEmail(destinatario, asunto, mensaje) {
+  const correo = {
+    to: destinatario,
+    from: travelEmail,
+    subject: asunto,
+    html: mensaje,
+  };
+
+  return sgMail.send(correo);
+}
+
+const register = async (name, lastName, dni, image, email, password, roleID) => {
   try {
-    let cryptPass;
+    let err = "";
 
-    if (password.length >= 5) {
-      cryptPass = bcrypt.hashSync(password, 10);
-    } else {
-      throw new Error('La contraseña no puede tener menos de 5 caracteres')
+    if (!name || !lastName || !dni || !image || !email || !password) {
+      err += 'Provide all required fields: ';
+      if (!name) err += "name ";
+      if (!lastName) err += "lastName ";
+      if (!dni) err += "dni ";
+      if (!image) err += "image ";
+      if (!email) err += "email ";
+      if (!password) err += "password ";
     }
 
-    const user = await User.create({
-      name,
-      dni,
-      image,
-      email,
-      password: cryptPass,
-      roleID,
-    });
+    if (err) {
+      return { error: err }; // Devolver un objeto con el mensaje de error
+    } else {
+      let cryptPass;
+      if (password.length >= 5) {
+        cryptPass = bcrypt.hashSync(password, 10);
+      } else {
+        cryptPass = password;
+      }
 
-    return user; // Devolver el usuario
+      const user = await User.create({
+        name,
+        lastName,
+        dni,
+        image,
+        email,
+        password: cryptPass,
+        roleID
+      });
 
+
+      const destinatario = email
+      const asunto = 'Bienvenido a TravelTo'
+      const mensaje = `<!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Confirmación de Registro</title>
+          <style>
+              body {
+                  font-family: Arial, sans-serif;
+                  margin: 20px;
+                  background-color: #f4f4f4;
+              }
+      
+              .container {
+                  max-width: 600px;
+                  margin: 0 auto;
+                  padding: 20px;
+                  background-color: #fff;
+                  border-radius: 8px;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              }
+      
+              h2 {
+                  color: #3498db;
+              }
+      
+              p {
+                  margin-top: 20px;
+              }
+      
+              .button {
+                  display: inline-block;
+                  padding: 10px 20px;
+                  margin-top: 20px;
+                  background-color: #3498db;
+                  color: #fff;
+                  text-decoration: none;
+                  border-radius: 5px;
+              }
+      
+              .footer {
+                  margin-top: 20px;
+                  font-size: 12px;
+                  color: #777;
+              }
+          </style>
+      </head>
+      <body>
+          <div class="container">
+              <h2>¡Bienvenido a nuestro sitio web!</h2>
+              <p>Gracias por registrarte en nuestro sitio. Tu cuenta ha sido creada con éxito.</p>
+              <p>Para comenzar a disfrutar de nuestros servicios, por favor haz clic en el siguiente enlace:</p>
+      
+              <a class="button" href="https://tusitio.com/confirmacion?token=TU_TOKEN">Confirmar Registro</a>
+      
+              <p class="footer">Si no te registraste en nuestro sitio, por favor ignora este correo.</p>
+          </div>
+      </body>
+      </html>
+      `
+
+      await sendEmail(destinatario, asunto, mensaje)
+
+      let token = jwt.sign({ user: user }, secretKey, {
+        expiresIn: "24h",
+      });
+
+      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+    }
   } catch (error) {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
