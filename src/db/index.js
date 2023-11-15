@@ -8,10 +8,11 @@ const LocationModel = require('../models/Locations');
 const AttractionModel = require('../models/Attractions');
 const UserModel = require('../models/Users');
 const CommentModel = require('../models/Comments');
-const CompraModel = require ('../models/Compras');
+const CompraModel = require('../models/Compras');
 const RoleModel = require('../models/Roles');
 const PaymentModel = require('../models/Payments')
 
+<<<<<<< HEAD
 // const dataBase = new Sequelize(
 //   url,
 //     {
@@ -20,17 +21,35 @@ const PaymentModel = require('../models/Payments')
 //     }) 
 
 const dataBase = new Sequelize(
+=======
+const dataBase = new Sequelize(
+  url,
+  {
+    logging: false,
+    native: false,
+  })
+
+/* const dataBase = new Sequelize(
+>>>>>>> 777f891be1b8bc31a23a0a6f2bf2b1eb1368c2e5
   DB_DEPLOY,
   {
     logging: false,
     native: false,
+<<<<<<< HEAD
   }) 
 
 LocationModel (dataBase)
 AttractionModel (dataBase)
 UserModel (dataBase)
+=======
+  }) */
+
+LocationModel(dataBase)
+AttractionModel(dataBase)
+UserModel(dataBase)
+>>>>>>> 777f891be1b8bc31a23a0a6f2bf2b1eb1368c2e5
 CommentModel(dataBase)
-CompraModel (dataBase)
+CompraModel(dataBase)
 RoleModel(dataBase)
 PaymentModel(dataBase)
 
@@ -54,13 +73,13 @@ Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
 // User.belongsTo(Role, {foreignKey: 'roleID'})
 
 //TODO: User - Location
-User.belongsToMany(Location, { through: 'Destination'})
+User.belongsToMany(Location, { through: 'Destination' })
 
 //TODO: User - Compra
-User.belongsToMany(Compra, {through: 'Reservas'})
+User.belongsToMany(Compra, { through: 'Reservas' })
 
 //TODO: User - Pagos
-User.belongsToMany(Payment, {through: 'Reservas'})
+User.belongsToMany(Payment, { through: 'Reservas' })
 
 //! Relaciones ------------------------------------------------------------
 
@@ -72,7 +91,7 @@ module.exports = {
   Compra,
   Role,
   Payment,
-// exportar todas los modelos con dataBase.models es indiferente
+  // exportar todas los modelos con dataBase.models es indiferente
   conn: dataBase,
 
 }
