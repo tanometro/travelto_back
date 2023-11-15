@@ -1,48 +1,30 @@
 const { User } = require("../db");
 const bcrypt = require('bcrypt');
 
-const jwt = require("jsonwebtoken");
-const secretKey = 'Dracarys'
+/* const jwt = require("jsonwebtoken");
+const secretKey = 'Dracarys' */
 
-const register = async (name, lastName, dni, image, email, password, roleID) => {
+const register = async (name, dni, image, email, password, roleID) => {
   try {
-    let err = "";
+    let cryptPass;
 
-    if (!name ||!lastName || !dni || !image || !email || !password) {
-      err += 'Provide all required fields: ';
-      if (!name) err += "name ";
-      if (!lastName) err += "lastName ";
-      if (!dni) err += "dni ";
-      if (!image) err += "image ";
-      if (!email) err += "email ";
-      if (!password) err += "password ";
-    }
-
-    if (err) {
-      return { error: err }; // Devolver un objeto con el mensaje de error
+    if (password.length >= 5) {
+      cryptPass = bcrypt.hashSync(password, 10);
     } else {
-      let cryptPass;
-      if (password.length >= 5) {
-        cryptPass = bcrypt.hashSync(password, 10);
-      } else {
-        cryptPass = password;
-      }
-
-      const user = await User.create({
-        name,
-        lastName,
-        dni,
-        image,
-        email,
-        password: cryptPass,
-        roleID
-      });
-      let token = jwt.sign({ user: user }, secretKey, {
-        expiresIn: "24h",
-      });
-
-      return { user, token }; // Devolver un objeto con los datos del usuario y el token
+      throw new Error('La contraseña no puede tener menos de 5 caracteres')
     }
+
+    const user = await User.create({
+      name,
+      dni,
+      image,
+      email,
+      password: cryptPass,
+      roleID,
+    });
+
+    return user; // Devolver el usuario
+
   } catch (error) {
     return { error: error.message }; // Devolver un objeto con el mensaje de error
   }
@@ -57,11 +39,11 @@ const readAll = async () => {
   try {
     const users = await User.findAll()
 
-    if(users.length === 0) {
+    if (users.length === 0) {
       return 'no hay usuarios en la bdd'
     }
     return users
-    } catch (error) {
+  } catch (error) {
     console.error(error.message);
     throw error;
   }
@@ -85,7 +67,7 @@ const findByName = async (searchName) => {
   try {
     const usuarios = await readAll()
 
-    if(!usuarios || !searchName) {
+    if (!usuarios || !searchName) {
       throw new Error('no se encontraron usuarios')
     }
 
@@ -109,7 +91,7 @@ const updateUserModel = async (id, updateData) => {
   try {
     const user = await User.findByPk(id)
 
-    if(!user) {
+    if (!user) {
       throw new Error('Usuario no encontrado')
     }
 
@@ -125,7 +107,7 @@ const destroyUser = async (id) => {
   try {
     const user = await User.findByPk(id)
 
-    if(!user) {
+    if (!user) {
       throw new Error('Usuario no encontrado')
     }
 
