@@ -1,8 +1,22 @@
 const { User } = require("../db");
 const bcrypt = require('bcrypt');
 
-/* const jwt = require("jsonwebtoken");
-const secretKey = 'Dracarys' */
+require('dotenv').config()
+const apiKey = process.env.API_KEY
+const travelEmail = process.env.email;
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(apiKey);
+
+function sendEmail(destinatario, asunto, mensaje) {
+  const correo = {
+    to: destinatario,
+    from: travelEmail,
+    subject: asunto,
+    html: mensaje,
+  };
+
+  return sgMail.send(correo);
+}
 
 const register = async (name, dni, image, email, password, roleID) => {
   try {
@@ -16,12 +30,14 @@ const register = async (name, dni, image, email, password, roleID) => {
 
     const user = await User.create({
       name,
+      lastName,
       dni,
       image,
       email,
       password: cryptPass,
-      roleID,
+      roleID
     });
+
 
     return user; // Devolver el usuario
 

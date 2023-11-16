@@ -19,13 +19,17 @@ const loginFunction = async (req, res) => {
       return res.status(401).send('Credenciales inválidas, contraseña incorrecta');
     }
 
-    const token = jwt.sign({ email, password }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ email, password }, secretKey, { expiresIn: '24h' });
 
     res.status(200).json({ name: user.name, email: user.email, dni: user.dni, picture: user.image, roleID: user.roleID, token: token });
   } catch (error) {
     res.status(500).json({ error: "Error en el servidor de login" });
   }
 
+}
+
+const prueba = (a) => {
+  return a
 }
 
 module.exports = {
