@@ -1,6 +1,5 @@
 const { User } = require('../db');
 const jwt = require("jsonwebtoken");
-const { AddGooglePass } = require('./login.services');
 const secretKey = 'Dracarys'
 
 
@@ -31,6 +30,7 @@ const token = async (token) => {
 
     const decoded = await jwt.verify(token, secretKey);
     //extraigo la info del token
+    //console.log(logger.info(decoded));
     const user = {
       email: decoded.email,
       password: decoded.password,
@@ -38,9 +38,6 @@ const token = async (token) => {
     }
     if (!user) {
       throw new Error('No existe el usuario');
-    }
-    if (user.googlePass) {
-      await AddGooglePass(user.email, user.googlePass);
     }
     return user;
   } catch (error) {
