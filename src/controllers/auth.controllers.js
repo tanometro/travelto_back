@@ -1,17 +1,5 @@
 const { findUser, token } = require('../services/auth.services')
 
-const auth = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const response = await findUser(email, password);
-    const user = { email: email }
-    const accessToken = generateAccessToken(user)
-  } catch (error) {
-
-  }
-}
-
-
 //! ---------------------------------------------------------------
 const authenticateUser = async (req, res, next) => {
   try {
@@ -51,9 +39,6 @@ const isOperator = async (req, res, next) => {
     return res.status(401).json({ message: error.message });
   }
 }
-
-
-
 
 
 module.exports = {
