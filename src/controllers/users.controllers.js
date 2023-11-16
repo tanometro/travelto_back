@@ -1,76 +1,72 @@
-const {register, destroyUser, getOneUser, updateUserModel, readAll, findByName} = require('../services/users.services');
+const { register, destroyUser, getOneUser, updateUserModel, readAll, findByName } = require('../services/users.services');
 
 const registerUser = async (req, res) => {
     try {
-      const { name,lastName,  dni, image, email, password, roleID } = req.body;
-  
-      // Validación de datos
-      if (!name || !lastName || !dni || !image || !email || !password) {
-        return res.status(400).json({ message: "Por favor, proporciona todos los campos requeridos." });
-      }
-      const result = await register(name,lastName, dni, image, email, password, roleID);
-  
-      if (result.error) {
-        return res.status(400).json({ message: result.error });
-      }
-  
-      res.status(200).json(result);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  };
-  
+        const { name, lastName, dni, image, email, password } = req.body;
+        const roleID = 3;
 
-  const readAllUsers = async (req, res)=>{
+        // Validación de datos
+        if (!name || !image || !email || !password) {
+            return res.status(400).json({ message: "Por favor, proporciona todos los campos requeridos." });
+        }
+        const result = await register(name, lastName, dni, image, email, password, roleID);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
+const readAllUsers = async (req, res) => {
     try {
         const dbUsers = await readAll();
         res.status(200).json(dbUsers)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({ error: error.message })
     }
 };
 
 
-const getUsersById = async (req, res)=>{
-    const {id} = req.params;
+const getUsersById = async (req, res) => {
+    const { id } = req.params;
     try {
         let usersDB = await getOneUser(id)
         res.status(200).json(usersDB);
-        }
+    }
     catch (error) {
-        res.status(500).send({message: error.message});
+        res.status(500).send({ message: error.message });
     }
 };
 
-const getUsersByQuery = async (req, res)=>{
-    const {name}= req.query;
+const getUsersByQuery = async (req, res) => {
+    const { name } = req.query;
     try {
         const dbUsers = await findByName(name);
         res.status(200).json(dbUsers)
     } catch (error) {
-        res.status(500).send({message: error.message});
+        res.status(500).send({ message: error.message });
     }
 };
 
 const updateUser = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const updateData = req.body
     try {
         const response = await updateUserModel(id, updateData);
         res.status(200).json(response);
     } catch (error) {
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 }
 
 const deleteUser = async (req, res) => {
-    const {id} = req.params;
-    try{
+    const { id } = req.params;
+    try {
         const response = await destroyUser(id);
         res.status(200).json(response);
     }
-    catch(error) {
-        res.status(500).send({message: error.message});
+    catch (error) {
+        res.status(500).send({ message: error.message });
     }
 }
 //! -------------------------------------------------------------------------
