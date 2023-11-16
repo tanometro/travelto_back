@@ -3,6 +3,7 @@ const server = express();
 const routes = require('./routes/index.js');
 const morgan = require("morgan");
 //const cors = require("cors");
+const mercadopago = require('mercadopago');
 const {BASE_URL}= process.env;
 const path = require('path');
 

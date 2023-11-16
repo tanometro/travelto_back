@@ -4,7 +4,6 @@ const {createOrder, successOrder, receiveWebhook} = require('../controllers/paym
 const router = Router();
 
 router.post('/createOrder', createOrder);
-router.get('/success', successOrder);
 // router.get('/pending', pending);
 // router.get('/failure', failure);
 router.get('/webhook', receiveWebhook);
