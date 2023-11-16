@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { findUserAddGooglePass } = require('../services/login.services');
 const { findUser } = require('../services/auth.services');
 
 const secretKey = 'Dracarys'
