@@ -12,42 +12,23 @@ const CompraModel = require('../models/Compras');
 const RoleModel = require('../models/Roles');
 const PaymentModel = require('../models/Payments')
 
-<<<<<<< HEAD
-// const dataBase = new Sequelize(
-//   url,
-//     {
-//       logging: false,
-//       native: false,
-//     }) 
-
-const dataBase = new Sequelize(
-=======
 const dataBase = new Sequelize(
   url,
-  {
-    logging: false,
-    native: false,
-  })
+    {
+      logging: false,
+      native: false,
+    }) 
 
-/* const dataBase = new Sequelize(
->>>>>>> 777f891be1b8bc31a23a0a6f2bf2b1eb1368c2e5
-  DB_DEPLOY,
-  {
-    logging: false,
-    native: false,
-<<<<<<< HEAD
-  }) 
+// const dataBase = new Sequelize(
+//   DB_DEPLOY,
+//   {
+//     logging: false,
+//     native: false,
+//   }) 
 
 LocationModel (dataBase)
 AttractionModel (dataBase)
 UserModel (dataBase)
-=======
-  }) */
-
-LocationModel(dataBase)
-AttractionModel(dataBase)
-UserModel(dataBase)
->>>>>>> 777f891be1b8bc31a23a0a6f2bf2b1eb1368c2e5
 CommentModel(dataBase)
 CompraModel(dataBase)
 RoleModel(dataBase)

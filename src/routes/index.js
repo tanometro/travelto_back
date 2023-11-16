@@ -17,6 +17,3 @@ router.use('/payments', paymentsRoutes);
 router.use('/login', loginRoutes)
 router.use('/compras', comprasRoutes)
 module.exports = router;
-
-
-
