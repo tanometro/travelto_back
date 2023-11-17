@@ -12,9 +12,6 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    lastName: {
-      type: DataTypes.STRING,
-    },
     dni: {
       type: DataTypes.STRING,
       unique: true

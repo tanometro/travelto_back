@@ -21,7 +21,7 @@ function sendEmail(destinatario, asunto, mensaje) {
   return sgMail.send(correo);
 }
 
-const register = async (name, lastName, dni, image, email, password, roleID) => {
+const register = async (name, dni, image, email, password, roleID) => {
   let cryptPass;
   if (password.length >= 5) {
     cryptPass = bcrypt.hashSync(password, 10);
@@ -32,13 +32,13 @@ const register = async (name, lastName, dni, image, email, password, roleID) => 
 
     const user = await User.create({
       name,
-      lastName,
       dni,
       image,
       email,
       password: cryptPass,
       roleID
     });
+    // aca llamo a la funcion para enviar el email
 
     const destinatario = email
     const asunto = 'Bienvenido a TravelTo'
@@ -135,7 +135,7 @@ const getOneUser = async (id) => {
     if (!response) {
       return "No se encontro el usuario solicitado";
     }
-    return response;
+    return response.dataValues;
   } catch (error) {
     throw new Error(
       `No se pudo encontrar el user con id ${id}` + error.message
