@@ -4,8 +4,45 @@ const routes = require('./routes/index.js');
 const morgan = require("morgan");
 //const cors = require("cors");
 const mercadopago = require('mercadopago');
-const {BASE_URL}= process.env;
 const path = require('path');
+const { BASE_URL, ACCESS_TOKEN } = process.env;
+  
+  server.post("/create_preference", (req, res) => {
+    let preference = {
+      items: [
+        {
+          title: req.body.description,
+          unit_price: Number(req.body.price),
+          quantity: Number(req.body.quantity),
+        },
+      ],
+      back_urls: {
+        success: "http://localhost:3001",
+        failure: "http://localhost:3001",
+        pending: "",
+      },
+      auto_return: "approved",
+    };
+  
+    mercadopago.preferences
+      .create(preference)
+      .then(function (response) {
+        res.json({
+          id: response.body.id,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
+  
+  server.get("/feedback", function (req, res) {
+    res.json({
+      Payment: req.query.payment_id,
+      Status: req.query.status,
+      MerchantOrder: req.query.merchant_order_id,
+    });
+  });
 
 // Swagger
 const swaggerUI = require('swagger-ui-express');
