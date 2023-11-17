@@ -21,7 +21,7 @@ function sendEmail(destinatario, asunto, mensaje) {
   return sgMail.send(correo);
 }
 
-const register = async (name, lastName, dni, image, email, password, roleID) => {
+const register = async (name, dni, image, email, password, roleID) => {
   let cryptPass;
   if (password.length >= 5) {
     cryptPass = bcrypt.hashSync(password, 10);
@@ -32,13 +32,13 @@ const register = async (name, lastName, dni, image, email, password, roleID) => 
 
     const user = await User.create({
       name,
-      lastName,
       dni,
       image,
       email,
       password: cryptPass,
       roleID
     });
+    // aca llamo a la funcion para enviar el email
 
     const destinatario = email
     const asunto = 'Bienvenido a TravelTo'
@@ -135,7 +135,7 @@ const getOneUser = async (id) => {
     if (!response) {
       return "No se encontro el usuario solicitado";
     }
-    return response;
+    return response.dataValues;
   } catch (error) {
     throw new Error(
       `No se pudo encontrar el user con id ${id}` + error.message
@@ -168,15 +168,18 @@ const findByName = async (searchName) => {
 };
 
 const updateUserModel = async (id, updateData) => {
+
   try {
     const user = await User.findByPk(id)
+    let editUser = { ...User, updateData };
 
+    //si no tiene rol de admin no puede cambiar roleID
+    editUser = { ...editUser, roleID: Number(updateData.roleID) }
     if (!user) {
       throw new Error('Usuario no encontrado')
     }
 
-    const updatedUser = await User.update(updateData)
-
+    const updatedUser = await User.update(editUser, { where: { id: id } });
     return updatedUser
   } catch (error) {
     throw new Error(`No se pudo editar el user con id ${id}` + error.message);

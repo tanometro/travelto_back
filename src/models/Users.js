@@ -12,9 +12,6 @@ module.exports = (dataBase) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    lastName: {
-      type: DataTypes.STRING,
-    },
     dni: {
       type: DataTypes.STRING,
       unique: true
@@ -34,6 +31,7 @@ module.exports = (dataBase) => {
     },
     googlePass: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     isActive: {
       type: DataTypes.BOOLEAN,

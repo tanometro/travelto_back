@@ -14,21 +14,21 @@ const PaymentModel = require('../models/Payments')
 
 const dataBase = new Sequelize(
   url,
-    {
-      logging: false,
-      native: false,
-    }) 
+  {
+    logging: false,
+    native: false,
+  })
 
-// const dataBase = new Sequelize(
-//   DB_DEPLOY,
-//   {
-//     logging: false,
-//     native: false,
-//   }) 
-
-LocationModel (dataBase)
-AttractionModel (dataBase)
-UserModel (dataBase)
+/* const dataBase = new Sequelize(
+  DB_DEPLOY,
+  {
+    logging: false,
+    native: false,
+  })
+ */
+LocationModel(dataBase)
+AttractionModel(dataBase)
+UserModel(dataBase)
 CommentModel(dataBase)
 CompraModel(dataBase)
 RoleModel(dataBase)
