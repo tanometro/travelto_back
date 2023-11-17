@@ -4,6 +4,7 @@ const apiKey =process.env.API_KEY
 const travelEmail = process.env.email;
 const sgMail = require('@sendgrid/mail');
 const {getOneUser} = require('../services/users.services')
+const {attractionById} = require('../services/atractions.services')
 sgMail.setApiKey(apiKey);
 
 
@@ -26,14 +27,15 @@ try {
         attractionId,
         date: new Date(),
         cantidadEntradas,
-        amount
+        amount,
 
     })
     const userInfo = await getOneUser(usuarioId);
     const destinatario = userInfo.email;
     const asunto= 'Confirmacion de Compra';
-    //const mensaje= `Gracias por tu compra en nuestra aplicación. Detalles de la compra:\n\nCantidad de entradas: ${cantidadEntradas}\nTotal: ${amount}`
-    
+    const attractionInfo = await attractionById(attractionId)
+    const producto = attractionInfo.name;
+
     const mensaje = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -88,24 +90,17 @@ try {
                 <th>Total</th>
             </tr>
             <tr>
-                <td>Producto 1</td>
-                <td>2</td>
-                <td>$20.00</td>
-                <td>$40.00</td>
+                <td>${producto}</td>
+                <td>${cantidadEntradas}</td>
+                <td>${amount}</td>
+                <td>${amount * cantidadEntradas}</td>
             </tr>
             <!-- Puedes agregar más filas según los productos de la compra -->
         </table>
     
-        <p>Total de la compra: $40.00</p>
+        <p>Total de la compra: ${amount * cantidadEntradas}</p>
     
-        <p>Envío a:</p>
-        <address>
-            Nombre: Nombre del Cliente<br>
-            Dirección: Dirección del Cliente<br>
-            Ciudad: Ciudad del Cliente<br>
-            Código Postal: 12345
-        </address>
-    
+            
         <p>¡Gracias por elegir nuestros productos!</p>
     </body>
     </html>
@@ -116,7 +111,7 @@ try {
     return buys;
 
 } catch (error) {
-    throw new Error('Error al registrar la compra: ' + error)
+    throw new Error('Error al registrar la compra services: ' + error)
 }
 };
 
