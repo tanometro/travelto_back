@@ -12,6 +12,7 @@ const CompraModel = require('../models/Compras');
 const RoleModel = require('../models/Roles');
 const PaymentModel = require('../models/Payments')
 
+<<<<<<< HEAD
 // const dataBase = new Sequelize(
 //   url,
 //     {
@@ -20,15 +21,33 @@ const PaymentModel = require('../models/Payments')
 //     }) 
 
 const dataBase = new Sequelize(
+=======
+const dataBase = new Sequelize(
+  url,
+  {
+    logging: false,
+    native: false,
+  })
+
+/* const dataBase = new Sequelize(
+>>>>>>> c2e45a387a016ea5b189ec4647e1da50bec2d5f5
   DB_DEPLOY,
   {
     logging: false,
     native: false,
+<<<<<<< HEAD
   }) 
 
 LocationModel (dataBase)
 AttractionModel (dataBase)
 UserModel (dataBase)
+=======
+  })
+ */
+LocationModel(dataBase)
+AttractionModel(dataBase)
+UserModel(dataBase)
+>>>>>>> c2e45a387a016ea5b189ec4647e1da50bec2d5f5
 CommentModel(dataBase)
 CompraModel(dataBase)
 RoleModel(dataBase)

@@ -2,6 +2,9 @@
 node_modules/
 jspm_packages/
 
+# Archivos de configuración
+dev.env
+
 # package-lock.json
 package-lock.json
 
