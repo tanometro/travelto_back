@@ -45,9 +45,6 @@ Location.hasMany(Attraction) // Relacion de 1 locacion a muchas atracciones
 Comment.belongsTo(User)
 User.hasMany(Comment) // Relacion de 1 Usuario a muchos comentarios
 
-//TODO: Comment - Attraction
-Comment.belongsTo(Attraction)
-Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
 
 //TODO: User - Role
 // User.belongsToMany(Role, {through: 'UserRole'})
@@ -56,11 +53,21 @@ Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
 //TODO: User - Location
 User.belongsToMany(Location, { through: 'Destination' })
 
-//TODO: User - Compra
-User.belongsToMany(Compra, { through: 'Reservas' })
 
 //TODO: User - Pagos
 User.belongsToMany(Payment, { through: 'Reservas' })
+
+//TODO: Comment - Attraction
+Comment.belongsTo(Attraction)
+Attraction.hasMany(Comment) // Relacion de 1 Atraccion a muchos comentarios
+
+//TODO: Attraction - Compra
+Attraction.hasMany(Compra)
+Compra.belongsTo(Attraction)
+
+//TODO: User - Compra
+User.hasMany(Compra)
+Compra.belongsTo(User)
 
 //TODO: Compra - Comment
 Compra.hasOne(Comment, { foreignKey: 'compraId' })

@@ -5,7 +5,7 @@ const { conn } = require('./src/db');
 
 require('./src/db');
 
-conn.sync({ force: true })
+conn.sync({ force: false })
   .then(() => {
     server.listen(port, () => {
       console.log(`Server raised in port: ` + port);

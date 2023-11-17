@@ -1,8 +1,11 @@
 const {Compra}= require('../db/index');
+
 require('dotenv').config()
+
 const apiKey =process.env.API_KEY
 const travelEmail = process.env.email;
 const sgMail = require('@sendgrid/mail');
+
 const {getOneUser} = require('../services/users.services')
 sgMail.setApiKey(apiKey);
 
@@ -24,11 +27,12 @@ try {
     const buys = await Compra.create({
         usuarioId,
         attractionId,
-        date: new Date(),
         cantidadEntradas,
-        amount
+        amount,
+        date: new Date()
 
     })
+
     const userInfo = await getOneUser(usuarioId);
     const destinatario = userInfo.email;
     const asunto= 'Confirmacion de Compra';
