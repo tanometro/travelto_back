@@ -168,15 +168,18 @@ const findByName = async (searchName) => {
 };
 
 const updateUserModel = async (id, updateData) => {
+
   try {
     const user = await User.findByPk(id)
+    let editUser = { ...User, updateData };
 
+    //si no tiene rol de admin no puede cambiar roleID
+    editUser = { ...editUser, roleID: Number(updateData.roleID) }
     if (!user) {
       throw new Error('Usuario no encontrado')
     }
 
-    const updatedUser = await User.update(updateData)
-
+    const updatedUser = await User.update(editUser, { where: { id: id } });
     return updatedUser
   } catch (error) {
     throw new Error(`No se pudo editar el user con id ${id}` + error.message);
