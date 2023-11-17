@@ -1,12 +1,23 @@
-const { Router } = require('express')
-const router = Router()
-const {createOneComment,readAllComment, readOneComment, updateOneComment, deleteOneComment} = require('../controllers/comments.controllers')
+// comments.routes.js
+const { Router } = require('express');
+const router = Router();
+const {
+    createOneComment,
+    readAllComment,
+    readOneComment,
+    updateOneComment,
+    deleteOneComment,
+    readReviewsByAttraction,  
+} = require('../controllers/comments.controllers');
 
 router.post('/create', createOneComment);
 router.get('/', readAllComment);
-router.patch('/update/:id', updateOneComment)
+router.patch('/update/:id', updateOneComment);
 router.delete('/delete/:id', deleteOneComment);
-router.get('/:id', readOneComment)
+router.get('/:id', readOneComment);
+router.get('/attraction/:attractionId', readReviewsByAttraction);
+
+
 
 /**
  * @swagger 

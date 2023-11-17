@@ -62,6 +62,10 @@ User.belongsToMany(Compra, { through: 'Reservas' })
 //TODO: User - Pagos
 User.belongsToMany(Payment, { through: 'Reservas' })
 
+//TODO: Compra - Comment
+Compra.hasOne(Comment, { foreignKey: 'compraId' })
+Comment.belongsTo(Compra, { foreignKey: 'compraId' })
+
 //! Relaciones ------------------------------------------------------------
 
 module.exports = {

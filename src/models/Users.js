@@ -31,6 +31,7 @@ module.exports = (dataBase) => {
     },
     googlePass: {
       type: DataTypes.STRING,
+      allowNull: true
     },
     isActive: {
       type: DataTypes.BOOLEAN,

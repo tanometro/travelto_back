@@ -15,6 +15,14 @@ module.exports = (dataBase) => {
     description: {
       type: DataTypes.TEXT,
       allowNull: false
-    }
+    },
+    compraId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true, // Puedes establecer el valor predeterminado según tus necesidades
+    },
 }, {timestamp: false})
 }
