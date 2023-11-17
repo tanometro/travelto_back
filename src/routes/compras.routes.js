@@ -2,34 +2,6 @@ const { Router } = require('express')
 const router = Router()
 const {registroDeCompras, consultaCompra, consultarTodasLasCompras} = require('../controllers/compras.controller')
 
-id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
-  },
-  usuarioId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  attractionId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  cantidadEntradas: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  amount: {
-    type: DataTypes.DECIMAL,
-    allowNull: false,
-  },
-  date: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-
-
 /**
  * @swagger 
  * components: 
@@ -38,109 +10,91 @@ id: {
  *       type: object
  *       properties: 
  *         usuarioId: 
- *           type: float
- *           description: the user assigns a number to a comment
+ *           type: integer
+ *           description: the user ID that buy the item/s
  *         attractionId: 
- *           type: string
- *           description: the comment properly
+ *           type: integer
  *         cantidadEntradas: 
- *           type: string
- *           description: the comment properly
+ *           type: integer
  *         amount: 
- *           type: string
- *           description: the comment properly
+ *           type: decimal
+ *           description: the total amount of the transaction
  *         date: 
- *           type: string
- *           description: the comment properly
+ *           type: date
  *       required:
- *         - rating
- *         - description
+ *         - usuarioID
+ *         - attractionId
+ *         - cantidadEntradas
+ *         - amount
  *       example:
- *         rating: 4.5
- *         description: This comment is fabulous
+ *         usuarioId: 7
+ *         attractionId: 3
+ *         cantidadEntradas: 1
+ *         amount: 23$
+ *         date: 2023/07/12
  */
 
 /**
  * @swagger
- * /comments/create:
+ * /compras:
  *   post:
- *     summary: create a new comment 
- *     tags: [comments]
+ *     summary: register a new transaction 
+ *     tags: [compras]
  *     requestBody: 
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             $ref: '#/components/schemas/Comment'
+ *             $ref: '#/components/schemas/Compra'
  *     responses:
  *       200:
- *         description: new comment created
+ *         description: new transaction created
+ *       500:
+ *         description: new transaction failed
  */
+
 
 /**
  * @swagger
- * /comments/{id}:
+ * /compras/{usuarioId}:
  *   get:
- *     summary: return a comment
- *     tags: [comments]
+ *     summary: return all transactions of a user 
+ *     tags: [compras]
  *     parameters: 
  *       - in: path
  *         name: id
  *         schema: 
  *           type: string
  *         required: true
- *         description: the comment id    
+ *         description: the user id    
  *     responses:
  *       200:
- *         description: obtain a comment 
+ *         description: obtain all transactions of a user 
  *         content:
  *           application/json:
  *             schema:
  *               type: object
- *               $ref: '#/components/schemas/Comment'
- *       404:
- *         description: comment not found
+ *               $ref: '#/components/schemas/Compra'
+ *       500:
+ *         description: transactions not found
  */
 
 /**
  * @swagger
- * /comments/delete/{id}:
- *   delete:
- *     summary: delete a comment
- *     tags: [comments]
- *     parameters: 
- *       - in: path
- *         name: id
- *         schema: 
- *           type: string
- *         required: true
- *         description: the comment id    
+ * /compras/:
+ *   get:
+ *     summary: obtain all transactions
+ *     tags: [compras]
  *     responses:
  *       200:
- *         description: deleted comment 
- *       404:
- *         description: comment not found
- */
-
-/**
- * @swagger
- * /comments/update/{id}:
- *   put:
- *     summary: update a comment
- *     tags: [comments]
- *     parameters: 
- *       - in: path
- *         name: id
- *         schema: 
- *           type: string
- *         required: true
- *         description: the comment id    
- *     responses:
- *       200:
- *         description: updated comment 
- *       404:
- *         description: comment not found
+ *         description: all transactions
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Compra'
  */
 
 
