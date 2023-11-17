@@ -1,29 +1,25 @@
-const {User} = require('../db');
+const { User } = require('../db');
 const jwt = require("jsonwebtoken");
+const { AddGooglePass } = require('./login.services');
 const secretKey = 'Dracarys'
 
 
-const findUser = async (email, password) => {
-    try {
-        const user = await User.findOne({
-            where: {
-                email: email
-            }
-        });
+const findUser = async (email) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: email
+      }
+    });
 
-        if (user) {
-            // Verificar la contraseña aquí
-            if (user.password === password) {
-                return user;
-            } else {
-                throw new Error('Contraseña incorrecta');
-            }
-        } else {
-            throw new Error('No existe el usuario');
-        }
-    } catch (error) {
-        throw new Error("Amig@ intenta de nuevo. " + error.message);
+    if (user) {
+      return user.dataValues;
+    } else {
+      throw new Error('No existe el usuario');
     }
+  } catch (error) {
+    throw new Error("Error de autenticacion " + error.message);
+  }
 };
 //! ----------------------------------------------------------------------------
 
@@ -33,15 +29,19 @@ const token = async (token) => {
       throw new Error('Acceso no autorizado');
     }
 
-    const decoded = jwt.verify(token, secretKey);
-    const user = await User.findByPk(decoded.user.id, {
-      attributes: ['name', 'email']
-    });
-
+    const decoded = await jwt.verify(token, secretKey);
+    //extraigo la info del token
+    const user = {
+      email: decoded.email,
+      password: decoded.password,
+      googlePass: decoded.googlePass
+    }
     if (!user) {
       throw new Error('No existe el usuario');
     }
-
+    if (user.googlePass) {
+      await AddGooglePass(user.email, user.googlePass);
+    }
     return user;
   } catch (error) {
     throw new Error('No autorizado');
@@ -49,6 +49,6 @@ const token = async (token) => {
 };
 
 module.exports = {
-    findUser,
-    token
+  findUser,
+  token
 }

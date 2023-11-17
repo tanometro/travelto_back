@@ -1,24 +1,32 @@
-const { login } = require('../services/login.services');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const { findUserAddGooglePass } = require('../services/login.services');
+const { findUser } = require('../services/auth.services');
+
+const secretKey = 'Dracarys'
 
 const loginFunction = async (req, res) => {
+  const { email, password, googlePass } = req.user;
   try {
-    const { email, password } = req.query;
+    //traigo el usuario
+    const user = await findUser(email);
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Faltan datos' });
+    if (!user.email) {
+      return res.status(401).send('Credenciales inválidas, no existe usuario');
+    }
+    const valid = (password) ? await bcrypt.compare(password, user.password) : await bcrypt.compare(googlePass, user.googlePass);
+    if (!valid) {
+      return res.status(401).send('Credenciales inválidas, contraseña incorrecta');
     }
 
-    const result = await login(email, password);
+    const token = jwt.sign({ email, password }, secretKey, { expiresIn: '24h' });
 
-    if (result.error) {
-      return res.status(401).json({ message: result.error });
-    }
-
-    res.json(result);
+    res.status(200).json({ name: user.name, email: user.email, dni: user.dni, picture: user.image, roleID: user.roleID, token: token });
   } catch (error) {
-    res.status(500).json({ error: 'Error en el servidor de login' });
+    res.status(500).json({ error: "Error en el servidor de login" });
   }
-};
+
+}
 
 module.exports = {
   loginFunction

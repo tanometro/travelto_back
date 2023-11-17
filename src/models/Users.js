@@ -14,11 +14,9 @@ module.exports = (dataBase) => {
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     dni: {
       type: DataTypes.STRING,
-      allowNull: false,
       unique: true
     },
     image: {
@@ -27,11 +25,15 @@ module.exports = (dataBase) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    googlePass: {
+      type: DataTypes.STRING,
     },
     isActive: {
       type: DataTypes.BOOLEAN,
@@ -41,5 +43,5 @@ module.exports = (dataBase) => {
       type: DataTypes.INTEGER,
       allowNull: true
     }
-}, {timestamps: false})
+  }, { timestamps: false })
 }
