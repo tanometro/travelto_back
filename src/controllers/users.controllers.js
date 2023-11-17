@@ -50,9 +50,9 @@ const getUsersByQuery = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { id } = req.params;
-    const updateData = req.body
+    const updateData = req.body;
     try {
-        const response = await updateUserModel(id, updateData);
+        const response = await updateUserModel(id, email, updateData);
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ message: error.message });
