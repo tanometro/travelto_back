@@ -30,7 +30,6 @@ const token = async (token) => {
 
     const decoded = await jwt.verify(token, secretKey);
     //extraigo la info del token
-    //console.log(logger.info(decoded));
     const user = {
       email: decoded.email,
       password: decoded.password,

@@ -31,10 +31,6 @@ const loginFunction = async (req, res) => {
 
 }
 
-const prueba = (a) => {
-  return a
-}
-
 module.exports = {
   loginFunction
 };
