@@ -95,7 +95,7 @@ const register = async (name, lastName, dni, image, email, password, roleID) => 
               <p>Gracias por registrarte en nuestro sitio. Tu cuenta ha sido creada con éxito.</p>
               <p>Para comenzar a disfrutar de nuestros servicios, por favor haz clic en el siguiente enlace:</p>
 
-              <a class="button" href="https://tusitio.com/confirmacion?token=TU_TOKEN">Confirmar Registro</a>
+              <a class="button" href="https://travelto-front.vercel.app/">Confirmar Registro</a>
 
               <p class="footer">Si no te registraste en nuestro sitio, por favor ignora este correo.</p>
           </div>
