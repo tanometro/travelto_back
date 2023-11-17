@@ -26,9 +26,13 @@ const createOrder = async (req, res) => {
     res.status(201).send('Pago efectuado exitosamente');
 
    } catch (error) {
-    res.status(500).json({error: true, message: 'Pago fallido'})
+    res.status(500).json({error: error})
    }
-};
+}
+
+const successOrder = (req, res) => {
+    res.status(200).send('Orden exitosa')
+}
 
 const receiveWebhook = async (req, res) => {
     const payment = req.query;
@@ -44,5 +48,5 @@ const receiveWebhook = async (req, res) => {
 }
 
 module.exports = {
-    createOrder, receiveWebhook
+    createOrder, successOrder, receiveWebhook
 }

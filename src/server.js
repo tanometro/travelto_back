@@ -44,7 +44,6 @@ const swaggerSpec = {
 
 server.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
 
-
 mercadopago.configure({
   access_token: ACCESS_TOKEN
 });
