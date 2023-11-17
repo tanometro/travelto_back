@@ -29,7 +29,7 @@ const isAdmin = async (req, res, next) => {
 const isOperator = async (req, res, next) => {
   try {
     const user = findUser(req.user.email);
-    if (user.roleID === 2) {
+    if (user.roleID === 2 || user.roleID === 1) {
       req.user = user;
       next();
     } else {

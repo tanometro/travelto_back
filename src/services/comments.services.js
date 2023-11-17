@@ -1,62 +1,87 @@
-const {Comment} = require('../db');
+const { Comment } = require('../db');
 
-
-const createComment = (data) => {
+const createComment = async (usuarioId, attractionId, compraId, rating, description) => {
     try {
-        const response = Comment.create(data)
+        const review = await Comment.create({
+            usuarioId,
+            attractionId,
+            compraId,
+            rating,
+            description,
+        });
+
+        return review;
+    } catch (error) {
+        throw new Error('Error al agregar la reseña: ' + error.message);
+    }
+};
+
+const getReviewsByAttraction = async (attractionId) => {
+    try {
+        const reviews = await Comment.findAll({
+            where: { attractionId },
+        });
+
+        return reviews;
+    } catch (error) {
+        throw new Error('Error al obtener las reseñas: ' + error.message);
+    }
+};
+
+const getOneComment = async (id) => {
+    try {
+        const response = await Comment.findByPk(id);
+        if (!response) throw new Error("No existe ese comentario");
         return response;
     } catch (error) {
-        throw new Error ("Mostro, no pude crear el comentario, y es que " + error.message)
+        throw new Error("Error al obtener el comentario: " + error.message);
     }
-}
+};
 
-const getOneComment = (id) => {
+const getComments = async () => {
     try {
-        const response = Comment.findByPk(id);
-        if (response === null) return ("No existe esa locación")
+        const response = await Comment.findAll();
         return response;
     } catch (error) {
-        throw new Error ("Mostro, intenta de nuevo. " + error.message)
+        throw new Error("Error al obtener todos los comentarios: " + error.message);
     }
-}
-
-const getComments = () => {
-    try {
-        const response = Comment.findAll();
-        return response;
-    } catch (error) {
-        throw new Error ("Error en buscar todos los comentarios: " + error.message)   
-    }
-}
+};
 
 const updateCommentService = async (id, body) => {
     try {
         const response = await Comment.update(body, {
             where: {
-                id: id
-            }
-        })
+                id: id,
+            },
+        });
+
         if (response[0] === 0) {
             throw new Error(`No se encontró ningún comentario con ID ${id} para actualizar.`);
         }
-        return `Sr, el comentario con ID ${id} fue actualizado.`;
-    }
-    catch(error){
-        throw new Error ("Error en actualizar el comentario: " + error.message)   
-    }
-}
 
-const destroyOneComment = async (id) => {
-    const response = await Comment.destoy({
-        where: {
-        id: id }
-    })
-}
+        return `El comentario con ID ${id} fue actualizado.`;
+    } catch (error) {
+        throw new Error("Error al actualizar el comentario: " + error.message);
+    }
+};
+
+const deleteReview = async (commentId) => {
+    try {
+        const result = await Comment.update({ isActive: false }, {
+            where: { id: commentId },
+        });
+
+        return result;
+    } catch (error) {
+        throw new Error('Error al desactivar la reseña: ' + error.message);
+    }
+};
 
 module.exports = {
     createComment,
     getOneComment,
     getComments,
     updateCommentService,
-    destroyOneComment
-}
+    deleteReview,
+    getReviewsByAttraction,
+};
